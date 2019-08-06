@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Saira+Stencil+One&display=swap');
+
+mat-expansion-panel {
+  margin-top: 1rem;
+}
+
+.character-name {
+  font-family: 'Abril Fatface', cursive;
+  //font-family: 'Saira Stencil One', cursive;
+  font-size: 1.25rem;
+}
+
+mat-card {
+  margin-top: 5px;
+}

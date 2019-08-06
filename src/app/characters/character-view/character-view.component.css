@@ -1,0 +1,93 @@
+.card-general {
+  background: lightgrey;
+  color: #000;  
+}
+
+mat-card {
+  margin-top: 10px;
+}
+
+.theme-card {
+  height: 25rem;
+}
+
+.mythos mat-card-header {
+  height: 7rem;
+}
+
+.logos mat-card-header {
+  height: 7rem;
+}
+
+mat-card-title {
+  font-family: 'Abril Fatface', cursive;
+}
+
+mat-card-subtitle {
+  font-style: italic;
+}
+
+.mythos mat-card-subtitle {
+  color: lightgrey;
+}
+
+.logos mat-card-subtitle {
+  color: rgb(64, 65, 71);
+}
+
+.qors {
+  margin: 1rem auto;
+}
+
+/* Flipping cards */
+
+.card-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  -webkit-perspective: 500px;
+  perspective: 500px;
+}
+
+.flippable-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+.flippable-card.desktop mat-card {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 30rem;
+  backface-visibility: hidden;
+}
+
+.flippable-card.mobile mat-card {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 30rem;
+  backface-visibility: hidden;
+}
+
+.flippable-card .back {
+  transform: rotateY( 180deg );
+}
+
+.flippable-card .back .mobile {
+  position: relative;
+  transform: rotateY( 180deg );
+}
+
+.flippable-card.flipped {
+  transform: rotateY( 180deg );
+}
+
+/* SWIPER */
+
+.card-slot {
+  position: relative;
+}

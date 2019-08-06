@@ -1,0 +1,145 @@
+<div class="container">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <button 
+  *ngIf="!isLoading"
+  mat-raised-button
+  class="btn-mythos"
+  (click)="onBackToCharacters()">
+    Back
+  </button>
+  <div class="row" *ngIf="!isLoading">
+    <div class="col-md-6 col-xs-12">
+      <mat-card class="card-general">
+        <mat-card-header>
+          <mat-card-title>
+            General Information
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          Current window.screen.width: {{windowWidth}}<br>
+          Name: {{ character.name }}<br>
+          <fa-icon [icon]="icons.mythos"></fa-icon> {{ character.mythos }}<br>
+          <fa-icon [icon]="icons.logos"></fa-icon> {{ character.logos }}
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+    <div class="row" *ngIf="!isLoading && !mobile">
+      <div class="col-lg-3 col-md-6 col-xs-10 card-slot" *ngFor="let card of cards">
+       <div class="card-container desktop">
+        <div class="flippable-card desktop" [ngClass]="{'flipped':flipped}" (click)="flipped = !flipped">
+          <mat-card [ngClass]="getValues(card.cardtype)" class="theme-card front desktop">
+            <mat-card-header>
+              <mat-card-title>
+                {{getValues(card.title)}}
+              </mat-card-title>
+              <mat-card-subtitle>
+                {{getValues(card.theme)}}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="qors">
+                <span *ngIf="getCardType(card.cardtype) === 'mythos'">Mystery: </span>
+                <span *ngIf="getCardType(card.cardtype) === 'logos'">Identity: </span>
+                <span>{{getValues(card.qors)}}</span>
+              </div>
+              <div>
+                Power tags:
+                <ul>
+                  <li *ngFor="let ptag of card.ptags">[{{ptag.letter}}] {{ptag.tag}}</li>
+                </ul>
+              </div>
+              <div>
+                Weakness tags:
+                <ul>
+                  <li *ngFor="let wtag of card.wtags">[{{wtag.letter}}] {{wtag.tag}}</li>
+                </ul>
+              </div>
+            </mat-card-content>
+          </mat-card>
+          <mat-card [ngClass]="getValues(card.cardtype)" class="theme-card back desktop">
+            <mat-card-header>
+              <mat-card-title>
+                {{getValues(card.title)}}
+             </mat-card-title>
+              <mat-card-subtitle>
+               {{getValues(card.theme)}}
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              Improvements come here...
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="!isLoading && mobile">
+    <div class="col-12">
+      <swiper [config]="swiperConfig">
+        <div>
+          <div class="swiper-pagination" style="position: relative"></div>
+        </div>
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" *ngFor="let card of cards">
+            <div class="card-container mobile">
+              <div 
+              class='flippable-card mobile' 
+              [ngClass]="{'flipped':flipped}" 
+              (click)="flipped = !flipped">
+               <mat-card 
+               [ngClass]="getValues(card.cardtype)" 
+               class="theme-card front mobile"
+               style="position: relative">
+                  <mat-card-header>
+                    <mat-card-title>
+                      {{getValues(card.title)}}
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                      {{getValues(card.theme)}}
+                    </mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content>
+                    <div class="qors">
+                      <span *ngIf="getCardType(card.cardtype) === 'mythos'">Mystery: </span>
+                      <span *ngIf="getCardType(card.cardtype) === 'logos'">Identity: </span>
+                      <span>{{getValues(card.qors)}}</span>
+                    </div>
+                    <div>
+                      Power tags:
+                      <ul>
+                        <li *ngFor="let ptag of card.ptags">[{{ptag.letter}}] {{ptag.tag}}</li>
+                       </ul>
+                    </div>
+                    <div>
+                      Weakness tags:
+                      <ul>
+                        <li *ngFor="let wtag of card.wtags">[{{wtag.letter}}] {{wtag.tag}}</li>
+                      </ul>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+                <mat-card 
+                [ngClass]="getValues(card.cardtype)" 
+                class="theme-card back mobile"
+                style="position: absolute; bottom: 0px;">
+                  <mat-card-header>
+                    <mat-card-title>
+                      {{getValues(card.title)}}
+                  </mat-card-title>
+                    <mat-card-subtitle>
+                      {{getValues(card.theme)}}
+                    </mat-card-subtitle>
+                  </mat-card-header>
+                  <mat-card-content>
+                    Improvements come here...
+                  </mat-card-content>
+               </mat-card>
+             </div>
+            </div>
+          </div>
+        </div>
+      </swiper>
+    </div>
+  </div>
+</div>

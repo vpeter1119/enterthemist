@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Saira+Stencil+One&display=swap');
+
+fa-icon {
+  margin: 0 5px;
+}
+
+.main-title {
+  font-family: 'Abril Fatface', cursive;
+  font-size: 1.5rem;
+  margin-left: 5px;
+}
+
+.navbar-brand {
+  color: #FFF;
+}
+
+nav {
+  background: #723881;
+  margin-bottom: 10px;
+}

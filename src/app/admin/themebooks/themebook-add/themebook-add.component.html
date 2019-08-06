@@ -1,0 +1,172 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+          <form [formGroup]="newThemeBookForm" (ngSubmit)="onSubmit()">
+      <mat-card class="logos">
+        <mat-card-header>
+          <mat-card-title>
+            Add new themebook
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field appearance="outline">
+              <mat-label>Type</mat-label>
+              <input matInput type="text" formControlName="tbtype" >
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Name</mat-label>
+              <input matInput type="text" formControlName="name" >
+            </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+      <div formGroupName="ptagq">
+        <mat-card class="logos">
+        <mat-card-header>
+          <mat-card-title>
+            Power tag questions
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field appearance="outline">
+              <mat-label>A</mat-label>
+              <textarea matInput formControlName="A"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>B</mat-label>
+              <textarea matInput formControlName="B"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>C</mat-label>
+              <textarea matInput formControlName="C"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>D</mat-label>
+              <textarea matInput formControlName="D"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>E</mat-label>
+              <textarea matInput formControlName="E"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>F</mat-label>
+              <textarea matInput formControlName="F"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>G</mat-label>
+              <textarea matInput formControlName="G"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>H</mat-label>
+              <textarea matInput formControlName="H"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>I</mat-label>
+              <textarea matInput formControlName="I"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>J</mat-label>
+              <textarea matInput formControlName="J"></textarea>
+            </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+      </div>
+      <div formGroupName="wtagq">
+        <mat-card class="logos">
+        <mat-card-header>
+          <mat-card-title>
+            Weakness tag questions
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-form-field appearance="outline">
+              <mat-label>A</mat-label>
+              <textarea matInput formControlName="A"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>B</mat-label>
+              <textarea matInput formControlName="B"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>C</mat-label>
+              <textarea matInput formControlName="C"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>D</mat-label>
+              <textarea matInput formControlName="D"></textarea>
+            </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+      </div>      
+      <mat-card class="logos">
+        <mat-card-header>
+          <mat-card-title>
+            Improvements
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div formGroupName="improvements">
+            <div formGroupName="imp1">
+              <label>First improvement:</label>
+              <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" type="text">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+              </mat-form-field>
+            </div>
+            <div formGroupName="imp2">
+              <label>Second improvement:</label>
+              <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" type="text">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+              </mat-form-field>
+            </div>
+            <div formGroupName="imp3">
+              <label>Third improvement:</label>
+              <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" type="text">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+              </mat-form-field>
+            </div>
+            <div formGroupName="imp4">
+              <label>Fourth improvement:</label>
+              <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" type="text">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+              </mat-form-field>
+            </div>
+            <div formGroupName="imp5">
+              <label>Fifth improvement:</label>
+              <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" type="text">
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="logos">
+        <button mat-raised-button class="btn-mythos" type="submit">Submit</button>
+      </mat-card>
+      </form>
+    </div>
+  </div>
+</div>

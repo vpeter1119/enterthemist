@@ -1,0 +1,41 @@
+<div class="container">
+  <button 
+  *ngIf="!isLoading"
+  mat-raised-button
+  class="btn-mythos"
+  (click)="onAddCharacter()">
+  Add new character
+  </button>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <div class="row" *ngIf="!isLoading">
+    <div class="col-md-6 col-xs-12" *ngFor="let character of characters">
+      <mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <span class="character-name">
+        {{ (character.name.length>26)? (character.name | slice:0:26)+'...':(character.name) }}
+      </span>
+    </mat-panel-title>
+  </mat-expansion-panel-header>  
+  <mat-card class="mythos">
+    <fa-icon [icon]="icons.mythos"></fa-icon> {{ character.mythos }}<br>
+  </mat-card>
+  <mat-card class="logos">
+    <fa-icon [icon]="icons.logos"></fa-icon> {{ character.logos }}
+  </mat-card>
+  <mat-action-row>
+    <button mat-button title="View"
+    (click)="onView(character._id)"> 
+      <fa-icon [icon]="icons.view"></fa-icon>
+    </button>
+    <button mat-button title="Edit">
+      <fa-icon [icon]="icons.edit"></fa-icon>
+    </button>
+    <button mat-button title="Delete" color="warn">
+      <fa-icon [icon]="icons.delete"></fa-icon>
+    </button>
+  </mat-action-row>
+</mat-expansion-panel>
+    </div>
+  </div>
+</div>

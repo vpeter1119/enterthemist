@@ -1,0 +1,36 @@
+<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
+  <a class="navbar-brand" routerLink="">
+    <fa-icon [icon]="faBolt"></fa-icon>
+    <span class="main-title">Enter the Mist</span>
+    <fa-icon [icon]="faMask"></fa-icon>
+  </a>
+  <button 
+  class="navbar-toggler" 
+  type="button" 
+  (click)="isCollapsed = !isCollapsed"
+  data-toggle="collapse" 
+  data-target="#navbarSupportedContent" 
+  aria-controls="navbarSupportedContent" 
+  aria-expanded="false" 
+  aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div 
+  class="collapse navbar-collapse" 
+  [collapse]="isCollapsed"
+  [isAnimated]="true"
+  id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="characters">Characters</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="themebooks">Themebooks</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" routerLink="">Moves</a>
+      </li>
+    </ul>
+  </div>
+</nav>
