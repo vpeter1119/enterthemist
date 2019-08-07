@@ -22,6 +22,17 @@ button {
   left: 50px;
 }
 
+.chargen-section {
+  margin-top: 2rem;
+}
+
+.chargen-section-title {
+  display: block;
+  margin-bottom: 1rem;
+  font-family: 'Abril Fatface', cursive;
+  font-size: 1rem;
+}
+
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
   color: #000;
 }
@@ -39,5 +50,9 @@ button {
 }
 
 ::ng-deep .mat-select-value-text {
+  color: #000;
+}
+
+::ng-deep .mat-select-arrow {
   color: #000;
 }

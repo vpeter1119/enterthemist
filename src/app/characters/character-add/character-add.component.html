@@ -1,66 +1,113 @@
-<div class="container"> 
+<div class="container">
   <div class="row">
     <div class="col-md-6 col-xs-12">
-        <form [formGroup]="newCharacterForm" (ngSubmit)="onSubmit()">
-          <mat-card class="logos" *ngIf="currentStep == 1">
+        <form [formGroup]="newCharacterForm" *ngIf="currentStep == 1">
+          <mat-card class="logos">
             <mat-card-header>
               <mat-card-title>
-                Step 1: The Concept
+                Step {{currentStep}}: The Concept
               </mat-card-title>
             </mat-card-header>
             <mat-card-content>
               <label>Choose a cool name for your character:</label>
               <mat-form-field appearance="outline">
                 <mat-label>Name</mat-label>
-                <input matInput type="text" formControlName="name" required>
+                <input matInput type="text" formControlName="name" required value="John Doe">
               </mat-form-field>
               <label>Which legend has taken root in you?</label>
               <mat-form-field appearance="outline">
-                <mat-label>Mythos</mat-label>
-                <input matInput type="text" formControlName="mythos" required>
+                <mat-label><fa-icon [icon]="icons.mythos"></fa-icon> Mythos</mat-label>
+                <input matInput type="text" formControlName="mythos" required value="The Grim Reaper">
               </mat-form-field>
               <label>Who are you in your everyday life?</label>
               <mat-form-field appearance="outline">
-                <mat-label>Logos</mat-label>
-                <input matInput type="text" formControlName="logos" required>
+                <mat-label><fa-icon [icon]="icons.logos"></fa-icon> Logos</mat-label>
+                <input matInput type="text" formControlName="logos" required value="Corporate Lawyer">
               </mat-form-field>
             </mat-card-content>
           </mat-card>
-          <mat-card class="logos" *ngIf="currentStep == 2">
-            <mat-card-header>
-              <mat-card-title>
-                Step 2: Choose Themes (1/4)
-              </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <div formGroupName="cards">
-                <div formGroupName="card1">
-                  <label>Select themebook:</label>
+        </form>
+        <form [formGroup]="cardForm" (ngSubmit)="onCardSubmit()" *ngIf="currentStep > 1">
+          <mat-card class="logos">
+              <mat-card-header>
+                <mat-card-title>
+                  Step 2: Choose Themes ({{currentStep - 1}}/4)
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <label>Select themebook:</label>
                   <mat-form-field appearance="outline">
                     <mat-label>Themebook</mat-label>
-                    <mat-select formControlName="theme">
-                      <mat-option value="adaptation">Adaptation (Mythos)</mat-option>
-                      <mat-option value="bastion">Bastion (Mythos)</mat-option>
+                    <mat-select formControlName="theme" (selectionChange)="checkThemeStatus()">
+                      <mat-option *ngFor="let tb of allTbs"
+                      value="{{tb.name}}">{{ capitalize(tb.name) }} ({{ capitalize(tb.tbtype) }})</mat-option>
                     </mat-select>
                   </mat-form-field>
                   <label>Give a cool and fitting title to your theme:</label>
                   <mat-form-field appearance="outline">
                     <mat-label>Title</mat-label>
-                    <input matInput type="text" formControlName="title" required>
+                    <input matInput type="text" formControlName="title" required value="Undying">
                   </mat-form-field>
+                  <div *ngIf="selectedTbType != 'none'">
+                    <label *ngIf="cardForm.value.theme != '' && selectedTbType === 'mythos'">Mystery: What does your Mythos want you to find out?</label>
+                    <label *ngIf="cardForm.value.theme != '' && selectedTbType === 'logos'">Identity: What does your character think or feel about this aspect of her life, because of it?</label>
+                    <mat-form-field appearance="outline">
+                      <mat-label *ngIf="selectedTbType != 'none'">
+                        <span *ngIf="selectedTbType === 'mythos'">Mystery</span>
+                        <span *ngIf="selectedTbType === 'logos'">Identity</span>
+                      </mat-label>
+                      <input matInput type="text" formControlName="qors" required>
+                    </mat-form-field>
+                  </div>
+              </mat-card-content>
+            </mat-card>
+        </form>
+        <form (ngSubmit)="onTest(tagsForm)" #tagsForm="ngForm" *ngIf="currentStep > 1 && selectedTbType != 'none'">
+          <mat-card class="logos" *ngIf="currentStep > 1 && selectedTbType != 'none'">
+              <mat-card-header>
+                <mat-card-title>
+                  {{ capitalize(cardForm.value.theme)  }}
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="chargen-section">
+                  <div class="chargen-section-title">Answer three Power Tag Questions:</div>
+                  <div class="chargen-section-content" *ngFor="let letter of ptagletters">
+                    <label>[{{letter}}] {{ getTbData(cardForm.value.theme).ptagq[letter] }}</label>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Answer</mat-label>
+                      <input 
+                      matInput 
+                      type="text" 
+                      id="{{letter}}"
+                      ngModel
+                      name="{{letter}}"
+                      #[{{letter}}]="ngModel">
+                    </mat-form-field>
+                  </div>
                 </div>
-              </div>
-            </mat-card-content>
-          </mat-card>
-          <mat-card class="logos">
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="logos">
+              <button 
+                mat-raised-button 
+                class="btn-mythos" 
+                type="submit">Next</button>
+            </mat-card>
+        </form>
+          
+          <mat-card class="logos" *ngIf="currentStep === 1">
             <button 
+            *ngIf="currentStep === 1"
             mat-raised-button 
             class="btn-mythos" 
             type="button" 
-            (click)="onNext()">Next</button>
+            (click)="onCharacterSubmit()">Next</button>
           </mat-card>
-        </form> 
     </div>
   </div>
 </div>
 <p>{{ newCharacterForm.value | json }}</p>
+<p>{{ cardForm.value | json }}</p>
+<p>{{ newCharacter | json }}</p>

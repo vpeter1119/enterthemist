@@ -5,6 +5,10 @@ import {
   faTrashAlt,
   faEye,
   faPencilAlt,
+  faUserSecret,
+  faBookOpen,
+  faExclamation,
+  faList,
    } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({providedIn: "root"})
@@ -16,7 +20,11 @@ export class IconsService {
     logos: faMask,
     delete: faTrashAlt,
     view: faEye,
-    edit: faPencilAlt
+    edit: faPencilAlt,
+    character: faUserSecret,
+    themebook: faBookOpen,
+    exclamation: faExclamation,
+    list: faList,
   }  
 
   constructor() { }

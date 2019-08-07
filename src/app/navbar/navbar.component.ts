@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { 
-  faMask,
-  faBolt
-   } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+
+import { IconsService } from '../assets/icons.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,12 +10,15 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  faMask = faMask;
-  faBolt = faBolt;
+  icons;
 
   isCollapsed = true;
 
-  constructor() { }
+  constructor(
+    private iconsService: IconsService,
+  ) {
+    this.icons = this.iconsService.getIcons();
+   }
 
   ngOnInit() {
   }

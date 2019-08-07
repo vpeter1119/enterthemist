@@ -16,7 +16,6 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          Current window.screen.width: {{windowWidth}}<br>
           Name: {{ character.name }}<br>
           <fa-icon [icon]="icons.mythos"></fa-icon> {{ character.mythos }}<br>
           <fa-icon [icon]="icons.logos"></fa-icon> {{ character.logos }}
@@ -31,7 +30,11 @@
           <mat-card [ngClass]="getValues(card.cardtype)" class="theme-card front desktop">
             <mat-card-header>
               <mat-card-title>
-                {{getValues(card.title)}}
+                <p>
+                  <fa-icon [icon]="icons.logos" *ngIf="getCardType(card.cardtype) === 'logos'"></fa-icon>
+                  <fa-icon [icon]="icons.mythos" *ngIf="getCardType(card.cardtype) === 'mythos'"></fa-icon>
+                  <span> {{getValues(card.title)}}</span>
+                </p>
               </mat-card-title>
               <mat-card-subtitle>
                 {{getValues(card.theme)}}
