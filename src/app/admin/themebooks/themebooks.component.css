@@ -23,3 +23,29 @@ mat-panel-title {
   align-items: center;
   justify-content: center;
 }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.row-mythos {
+  border-bottom: 1px solid #FFF; 
+  padding: 5px 0;
+}
+
+.row-logos {
+  border-bottom: 1px solid #000; 
+  padding: 5px 0;
+}
+
+.tbsection {
+  margin-top: 2rem;
+}
+
+.tbsection-title {
+  display: block;
+  margin-bottom: 1rem;
+  font-family: 'Abril Fatface', cursive;
+  font-size: 1rem;
+}

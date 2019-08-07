@@ -13,6 +13,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
+  MatTableModule,
    } from '@angular/material';
 import { FontAwesomeModule  } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
@@ -52,6 +53,7 @@ import { ThemebookAddComponent } from './admin/themebooks/themebook-add/themeboo
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatTableModule,
     FontAwesomeModule,
     HttpClientModule,
     FlipModule,

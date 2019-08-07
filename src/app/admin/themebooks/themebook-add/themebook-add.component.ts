@@ -69,7 +69,7 @@ export class ThemebookAddComponent implements OnInit {
   onSubmit() {
     console.warn(this.newThemeBookForm.value);
     var newThemeBook: Themebook = {
-      name: this.newThemeBookForm.value.name,
+      name: this.newThemeBookForm.value.name.toLowerCase(),
       tbtype: this.newThemeBookForm.value.tbtype,
       ptagq: this.newThemeBookForm.value.ptagq,
       wtagq: this.newThemeBookForm.value.wtagq,

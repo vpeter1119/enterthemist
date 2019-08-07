@@ -16,6 +16,8 @@ export class ThemebooksComponent implements OnInit, OnDestroy {
   mythosTbs: Themebook[];
   logosTbs: Themebook[];
   allTbsSub: Subscription;
+  ptagletters = ['A','B','C','D','E','F','G','H','I','J'];
+  wtagletters = ['A','B','C','D'];
 
   constructor(
     private admin: AdminService,

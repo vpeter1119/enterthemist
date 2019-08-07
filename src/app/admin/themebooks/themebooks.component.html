@@ -10,23 +10,132 @@
   </div>
   <div class="row" *ngIf="!isLoading">
     <div class="col-md-6 col-xs-12">
-      <mat-expansion-panel class="mythos" *ngFor="let tb of mythosTbs">
-        <mat-expansion-panel-header class="mythos">
-          <mat-panel-title>
-            {{ tb.name.toUpperCase() }} ({{ tb.tbtype.toUpperCase() }})
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-      </mat-expansion-panel>
+      <mat-accordion>
+        <mat-expansion-panel class="mythos" *ngFor="let tb of mythosTbs">
+          <mat-expansion-panel-header class="mythos">
+            <mat-panel-title>
+              {{ tb.name.toUpperCase() }} ({{ tb.tbtype.toUpperCase() }})
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="tbsection">
+            <span class="tbsection-title">Power tag questions</span>
+            <table>
+              <thead>
+                <th></th>
+                <th></th>
+              </thead>
+              <tbody>
+                <div *ngFor="let letter of ptagletters" class="row-mythos">
+                  <tr>
+                    <td>[{{ letter }}]</td>
+                    <td>{{ tb.ptagq[letter] }}</td>
+                  </tr>
+                </div>
+              </tbody>
+            </table>
+          </div>
+          <div class="tbsection">
+            <span class="tbsection-title">Weakness tag questions</span>
+            <table>
+              <thead>
+                <th></th>
+                <th></th>
+              </thead>
+              <tbody>
+                <div *ngFor="let letter of wtagletters" class="row-mythos">
+                  <tr>
+                    <td>[{{ letter }}]</td>
+                    <td>{{ tb.wtagq[letter] }}</td>
+                  </tr>
+                </div>
+              </tbody>
+            </table>
+          </div>
+          <div class="tbsection">
+            <span class="tbsection-title">Improvements</span>
+            <table>
+              <col span="1" width="30%">
+              <col span="1" width="70%">
+              <thead>
+                <th>Name</th>
+                <th>Description</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let imp of tb.improvements" class="row-mythos">
+                  <td>{{ imp.name }}</td>
+                  <td>{{ imp.description }}</td>
+                </tr>
+                <div>
+                </div>
+              </tbody>
+            </table>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
     </div>
     <div class="col-md-6 col-xs-12">
-      <mat-expansion-panel class="logos" *ngFor="let tb of logosTbs">
-        <mat-expansion-panel-header class="logos">
-          <mat-panel-title>
-            {{ tb.name.toUpperCase() }} ({{ tb.tbtype.toUpperCase() }})
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-      </mat-expansion-panel>
+      <mat-accordion>
+        <mat-expansion-panel class="logos" *ngFor="let tb of logosTbs">
+          <mat-expansion-panel-header class="logos">
+            <mat-panel-title>
+              {{ tb.name.toUpperCase() }} ({{ tb.tbtype.toUpperCase() }})
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="tbsection">
+            <span class="tbsection-title">Power tag questions</span>
+            <table>
+              <thead>
+                <th></th>
+                <th></th>
+              </thead>
+              <tbody>
+                <div *ngFor="let letter of ptagletters" class="row-logos">
+                  <tr>
+                    <td>[{{ letter }}]</td>
+                    <td>{{ tb.ptagq[letter] }}</td>
+                  </tr>
+                </div>
+              </tbody>
+            </table>
+          </div>
+          <div class="tbsection">
+            <span class="tbsection-title">Weakness tag questions</span>
+            <table>
+              <thead>
+                <th></th>
+                <th></th>
+              </thead>
+              <tbody>
+                <div *ngFor="let letter of wtagletters" class="row-logos">
+                  <tr>
+                    <td>[{{ letter }}]</td>
+                    <td>{{ tb.wtagq[letter] }}</td>
+                  </tr>
+                </div>
+              </tbody>
+            </table>
+          </div>
+          <div class="tbsection">
+            <span class="tbsection-title">Improvements</span>
+            <table>
+              <col span="1" width="30%">
+              <col span="1" width="70%">
+              <thead>
+                <th>Name</th>
+                <th>Description</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let imp of tb.improvements" class="row-logos">
+                  <td>{{ imp.name }}</td>
+                  <td>{{ imp.description }}</td>
+                </tr>
+                <div>
+                </div>
+              </tbody>
+            </table>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
     </div>
   </div>
 </div>
-<p>{{themebooks | json}}</p>
