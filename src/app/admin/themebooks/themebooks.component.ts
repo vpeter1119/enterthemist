@@ -1,15 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+
+import { Themebook } from './themebook.model';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-themebooks',
   templateUrl: './themebooks.component.html',
   styleUrls: ['./themebooks.component.css']
 })
-export class ThemebooksComponent implements OnInit {
+export class ThemebooksComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  isLoading: boolean;
+  mythosTbs: Themebook[];
+  logosTbs: Themebook[];
+  allTbsSub: Subscription;
+
+  constructor(
+    private admin: AdminService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    this.isLoading = true;
+    this.allTbsSub = this.admin.getAllTbs()
+    .subscribe((response) => {
+      this.mythosTbs = response.m;
+      this.logosTbs = response.l;
+      this.isLoading = false;
+    })
+  }
+
+  ngOnDestroy() {
+    this.allTbsSub.unsubscribe();
   }
 
 }

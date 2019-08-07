@@ -1,1 +1,32 @@
-<app-themebook-add></app-themebook-add>
+<div class="container">
+  <div class="row">
+    <div class="col-12" id="toprow">
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
+      <button 
+      mat-raised-button 
+      *ngIf="!isLoading"
+      (click)="this.router.navigate(['themebooks/add']);">Add Themebook</button>
+    </div>
+  </div>
+  <div class="row" *ngIf="!isLoading">
+    <div class="col-md-6 col-xs-12">
+      <mat-expansion-panel class="mythos" *ngFor="let tb of mythosTbs">
+        <mat-expansion-panel-header class="mythos">
+          <mat-panel-title>
+            {{ tb.name.toUpperCase() }} ({{ tb.tbtype.toUpperCase() }})
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <mat-expansion-panel class="logos" *ngFor="let tb of logosTbs">
+        <mat-expansion-panel-header class="logos">
+          <mat-panel-title>
+            {{ tb.name.toUpperCase() }} ({{ tb.tbtype.toUpperCase() }})
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </div>
+  </div>
+</div>
+<p>{{themebooks | json}}</p>

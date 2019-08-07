@@ -82,7 +82,8 @@ export class ThemebookAddComponent implements OnInit {
       ]
     }
     console.warn(newThemeBook);
-    this.admin.addNewThemebook(JSON.stringify(newThemeBook));
+    this.admin.addNewThemebook(newThemeBook);
+    this.newThemeBookForm.reset();
   }
 
 }

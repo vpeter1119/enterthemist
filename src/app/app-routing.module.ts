@@ -5,6 +5,7 @@ import { CharactersComponent } from './characters/characters.component'
 import { CharacterViewComponent } from './characters/character-view/character-view.component';
 import { CharacterAddComponent } from './characters/character-add/character-add.component';
 import { ThemebooksComponent } from './admin/themebooks/themebooks.component';
+import { ThemebookAddComponent } from './admin/themebooks/themebook-add/themebook-add.component';
 
 const appRoutes: Routes = [
   { 
@@ -23,6 +24,10 @@ const appRoutes: Routes = [
   { 
     path: 'themebooks', 
     component: ThemebooksComponent
+  },
+  { 
+    path: 'themebooks/add', 
+    component: ThemebookAddComponent
   },
   { 
     path: '', 
