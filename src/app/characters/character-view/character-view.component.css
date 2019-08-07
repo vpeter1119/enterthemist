@@ -1,6 +1,6 @@
 .card-general {
   background: lightgrey;
-  color: #000;  
+  color: #000;
 }
 
 mat-card {
@@ -9,7 +9,10 @@ mat-card {
 
 .theme-card {
   height: 25rem;
+  margin-bottom: 25px;
 }
+
+/*
 
 .mythos mat-card-header {
   height: 7rem;
@@ -18,6 +21,8 @@ mat-card {
 .logos mat-card-header {
   height: 7rem;
 }
+
+*/
 
 mat-card-title {
   font-family: 'Abril Fatface', cursive;

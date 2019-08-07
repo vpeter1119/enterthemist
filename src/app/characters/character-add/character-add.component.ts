@@ -25,9 +25,7 @@ export class CharacterAddComponent implements OnInit, OnDestroy {
   allTbsSub: Subscription;
   ptagletters = ['A','B','C','D','E','F','G','H','I','J'];
   wtagletters = ['A','B','C','D'];
-  newCharacter: Character = {
-    cards: ['']
-  };
+  newCharacter: Character = {};
   selectedTbType = 'none';
 
   constructor(

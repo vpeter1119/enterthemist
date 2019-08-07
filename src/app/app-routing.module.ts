@@ -3,6 +3,7 @@ import { RouterModule, Routes }  from '@angular/router';
 
 import { CharactersComponent } from './characters/characters.component'
 import { CharacterViewComponent } from './characters/character-view/character-view.component';
+import { CharacterEditComponent } from './characters/character-edit/character-edit.component';
 import { CharacterAddComponent } from './characters/character-add/character-add.component';
 import { ThemebooksComponent } from './admin/themebooks/themebooks.component';
 import { ThemebookAddComponent } from './admin/themebooks/themebook-add/themebook-add.component';
@@ -18,8 +19,14 @@ const appRoutes: Routes = [
     component: CharacterAddComponent
   },
   { 
-    path: 'characters/:id', 
+    path: 'characters/:id',
+    pathMatch: 'full',
     component: CharacterViewComponent
+  },
+  { 
+    path: 'characters/:id/edit',
+    pathMatch: 'full',
+    component: CharacterEditComponent
   },
   { 
     path: 'themebooks', 

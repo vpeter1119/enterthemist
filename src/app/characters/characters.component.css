@@ -13,3 +13,9 @@ mat-expansion-panel {
 mat-card {
   margin-top: 5px;
 }
+
+#toprow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

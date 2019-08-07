@@ -4,6 +4,7 @@
       <mat-spinner *ngIf="isLoading"></mat-spinner>
       <button 
       mat-raised-button 
+      disabled
       *ngIf="!isLoading"
       (click)="this.router.navigate(['themebooks/add']);">Add Themebook</button>
     </div>

@@ -23,13 +23,13 @@
   id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link active" routerLink="characters"><fa-icon [icon]="icons.character"></fa-icon>Characters</a>
+        <a class="nav-link active" routerLink="characters" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.character"></fa-icon>Characters</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" routerLink="themebooks"><fa-icon [icon]="icons.themebook"></fa-icon>Themebooks</a>
+        <a class="nav-link active" routerLink="themebooks" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.themebook"></fa-icon>Themebooks</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" routerLink=""><fa-icon [icon]="icons.list"></fa-icon>Moves</a>
+        <a class="nav-link disabled" routerLink="" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.list"></fa-icon>Moves</a>
       </li>
     </ul>
   </div>

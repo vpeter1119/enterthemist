@@ -8,6 +8,7 @@
     Back
   </button>
   <div class="row" *ngIf="!isLoading">
+    <div class="col-md-3 col-xs-0"></div>
     <div class="col-md-6 col-xs-12">
       <mat-card class="card-general">
         <mat-card-header>
@@ -22,6 +23,7 @@
         </mat-card-content>
       </mat-card>
     </div>
+    <div class="col-md-3 col-xs-0"></div>
   </div>
     <div class="row" *ngIf="!isLoading && !mobile">
       <div class="col-lg-3 col-md-6 col-xs-10 card-slot" *ngFor="let card of cards">
@@ -37,7 +39,7 @@
                 </p>
               </mat-card-title>
               <mat-card-subtitle>
-                {{getValues(card.theme)}}
+                {{_text.capitalize(getValues(card.theme))}}
               </mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
@@ -63,10 +65,14 @@
           <mat-card [ngClass]="getValues(card.cardtype)" class="theme-card back desktop">
             <mat-card-header>
               <mat-card-title>
-                {{getValues(card.title)}}
+                <p>
+                  <fa-icon [icon]="icons.logos" *ngIf="getCardType(card.cardtype) === 'logos'"></fa-icon>
+                  <fa-icon [icon]="icons.mythos" *ngIf="getCardType(card.cardtype) === 'mythos'"></fa-icon>
+                  <span> {{getValues(card.title)}}</span>
+                </p>
              </mat-card-title>
               <mat-card-subtitle>
-               {{getValues(card.theme)}}
+               {{_text.capitalize(getValues(card.theme))}}
               </mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
@@ -96,10 +102,14 @@
                style="position: relative">
                   <mat-card-header>
                     <mat-card-title>
-                      {{getValues(card.title)}}
+                      <p>
+                        <fa-icon [icon]="icons.logos" *ngIf="getCardType(card.cardtype) === 'logos'"></fa-icon>
+                        <fa-icon [icon]="icons.mythos" *ngIf="getCardType(card.cardtype) === 'mythos'"></fa-icon>
+                        <span> {{getValues(card.title)}}</span>
+                      </p>
                     </mat-card-title>
                     <mat-card-subtitle>
-                      {{getValues(card.theme)}}
+                      {{_text.capitalize(getValues(card.theme))}}
                     </mat-card-subtitle>
                   </mat-card-header>
                   <mat-card-content>
@@ -128,10 +138,14 @@
                 style="position: absolute; bottom: 0px;">
                   <mat-card-header>
                     <mat-card-title>
-                      {{getValues(card.title)}}
+                      <p>
+                        <fa-icon [icon]="icons.logos" *ngIf="getCardType(card.cardtype) === 'logos'"></fa-icon>
+                        <fa-icon [icon]="icons.mythos" *ngIf="getCardType(card.cardtype) === 'mythos'"></fa-icon>
+                        <span> {{getValues(card.title)}}</span>
+                      </p>
                   </mat-card-title>
                     <mat-card-subtitle>
-                      {{getValues(card.theme)}}
+                      {{_text.capitalize(getValues(card.theme))}}
                     </mat-card-subtitle>
                   </mat-card-header>
                   <mat-card-content>

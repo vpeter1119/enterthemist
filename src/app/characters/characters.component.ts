@@ -14,6 +14,7 @@ import { IconsService } from '../assets/icons.service';
 export class CharactersComponent implements OnInit, OnDestroy {
 
   isLoading = false;
+  noCharacters: boolean;
   icons;
   allCharactersSub: Subscription;
   characters: Character[];
@@ -30,13 +31,22 @@ export class CharactersComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.allCharactersSub = this.charactersService.getAllListener()
     .subscribe(allCharacters => {
+      if (allCharacters === []) {
+        this.noCharacters = true;
+      } else {
+        this.noCharacters = false;
+      }
       this.characters = allCharacters;
       this.isLoading = false;
     })
   }
 
   onView(charid) {
-    this.router.navigate(['characters/'+charid]);
+    this.router.navigate(['characters/' + charid]);
+  }
+
+  onEdit(charid) {
+    this.router.navigate(['characters/' + charid + '/edit']);
   }
 
   onAddCharacter() {

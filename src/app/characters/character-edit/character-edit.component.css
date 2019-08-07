@@ -1,0 +1,30 @@
+mat-card {
+  margin-top: 10px;
+}
+
+.card-general {
+  background: lightgrey;
+  color: #000;
+}
+
+mat-card-title {
+  font-family: 'Abril Fatface', cursive;
+}
+
+button {
+  margin: auto;
+}
+
+.update-button-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-ptag-letter {
+  width: 10%;
+}
+
+.input-ptag-tag {
+  width: 0%;
+}

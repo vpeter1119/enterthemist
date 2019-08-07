@@ -36,6 +36,8 @@ import { CharacterAddComponent } from './characters/character-add/character-add.
 import { ThemebooksComponent } from './admin/themebooks/themebooks.component';
 import { AdminService } from './admin/admin.service';
 import { ThemebookAddComponent } from './admin/themebooks/themebook-add/themebook-add.component';
+import { TextConvertService } from './assets/text-convert.service';
+import { CharacterEditComponent } from './characters/character-edit/character-edit.component';
 
 @NgModule({  
   imports:      [ 
@@ -67,9 +69,9 @@ import { ThemebookAddComponent } from './admin/themebooks/themebook-add/themeboo
     CharactersComponent, 
     NavbarComponent, 
     CharacterViewComponent, 
-    CharacterAddComponent, ThemebooksComponent, ThemebookAddComponent, 
+    CharacterAddComponent, ThemebooksComponent, ThemebookAddComponent, CharacterEditComponent, 
     ],
   bootstrap:    [ AppComponent ],
-  providers: [CharactersService, IconsService, ReactiveService, AdminService]
+  providers: [CharactersService, IconsService, ReactiveService, AdminService, TextConvertService]
 })
 export class AppModule { }
