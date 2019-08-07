@@ -46,4 +46,11 @@ export class CharactersService {
     return this.oneCharacterSub.asObservable();
   }
 
+  createCharacter(character) {
+    this.http.post(this.apiUrl + '/characters', character)
+    .subscribe((response) => {
+      console.log('Message from server: ' + response);
+    })
+  }
+
 }

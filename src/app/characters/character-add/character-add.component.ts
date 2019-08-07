@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { CharactersService } from '../characters.service';
 import { AdminService } from '../../admin/admin.service';
@@ -31,8 +32,10 @@ export class CharacterAddComponent implements OnInit, OnDestroy {
 
   constructor(
     private admin: AdminService,
+    private charactersService: CharactersService,
     private fb: FormBuilder,
     private iconsService: IconsService,
+    private router: Router,
   ) {
     this.icons = this.iconsService.getIcons();
    }
@@ -80,32 +83,15 @@ export class CharacterAddComponent implements OnInit, OnDestroy {
     this.onNext();
   }
 
-  onCardSubmit() {
-    this.newCharacter.cards = [];
-    var newCard = {
-      theme: this.cardForm.value.theme,
-      title: this.cardForm.value.title,
-      qors: this.cardForm.value.qors,
-      ptags: [],
-      wtags: []
-    }
-    console.warn(newCard);
-    newCard.ptags.push(this.tagsForm.value);
-    console.warn(newCard);
-    this.newCharacter.cards.push(newCard);
-    console.warn(this.newCharacter);
-    this.cardForm.reset();
-    this.onNext();
-  }
-
   onNext() {
     this.currentStep++;
   }
 
   onTest(form) {
-    // this.newCharacter.cards = [];
+    console.warn(form.value);
     console.warn('this.newCharacter.cards: ' + this.newCharacter.cards);
     var newCard = {
+      cardtype: this.getTbData(this.cardForm.value.theme).tbtype,
       theme: this.cardForm.value.theme,
       title: this.cardForm.value.title,
       qors: this.cardForm.value.qors,
@@ -113,19 +99,33 @@ export class CharacterAddComponent implements OnInit, OnDestroy {
       wtags: []
     }
     console.warn(newCard);
-    var convertedArray = Object.keys(form.value).map(key => ({ key, value: form.value[key] }));
-    var filteredArray = convertedArray.filter(element => {
+    var convertedArray = Object.keys(form.value).map(key => ({ key: key.substring(1), value: form.value[key] }));
+    var ptagArray = convertedArray.slice(0,9);
+    var wtagArray = convertedArray.slice(10,13);
+    var ptagFilteredArray = ptagArray.filter(element => {
       return element.value !== '';
     });
-    if (filteredArray.length > 3) {
+    var wtagFilteredArray = wtagArray.filter(element => {
+      return element.value !== '';
+    });
+    if (ptagFilteredArray.length > 3) {
      window.alert('Too many power tags!');
      return; 
     }
-    console.warn(filteredArray);
-    filteredArray.forEach(ptag => {
+    if (wtagFilteredArray.length > 1) {
+     window.alert('Too many weakness tags!');
+     return; 
+    }
+    ptagFilteredArray.forEach(ptag => {
       newCard.ptags.push({
         letter: ptag.key,
         tag: ptag.value
+      });
+    });
+    wtagFilteredArray.forEach(wtag => {
+      newCard.wtags.push({
+        letter: wtag.key,
+        tag: wtag.value
       });
     });
     if (this.newCharacter.cards === undefined) {
@@ -143,7 +143,18 @@ export class CharacterAddComponent implements OnInit, OnDestroy {
       form.reset();
       // this.checkThemeStatus();
       this.onNext();
+      if (this.currentStep === 6) {
+        this.isLoading = true;
+        this.sendCharacter(this.newCharacter);
+      }
     }, 300);
+  }
+
+  sendCharacter(character) {
+    this.charactersService.createCharacter(character);
+    setTimeout(()=>{
+      this.router.navigate(['characters']);
+    }, 500);
   }
 
   checkThemeStatus() {

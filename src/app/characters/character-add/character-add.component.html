@@ -1,5 +1,6 @@
 <div class="container">
-  <div class="row">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <div class="row" *ngIf="!isLoading">
     <div class="col-md-6 col-xs-12">
         <form [formGroup]="newCharacterForm" *ngIf="currentStep == 1">
           <mat-card class="logos">
@@ -12,17 +13,17 @@
               <label>Choose a cool name for your character:</label>
               <mat-form-field appearance="outline">
                 <mat-label>Name</mat-label>
-                <input matInput type="text" formControlName="name" required value="John Doe">
+                <input matInput type="text" formControlName="name" required>
               </mat-form-field>
               <label>Which legend has taken root in you?</label>
               <mat-form-field appearance="outline">
                 <mat-label><fa-icon [icon]="icons.mythos"></fa-icon> Mythos</mat-label>
-                <input matInput type="text" formControlName="mythos" required value="The Grim Reaper">
+                <input matInput type="text" formControlName="mythos" required>
               </mat-form-field>
               <label>Who are you in your everyday life?</label>
               <mat-form-field appearance="outline">
                 <mat-label><fa-icon [icon]="icons.logos"></fa-icon> Logos</mat-label>
-                <input matInput type="text" formControlName="logos" required value="Corporate Lawyer">
+                <input matInput type="text" formControlName="logos" required>
               </mat-form-field>
             </mat-card-content>
           </mat-card>
@@ -43,11 +44,13 @@
                       value="{{tb.name}}">{{ capitalize(tb.name) }} ({{ capitalize(tb.tbtype) }})</mat-option>
                     </mat-select>
                   </mat-form-field>
-                  <label>Give a cool and fitting title to your theme:</label>
-                  <mat-form-field appearance="outline">
-                    <mat-label>Title</mat-label>
-                    <input matInput type="text" formControlName="title" required value="Undying">
-                  </mat-form-field>
+                  <div *ngIf="selectedTbType != 'none'">
+                    <label>Give a cool and fitting title to your theme:</label>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Title</mat-label>
+                      <input matInput type="text" formControlName="title" required>
+                    </mat-form-field>
+                  </div>
                   <div *ngIf="selectedTbType != 'none'">
                     <label *ngIf="cardForm.value.theme != '' && selectedTbType === 'mythos'">Mystery: What does your Mythos want you to find out?</label>
                     <label *ngIf="cardForm.value.theme != '' && selectedTbType === 'logos'">Identity: What does your character think or feel about this aspect of her life, because of it?</label>
@@ -71,7 +74,7 @@
               </mat-card-header>
               <mat-card-content>
                 <div class="chargen-section">
-                  <div class="chargen-section-title">Answer three Power Tag Questions:</div>
+                  <div class="chargen-section-title">Answer question [A] and two other Power Tag Questions:</div>
                   <div class="chargen-section-content" *ngFor="let letter of ptagletters">
                     <label>[{{letter}}] {{ getTbData(cardForm.value.theme).ptagq[letter] }}</label>
                     <mat-form-field appearance="outline">
@@ -79,10 +82,28 @@
                       <input 
                       matInput 
                       type="text" 
-                      id="{{letter}}"
+                      autocomplete="off"
+                      id="p{{letter}}"
                       ngModel
-                      name="{{letter}}"
-                      #[{{letter}}]="ngModel">
+                      name="p{{letter}}"
+                      #p[{{letter}}]="ngModel">
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="chargen-section">
+                  <div class="chargen-section-title">Answer one Weakness Tag Question:</div>
+                  <div class="chargen-section-content" *ngFor="let letter of wtagletters">
+                    <label>[{{letter}}] {{ getTbData(cardForm.value.theme).wtagq[letter] }}</label>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Answer</mat-label>
+                      <input 
+                      matInput 
+                      type="text" 
+                      autocomplete="off"
+                      id="w{{letter}}"
+                      ngModel
+                      name="w{{letter}}"
+                      #w[{{letter}}]="ngModel">
                     </mat-form-field>
                   </div>
                 </div>
