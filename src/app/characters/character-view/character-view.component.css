@@ -14,13 +14,17 @@ mat-card {
   margin-bottom: 25px;
 }
 
+/*
+
 .mythos mat-card-header {
-  height: 22%;
+  height: 25%;
 }
 
 .logos mat-card-header {
-  height: 22%;
+  height: 25%;
 }
+
+*/
 
 mat-card-title {
   font-family: 'Abril Fatface', cursive;
