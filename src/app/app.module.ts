@@ -38,6 +38,7 @@ import { AdminService } from './admin/admin.service';
 import { ThemebookAddComponent } from './admin/themebooks/themebook-add/themebook-add.component';
 import { TextConvertService } from './assets/text-convert.service';
 import { CharacterEditComponent } from './characters/character-edit/character-edit.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({  
   imports:      [ 
@@ -69,7 +70,7 @@ import { CharacterEditComponent } from './characters/character-edit/character-ed
     CharactersComponent, 
     NavbarComponent, 
     CharacterViewComponent, 
-    CharacterAddComponent, ThemebooksComponent, ThemebookAddComponent, CharacterEditComponent, 
+    CharacterAddComponent, ThemebooksComponent, ThemebookAddComponent, CharacterEditComponent, FooterComponent, 
     ],
   bootstrap:    [ AppComponent ],
   providers: [CharactersService, IconsService, ReactiveService, AdminService, TextConvertService]
