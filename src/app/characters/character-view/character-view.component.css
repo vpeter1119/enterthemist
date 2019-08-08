@@ -44,6 +44,13 @@ mat-card-subtitle {
   margin: 1rem auto;
 }
 
+.qors-text {
+  display: block;
+  font-family: 'Permanent Marker', 'Rock Salt', 'Abril Fatface', cursive;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
 /* Flipping cards */
 
 .card-container {

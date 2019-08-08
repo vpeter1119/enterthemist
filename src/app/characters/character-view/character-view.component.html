@@ -46,7 +46,7 @@
               <div class="qors">
                 <span *ngIf="getCardType(card.cardtype) === 'mythos'">Mystery: </span>
                 <span *ngIf="getCardType(card.cardtype) === 'logos'">Identity: </span>
-                <span>{{getValues(card.qors)}}</span>
+                <span class="qors-text">"{{getValues(card.qors)}}"</span>
               </div>
               <div>
                 Power tags:
