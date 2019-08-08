@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Changa+One|Permanent+Marker|Rock+Salt&display=swap');
+
 .card-general {
   background: lightgrey;
   color: #000;
@@ -12,20 +14,23 @@ mat-card {
   margin-bottom: 25px;
 }
 
-/*
-
 .mythos mat-card-header {
-  height: 7rem;
+  height: 22%;
 }
 
 .logos mat-card-header {
-  height: 7rem;
+  height: 22%;
 }
-
-*/
 
 mat-card-title {
   font-family: 'Abril Fatface', cursive;
+}
+
+.tbcard-section-title {
+  display: block;
+  font-family: 'Changa One', cursive;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 mat-card-subtitle {
@@ -46,9 +51,9 @@ mat-card-subtitle {
 
 .qors-text {
   display: block;
-  font-family: 'Permanent Marker', 'Rock Salt', 'Abril Fatface', cursive;
-  font-weight: bold;
+  font-family: 'Rock Salt', cursive;
   font-size: 1rem;
+  font-weight: 400;
 }
 
 /* Flipping cards */

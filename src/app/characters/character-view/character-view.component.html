@@ -30,9 +30,9 @@
        <div class="card-container desktop">
         <div class="flippable-card desktop" [ngClass]="{'flipped':flipped}" (click)="flipped = !flipped">
           <mat-card [ngClass]="getValues(card.cardtype)" class="theme-card front desktop">
-            <mat-card-header>
+            <mat-card-header [ngClass]="getValues(card.cardtype)">
               <mat-card-title>
-                <p>
+                <p class="tbcard-title">
                   <fa-icon [icon]="icons.logos" *ngIf="getCardType(card.cardtype) === 'logos'"></fa-icon>
                   <fa-icon [icon]="icons.mythos" *ngIf="getCardType(card.cardtype) === 'mythos'"></fa-icon>
                   <span> {{getValues(card.title)}}</span>
@@ -49,13 +49,13 @@
                 <span class="qors-text">"{{getValues(card.qors)}}"</span>
               </div>
               <div>
-                Power tags:
+                <span class="tbcard-section-title">POWER TAGS</span>
                 <ul>
                   <li *ngFor="let ptag of card.ptags">[{{ptag.letter}}] {{ptag.tag}}</li>
                 </ul>
               </div>
               <div>
-                Weakness tags:
+                <span class="tbcard-section-title">WEAKNESS TAGS</span>
                 <ul>
                   <li *ngFor="let wtag of card.wtags">[{{wtag.letter}}] {{wtag.tag}}</li>
                 </ul>
@@ -63,7 +63,7 @@
             </mat-card-content>
           </mat-card>
           <mat-card [ngClass]="getValues(card.cardtype)" class="theme-card back desktop">
-            <mat-card-header>
+            <mat-card-header [ngClass]="getValues(card.cardtype)">
               <mat-card-title>
                 <p>
                   <fa-icon [icon]="icons.logos" *ngIf="getCardType(card.cardtype) === 'logos'"></fa-icon>
