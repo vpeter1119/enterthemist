@@ -116,16 +116,16 @@
                     <div class="qors">
                       <span *ngIf="getCardType(card.cardtype) === 'mythos'">Mystery: </span>
                       <span *ngIf="getCardType(card.cardtype) === 'logos'">Identity: </span>
-                      <span>{{getValues(card.qors)}}</span>
+                      <span class="qors-text">"{{getValues(card.qors)}}"</span>
                     </div>
                     <div>
-                      Power tags:
+                      <span class="tbcard-section-title">POWER TAGS</span>
                       <ul>
                         <li *ngFor="let ptag of card.ptags">[{{ptag.letter}}] {{ptag.tag}}</li>
                        </ul>
                     </div>
                     <div>
-                      Weakness tags:
+                      <span class="tbcard-section-title">WEAKNESS TAGS</span>
                       <ul>
                         <li *ngFor="let wtag of card.wtags">[{{wtag.letter}}] {{wtag.tag}}</li>
                       </ul>
