@@ -47,9 +47,18 @@ export class CharactersService {
   }
 
   createCharacter(character) {
-    this.http.post(this.apiUrl + '/characters', character)
+    this.http.post<{message: string}>(this.apiUrl + '/characters', character)
     .subscribe((response) => {
-      console.log('Message from server: ' + response);
+      console.log('Message from server: ' + response.message);
+    })
+  }
+
+updateCharacter(id, data) {
+    const url = (this.apiUrl + "/characteredit/" + id);
+    console.log("Sending request to: " + url);
+    this.http.post<{message: string}>(url, data)
+    .subscribe((response) => {
+      console.log('Message from server: ' + response.message);
     })
   }
 

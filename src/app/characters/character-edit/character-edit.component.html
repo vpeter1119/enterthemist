@@ -14,30 +14,52 @@
     <div class="col-md-2 col-xs-0"></div>
     <div class="col-md-8 col-xs-12">
       <mat-card class="card-general">
-        <mat-card-header>
+        <mat-card-header *ngIf="!generalIsLoading">
           <mat-card-title>
-            General Information
+            General Information on {{ character.name }}
           </mat-card-title>
         </mat-card-header>
-        <mat-card-content>
-          <form>
+        <mat-card-content *ngIf="generalIsLoading"><mat-spinner></mat-spinner></mat-card-content>
+        <mat-card-content *ngIf="!generalIsLoading">
+          <form (ngSubmit)="onUpdateGeneral(generalForm)" #generalForm="ngForm">
             <div class="row">
               <div class="col-md-4 col-xs-12">
                 <mat-form-field>
                   <label>Name: </label>
-                  <input matInput type="text" value="{{ character.name }}">
+                  <input 
+                  matInput 
+                  type="text"
+                  autocomplete="off"
+                  id="name"
+                  ngModel="{{ character.name }}"
+                  name="name"
+                  #name="ngModel">
                 </mat-form-field>
               </div>
               <div class="col-md-4 col-xs-12">
                 <mat-form-field>
                   <label><fa-icon [icon]="icons.mythos"></fa-icon> Mythos: </label>
-                  <input matInput type="text" value="{{ character.mythos }}">
+                  <input 
+                  matInput 
+                  type="text"
+                  autocomplete="off"
+                  id="mythos"
+                  ngModel="{{ character.mythos }}"
+                  name="mythos"
+                  #mythos="ngModel">
                 </mat-form-field>
               </div>
               <div class="col-md-4 col-xs-12">
                 <mat-form-field>
                   <label><fa-icon [icon]="icons.logos"></fa-icon> Logos: </label>
-                  <input matInput type="text" value="{{ character.logos }}">
+                  <input 
+                  matInput 
+                  type="text"
+                  autocomplete="off"
+                  id="logos"
+                  ngModel="{{ character.logos }}"
+                  name="logos"
+                  #logos="ngModel">
                 </mat-form-field>
               </div>
             </div>

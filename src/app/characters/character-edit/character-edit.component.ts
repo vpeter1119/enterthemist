@@ -16,6 +16,7 @@ import { ReactiveService } from '../../reactive.service';
 export class CharacterEditComponent implements OnInit, OnDestroy {
 
   isLoading = false;
+  generalIsLoading = false;
   icons;
   objectKeys = Object.keys;
   data;
@@ -42,14 +43,31 @@ export class CharacterEditComponent implements OnInit, OnDestroy {
     this.mobile = true;
     this.mobile = this.reactive.isMobile();
     this.isLoading = true;
+    this.generalIsLoading = true;
     const id = this.route.snapshot.paramMap.get('id');
+    if (this.requestedCharacterSub) {
+      this.requestedCharacterSub.unsubscribe();
+    }
     this.requestedCharacterSub = this.charactersService.getOneListener(id)
     .subscribe(character => {      
       this.character = character[0];
       this.data = character[0];
       this.cards = character[0].cards;
       this.isLoading = false;
+      this.generalIsLoading = false;
     })
+  }
+
+  onUpdateGeneral(form) {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.charactersService.updateCharacter(id, form.value);
+    this.generalIsLoading = true;
+    this.character.name = form.value.name;
+    this.character.mythos = form.value.mythos;
+    this.character.logos = form.value.logos;
+    setTimeout(() => {
+      this.generalIsLoading = false;
+    }, 200);
   }
 
   getValues(obj) {
