@@ -59,7 +59,6 @@ export class CharactersComponent implements OnInit, OnDestroy {
   onDelete(charid) {
     console.warn('Clicked to delete character with id: ' + charid);
     this.charactersService.deleteCharacter(charid);
-    //this.charactersService.patchCharacter(charid);
     this.isLoading;
     setTimeout(() => {
       this.ngOnInit();
@@ -78,7 +77,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
 
   openModal(template: TemplateRef<any>, charid: string, charName: string) {
     this.toDeleteId = charid;
-    this.toDeleteName = charName
+    this.toDeleteName = charName;
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
  
