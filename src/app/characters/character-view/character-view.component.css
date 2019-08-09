@@ -10,11 +10,11 @@ mat-card {
 }
 
 mat-card.logos {
-  margin-bottom: 100px;
+  margin-bottom: 200px;
 }
 
 mat-card.mythos {
-  margin-bottom: 500px;
+  margin-bottom: 200px;
 }
 
 .theme-card {
@@ -117,12 +117,4 @@ mat-card-subtitle {
 
 .card-slot {
   position: relative;
-}
-
-.bottom-buffer {
-  margin-top: 250px;
-  display: block;
-  position: absolute;
-  top: 0;
-  width: 100%
 }
