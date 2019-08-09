@@ -99,9 +99,9 @@ export class CharacterAddComponent implements OnInit, OnDestroy {
     }
     console.warn(this.newCard);
     var convertedArray = Object.keys(form.value).map(key => ({ key: key.substring(1), value: form.value[key] }));
-    var ptagArray = convertedArray.slice(0,9);
+    var ptagArray = convertedArray.slice(0,10);
     console.warn(ptagArray);
-    var wtagArray = convertedArray.slice(10,13);
+    var wtagArray = convertedArray.slice(10);
     console.warn(ptagArray);
     var processPromise = new Promise ((resolve, reject) => {
       this.processTags(ptagArray, wtagArray);
