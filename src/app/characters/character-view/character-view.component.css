@@ -9,6 +9,14 @@ mat-card {
   margin-top: 10px;
 }
 
+mat-card.logos {
+  margin-bottom: 100px;
+}
+
+mat-card.mythos {
+  margin-bottom: 500px;
+}
+
 .theme-card {
   height: 25rem;
   margin-bottom: 25px;
@@ -107,8 +115,14 @@ mat-card-subtitle {
   transform: rotateY( 180deg );
 }
 
-/* SWIPER */
-
 .card-slot {
   position: relative;
+}
+
+.bottom-buffer {
+  margin-top: 250px;
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 100%
 }

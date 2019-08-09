@@ -8,7 +8,7 @@ export class ReactiveService {
   constructor() { }
 
   isMobile() {
-    if (window.screen.width < 500) { // 768px portrait
+    if (window.screen.width < 768) { // 768px portrait
       return true;
     } else {
       return false;
