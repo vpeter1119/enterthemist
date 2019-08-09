@@ -87,39 +87,65 @@
               </mat-card-title>
             </mat-card-header>
             <mat-card-content>
-              <mat-form-field>
-                <label><span class="tbcard-section-title">TITLE</span></label>
-                <input matInput type="text" value="{{ getValues(card.title) }}">
-              </mat-form-field>
-              <mat-form-field>
-                <label>
-                  <span *ngIf="getCardType(card.cardtype) === 'mythos'" class="tbcard-section-title">MYSTERY</span>
-                  <span *ngIf="getCardType(card.cardtype) === 'logos'" class="tbcard-section-title">IDENTITY</span>
-                </label>
-                <input matInput type="text" value="{{ getValues(card.qors) }}">
-              </mat-form-field>
-              <div>
-                <span class="tbcard-section-title">POWER TAGS</span>
-                <div *ngFor="let ptag of card.ptags">
-                  <mat-form-field class="input-tag-letter">
-                    <input matInput type="text" value="{{ ptag.letter }}">
-                  </mat-form-field>
-                  <mat-form-field class="input-tag-tag">
-                    <input matInput type="text" value="{{ ptag.tag }}">
-                  </mat-form-field>
+              <form (ngSubmit)="onUpdateCard(cardForm)" #cardForm="ngForm">
+                <mat-form-field>
+                  <label><span class="tbcard-section-title">TITLE</span></label>
+                  <input 
+                  matInput 
+                  type="text"
+                  autocomplete="off"
+                  id="title"
+                  ngModel="{{ getValues(card.title) }}"
+                  name="title"
+                  #title="ngModel">
+                </mat-form-field>
+                <mat-form-field>
+                  <label>
+                    <span *ngIf="getCardType(card.cardtype) === 'mythos'" class="tbcard-section-title">MYSTERY</span>
+                    <span *ngIf="getCardType(card.cardtype) === 'logos'" class="tbcard-section-title">IDENTITY</span>
+                  </label>
+                  <input 
+                  matInput 
+                  type="text"
+                  autocomplete="off"
+                  id="qors"
+                  ngModel="{{ getValues(card.qors) }}"
+                  name="qors"
+                  #qors="ngModel">
+                </mat-form-field>
+                <div>
+                  <span class="tbcard-section-title">POWER TAGS</span>
+                  <div *ngFor="let ptag of card.ptags">
+                    <mat-form-field class="input-tag-letter">
+                      <input 
+                      matInput 
+                      type="text"
+                      autocomplete="off"
+                      id="{{ ptag.letter }}"
+                      ngModel="{{ ptag.letter }}"
+                      name="{{ ptag.letter }}"
+                      #[{{ ptag.letter }}]="ngModel">
+                    </mat-form-field>
+                    <mat-form-field class="input-tag-tag">
+                      <input matInput type="text" value="{{ ptag.tag }}">
+                    </mat-form-field>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <span class="tbcard-section-title">WEAKNESS TAGS</span>
-                <div *ngFor="let wtag of card.wtags">
-                  <mat-form-field class="input-tag-letter">
-                    <input matInput type="text" value="{{ wtag.letter }}">
-                  </mat-form-field>
-                  <mat-form-field class="input-tag-tag">
-                    <input matInput type="text" value="{{ wtag.tag }}">
-                  </mat-form-field>
+                <div>
+                  <span class="tbcard-section-title">WEAKNESS TAGS</span>
+                  <div *ngFor="let wtag of card.wtags">
+                    <mat-form-field class="input-tag-letter">
+                      <input matInput type="text" value="{{ wtag.letter }}">
+                    </mat-form-field>
+                    <mat-form-field class="input-tag-tag">
+                      <input matInput type="text" value="{{ wtag.tag }}">
+                    </mat-form-field>
+                  </div>
                 </div>
-              </div>
+                <div class="update-button-div">
+                  <button mat-raised-button class="btn-mythos" type="submit">Update</button>
+                </div>
+              </form>
             </mat-card-content>
           </mat-card>
         </div>

@@ -70,6 +70,19 @@ export class CharacterEditComponent implements OnInit, OnDestroy {
     }, 200);
   }
 
+  onUpdateCard(form) {
+    console.warn(form.value);
+  }
+
+  updateCard(cardTheme, data) {
+    this.character.cards.forEach(card => {
+      if (card.theme === cardTheme) {
+        card = data;
+        return;
+      }
+    });
+  }
+
   getValues(obj) {
     var rawValues = Object.values(obj);
     return rawValues.join("");
