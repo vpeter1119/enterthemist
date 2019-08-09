@@ -117,14 +117,7 @@
                   <span class="tbcard-section-title">POWER TAGS</span>
                   <div *ngFor="let ptag of card.ptags">
                     <mat-form-field class="input-tag-letter">
-                      <input 
-                      matInput 
-                      type="text"
-                      autocomplete="off"
-                      id="{{ ptag.letter }}"
-                      ngModel="{{ ptag.letter }}"
-                      name="{{ ptag.letter }}"
-                      #[{{ ptag.letter }}]="ngModel">
+                      <input matInput type="text" value="{{ ptag.letter }}">
                     </mat-form-field>
                     <mat-form-field class="input-tag-tag">
                       <input matInput type="text" value="{{ ptag.tag }}">
@@ -143,7 +136,7 @@
                   </div>
                 </div>
                 <div class="update-button-div">
-                  <button mat-raised-button class="btn-mythos" type="submit">Update</button>
+                  <button mat-raised-button class="btn-mythos" type="submit" disabled>Update</button>
                 </div>
               </form>
             </mat-card-content>
