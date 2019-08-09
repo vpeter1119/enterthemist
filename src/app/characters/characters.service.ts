@@ -19,7 +19,9 @@ export class CharactersService {
   ) { }
 
   getAll() {
-    this.http.get<Character[]>(this.apiUrl+"/characters")
+    const url = (this.apiUrl + "/characters");
+    console.warn("Sending GET request to: " + url);
+    this.http.get<Character[]>(url)
     .subscribe(characters => {
       this.allCharacters = characters;
       this.allCharactersSub.next([...this.allCharacters]);
@@ -33,7 +35,7 @@ export class CharactersService {
 
   getOne(id) {
     const url = (this.apiUrl + "/character/" + id);
-    console.log("Sending request to: " + url);
+    console.warn("Sending GET request to: " + url);
     this.http.get<Character>(url)
     .subscribe(character => {
       this.requestedCharacter = character;
@@ -49,17 +51,35 @@ export class CharactersService {
   createCharacter(character) {
     this.http.post<{message: string}>(this.apiUrl + '/characters', character)
     .subscribe((response) => {
-      console.log('Message from server: ' + response.message);
+      console.warn('Message from server: ' + response.message);
     })
   }
 
-updateCharacter(id, data) {
-    const url = (this.apiUrl + "/characteredit/" + id);
-    console.log("Sending request to: " + url);
-    this.http.post<{message: string}>(url, data)
+  updateCharacter(id, data) {
+    const url = (this.apiUrl + "/character/" + id);
+    console.warn("Sending POST request to: " + url);
+    this.http.patch<{message: string}>(url, {data: data})
     .subscribe((response) => {
-      console.log('Message from server: ' + response.message);
+      console.warn('Message from server: ' + response.message);
     })
+  }
+
+  deleteCharacter(id) {
+    const url = (this.apiUrl + "/character/" + id);
+    console.warn("Sending request to: " + url);
+    this.http.delete<{message: string}>(url)
+    .subscribe((response) => {
+      console.warn('Message from server: ' + response.message);
+    });
+  }
+
+  patchCharacter(id) {
+    const url = (this.apiUrl + "/character/" + id);
+    console.warn("Sending request to: " + url);
+    this.http.patch<{message: string}>(url, {data: "Hello."})
+    .subscribe((response) => {
+      console.warn('Message from server: ' + response.message);
+    });
   }
 
 }

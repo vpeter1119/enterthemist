@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, TemplateRef  } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { Character } from './character.model';
 import { CharactersService } from './characters.service';
@@ -19,10 +20,16 @@ export class CharactersComponent implements OnInit, OnDestroy {
   allCharactersSub: Subscription;
   characters: Character[];
 
+  modalRef: BsModalRef;
+  isConfirmed: boolean;
+  toDeleteId: string;
+  toDeleteName: string;
+
   constructor(
     private router: Router,
     private charactersService: CharactersService,
     private iconsService: IconsService,
+    private modalService: BsModalService,
   ) {
     this.icons = this.iconsService.getIcons();
    }
@@ -49,12 +56,39 @@ export class CharactersComponent implements OnInit, OnDestroy {
     this.router.navigate(['characters/' + charid + '/edit']);
   }
 
+  onDelete(charid) {
+    console.warn('Clicked to delete character with id: ' + charid);
+    this.charactersService.deleteCharacter(charid);
+    //this.charactersService.patchCharacter(charid);
+    this.isLoading;
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 300);
+  }
+
   onAddCharacter() {
     this.router.navigate(['characters/create']);
   }
 
   ngOnDestroy() {
     this.allCharactersSub.unsubscribe();
+  }
+
+//Bootstrap confirmation modal
+
+  openModal(template: TemplateRef<any>, charid: string, charName: string) {
+    this.toDeleteId = charid;
+    this.toDeleteName = charName
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+ 
+  confirm(): void {
+    this.onDelete(this.toDeleteId);
+    this.modalRef.hide();
+  }
+ 
+  decline(): void {
+    this.modalRef.hide();
   }
 
 }

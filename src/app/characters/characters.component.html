@@ -35,7 +35,9 @@
     (click)="onEdit(character._id)">
       <fa-icon [icon]="icons.edit"></fa-icon>
     </button>
-    <button mat-button title="Delete" color="warn">
+    <button mat-button title="Delete" 
+    color="warn" 
+    (click)="openModal(template, character._id, character.name)">
       <fa-icon [icon]="icons.delete"></fa-icon>
     </button>
   </mat-action-row>
@@ -43,3 +45,10 @@
     </div>
   </div>
 </div>
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Are you sure you want to delete {{toDeleteName}}?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+  </div>
+</ng-template>

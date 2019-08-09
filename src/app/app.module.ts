@@ -20,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlipModule } from 'ngx-flip';
 import { 
   CollapseModule,
-  CarouselModule  
+  CarouselModule,
+  ModalModule,
   } from 'ngx-bootstrap';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 
@@ -63,6 +64,7 @@ import { FooterComponent } from './footer/footer.component';
     FlipModule,
     CollapseModule.forRoot(),
     CarouselModule.forRoot(),
+    ModalModule.forRoot(),
     NgxUsefulSwiperModule,
     ],
   declarations: [ 
