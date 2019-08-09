@@ -26,6 +26,7 @@ export class CharacterAddComponent implements OnInit, OnDestroy {
   ptagletters = ['A','B','C','D','E','F','G','H','I','J'];
   wtagletters = ['A','B','C','D'];
   newCharacter: Character = {};
+  newCard;
   selectedTbType = 'none';
 
   constructor(
@@ -85,10 +86,10 @@ export class CharacterAddComponent implements OnInit, OnDestroy {
     this.currentStep++;
   }
 
-  onTest(form) {
+  onSubmit(form) {
+    console.warn('Submitted form value:');
     console.warn(form.value);
-    console.warn('this.newCharacter.cards: ' + this.newCharacter.cards);
-    var newCard = {
+    this.newCard = {
       cardtype: this.getTbData(this.cardForm.value.theme).tbtype,
       theme: this.cardForm.value.theme,
       title: this.cardForm.value.title,
@@ -96,63 +97,88 @@ export class CharacterAddComponent implements OnInit, OnDestroy {
       ptags: [],
       wtags: []
     }
-    console.warn(newCard);
+    console.warn(this.newCard);
     var convertedArray = Object.keys(form.value).map(key => ({ key: key.substring(1), value: form.value[key] }));
     var ptagArray = convertedArray.slice(0,9);
+    console.warn(ptagArray);
     var wtagArray = convertedArray.slice(10,13);
-    var ptagFilteredArray = ptagArray.filter(element => {
-      return element.value !== '';
+    console.warn(ptagArray);
+    var processPromise = new Promise ((resolve, reject) => {
+      this.processTags(ptagArray, wtagArray);
+      setTimeout(() =>{
+        resolve();
+      }, 300);
     });
-    var wtagFilteredArray = wtagArray.filter(element => {
-      return element.value !== '';
+    processPromise.then((result) => {
+      if (this.newCharacter.cards === undefined) {
+        console.warn('Rewriting this.newCharacter.cards');
+        this.newCharacter.cards = [];
+        this.newCharacter.cards.push(this.newCard);
+      } else {
+        this.newCharacter.cards.push(this.newCard);
+      }
+      console.warn(this.newCharacter);
+      this.selectedTbType = 'none';
+      setTimeout(()=>{
+        this.cardForm.reset();
+        form.reset();
+        this.onNext();
+        if (this.currentStep === 6) {
+          this.isLoading = true;
+          this.sendCharacter(this.newCharacter);
+        }
+      }, 300);
     });
-    if (ptagFilteredArray.length > 3) {
-     window.alert('Too many power tags!');
-     return; 
-    }
-    if (wtagFilteredArray.length > 1) {
-     window.alert('Too many weakness tags!');
-     return; 
-    }
-    ptagFilteredArray.forEach(ptag => {
-      newCard.ptags.push({
+  }
+
+  processTags(ptagArray, wtagArray) {
+    var filterP = new Promise((resolve, reject) => {
+      var ptagFilteredArray = ptagArray.filter(element => {
+        return element.value !== '';
+      });
+      setTimeout(() => {
+        if (ptagFilteredArray.length < 5) {
+          resolve(ptagFilteredArray);
+        } else {
+          reject();
+        }
+      }, 100);
+    });
+    var filterW = new Promise((resolve, reject) => {
+      var wtagFilteredArray = wtagArray.filter(element => {
+        return element.value !== '';
+      });
+      setTimeout(() => {
+        if (wtagFilteredArray.length < 3) {
+          resolve(wtagFilteredArray);
+        } else {
+          reject();
+        }
+      }, 100);
+    });
+    Promise.all([filterP, filterW]).then((values) => {
+      var ptags = values[0];
+      var wtags = values[1];
+      ptags.forEach(ptag => {
+      this.newCard.ptags.push({
         letter: ptag.key,
         tag: ptag.value
       });
     });
-    wtagFilteredArray.forEach(wtag => {
-      newCard.wtags.push({
+    wtags.forEach(wtag => {
+      this.newCard.wtags.push({
         letter: wtag.key,
         tag: wtag.value
       });
     });
-    if (this.newCharacter.cards === undefined) {
-      console.warn('Rewriting this.newCharacter.cards');
-      this.newCharacter.cards = [];
-      this.newCharacter.cards.push(newCard);
-    } else {
-      this.newCharacter.cards.push(newCard);
-    }
-    console.warn(this.newCharacter);
-    // this.isLoading = true;
-    this.selectedTbType = 'none';
-    setTimeout(()=>{
-      this.cardForm.reset();
-      form.reset();
-      // this.checkThemeStatus();
-      this.onNext();
-      if (this.currentStep === 6) {
-        this.isLoading = true;
-        this.sendCharacter(this.newCharacter);
-      }
-    }, 300);
+    })
   }
 
   sendCharacter(character) {
     this.charactersService.createCharacter(character);
     setTimeout(()=>{
       this.router.navigate(['characters']);
-    }, 500);
+    }, 1000);
   }
 
   checkThemeStatus() {

@@ -65,7 +65,7 @@
               </mat-card-content>
             </mat-card>
         </form>
-        <form (ngSubmit)="onTest(tagsForm)" #tagsForm="ngForm" *ngIf="currentStep > 1 && selectedTbType != 'none'">
+        <form (ngSubmit)="onSubmit(tagsForm)" #tagsForm="ngForm" *ngIf="currentStep > 1 && selectedTbType != 'none'">
           <mat-card class="logos" *ngIf="currentStep > 1 && selectedTbType != 'none'">
               <mat-card-header>
                 <mat-card-title>
@@ -129,3 +129,5 @@
     </div>
   </div>
 </div>
+<p>newCharacter JSON oebject stringified:</p>
+<p>{{ newCharacter | json }}</p>
