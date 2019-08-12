@@ -154,3 +154,7 @@ mat-card-subtitle {
 ::ng-deep.mat-list-text{
   display: inline !important;
 }
+
+.mat-list-option.logos {
+  color:#000;
+}

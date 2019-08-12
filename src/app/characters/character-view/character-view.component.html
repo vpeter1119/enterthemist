@@ -56,8 +56,11 @@
               <div>
                 <span class="tbcard-section-title">POWER TAGS</span>
                 <mat-selection-list dense [ngClass]="getValues(card.cardtype)">
-                  <div *ngFor="let tag of card.ptags; let i = index" class="tag-container" (click)="burnTag(nr ,'ptag', i)">
-                    <mat-list-option class="tag-item">
+                  <div 
+                  *ngFor="let tag of card.ptags; let i = index" 
+                  class="tag-container"
+                  (click)="burnTag(nr ,'ptags', i)">
+                    <mat-list-option [ngClass]="getValues(card.cardtype)">
                       <span class="hand-written tag-letter">{{tag.letter}}</span> 
                       <span class="tag-tag">{{tag.tag}}</span>
                       <span class="tag-burn"><fa-icon [icon]="icons.burn" class="tag-burn-icon"></fa-icon></span>
@@ -67,8 +70,17 @@
               </div>
               <div>
                 <span class="tbcard-section-title">WEAKNESS TAGS</span>
-                <mat-selection-list dense>
-                  <mat-list-option *ngFor="let tag of card.wtags">[{{tag.letter}}] {{tag.tag}}</mat-list-option>
+                <mat-selection-list dense [ngClass]="getValues(card.cardtype)">
+                  <div 
+                  *ngFor="let tag of card.wtags; let i = index" 
+                  class="tag-container"
+                  (click)="burnTag(nr ,'wtags', i)">
+                    <mat-list-option [ngClass]="getValues(card.cardtype)">
+                      <span class="hand-written tag-letter">{{tag.letter}}</span> 
+                      <span class="tag-tag">{{tag.tag}}</span>
+                      <span class="tag-burn"><fa-icon [icon]="icons.burn" class="tag-burn-icon"></fa-icon></span>
+                    </mat-list-option>
+                  </div>
                 </mat-selection-list>
               </div>
             </mat-card-content>
