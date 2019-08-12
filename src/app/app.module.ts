@@ -14,6 +14,7 @@ import {
   MatInputModule,
   MatSelectModule,
   MatTableModule,
+  MatListModule,
    } from '@angular/material';
 import { FontAwesomeModule  } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
@@ -59,6 +60,7 @@ import { FooterComponent } from './footer/footer.component';
     MatInputModule,
     MatSelectModule,
     MatTableModule,
+    MatListModule,
     FontAwesomeModule,
     HttpClientModule,
     FlipModule,

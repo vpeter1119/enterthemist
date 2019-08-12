@@ -9,6 +9,8 @@ import {
   faBookOpen,
   faExclamation,
   faList,
+  faSyncAlt,
+  faFireAlt,
    } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({providedIn: "root"})
@@ -25,6 +27,8 @@ export class IconsService {
     themebook: faBookOpen,
     exclamation: faExclamation,
     list: faList,
+    flip: faSyncAlt,
+    burn: faFireAlt,
   }  
 
   constructor() { }

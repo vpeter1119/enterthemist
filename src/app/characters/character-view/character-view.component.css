@@ -36,6 +36,7 @@ mat-card.mythos {
 
 mat-card-title {
   font-family: 'Abril Fatface', cursive;
+  margin-top: 10px;
 }
 
 .tbcard-section-title {
@@ -62,8 +63,7 @@ mat-card-subtitle {
 }
 
 .qors-text {
-  display: block;
-  font-family: 'Rock Salt', cursive;
+  display: block;  
   font-size: 1rem;
   font-weight: 400;
 }
@@ -112,9 +112,45 @@ mat-card-subtitle {
 }
 
 .flippable-card.flipped {
-  transform: rotateY( 180deg );
+  transform: rotateY( -180deg );
 }
 
 .card-slot {
   position: relative;
+}
+
+::ng-deep.mat-pseudo-checkbox{
+  display: none !important;
+}
+
+.flip-button {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.tag-letter {
+  position: absolute;
+  left: 0;
+  margin-right: 1rem;
+}
+
+.tag-burn {
+  position: absolute;
+  right: 0;
+  width: 20px;
+  height: 100%;
+}
+
+.tag-burn-icon {
+  font-size: 1rem;
+}
+
+.hand-written {
+  font-family: 'Rock Salt', cursive;
+}
+
+::ng-deep.mat-list-text{
+  display: inline !important;
 }

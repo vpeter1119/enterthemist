@@ -26,11 +26,16 @@
     <div class="col-md-3 col-xs-0"></div>
   </div>
     <div class="row" *ngIf="!isLoading && !mobile">
-      <div class="col-lg-3 col-md-6 card-slot" *ngFor="let card of cards">
+      <div class="col-lg-3 col-md-6 card-slot" *ngFor="let card of cards; let nr = index">
        <div class="card-container desktop">
-        <div class="flippable-card desktop" [ngClass]="{'flipped':flipped}" (click)="flipped = !flipped">
+        <div 
+        class="flippable-card desktop" 
+        [ngClass]="{'flipped':flippedIndex[nr]}">
           <mat-card [ngClass]="getValues(card.cardtype)" class="theme-card front desktop">
             <mat-card-header [ngClass]="getValues(card.cardtype)">
+              <div class="flip-button">
+                <button mat-button (click)="onFlip(nr)"><fa-icon [icon]="icons.flip"></fa-icon></button>
+              </div>
               <mat-card-title>
                 <p class="tbcard-title">
                   <fa-icon [icon]="icons.logos" *ngIf="getCardType(card.cardtype) === 'logos'"></fa-icon>
@@ -46,24 +51,33 @@
               <div class="qors">
                 <span *ngIf="getCardType(card.cardtype) === 'mythos'">Mystery: </span>
                 <span *ngIf="getCardType(card.cardtype) === 'logos'">Identity: </span>
-                <span class="qors-text">"{{getValues(card.qors)}}"</span>
+                <span class="qors-text hand-written">"{{getValues(card.qors)}}"</span>
               </div>
               <div>
                 <span class="tbcard-section-title">POWER TAGS</span>
-                <ul>
-                  <li *ngFor="let ptag of card.ptags">[{{ptag.letter}}] {{ptag.tag}}</li>
-                </ul>
+                <mat-selection-list dense [ngClass]="getValues(card.cardtype)">
+                  <div *ngFor="let tag of card.ptags; let i = index" class="tag-container" (click)="burnTag(nr ,'ptag', i)">
+                    <mat-list-option class="tag-item">
+                      <span class="hand-written tag-letter">{{tag.letter}}</span> 
+                      <span class="tag-tag">{{tag.tag}}</span>
+                      <span class="tag-burn"><fa-icon [icon]="icons.burn" class="tag-burn-icon"></fa-icon></span>
+                    </mat-list-option>
+                  </div>
+                </mat-selection-list>
               </div>
               <div>
                 <span class="tbcard-section-title">WEAKNESS TAGS</span>
-                <ul>
-                  <li *ngFor="let wtag of card.wtags">[{{wtag.letter}}] {{wtag.tag}}</li>
-                </ul>
+                <mat-selection-list dense>
+                  <mat-list-option *ngFor="let tag of card.wtags">[{{tag.letter}}] {{tag.tag}}</mat-list-option>
+                </mat-selection-list>
               </div>
             </mat-card-content>
           </mat-card>
           <mat-card [ngClass]="getValues(card.cardtype)" class="theme-card back desktop">
             <mat-card-header [ngClass]="getValues(card.cardtype)">
+              <div class="flip-button">
+                <button mat-button (click)="onFlip(nr)"><fa-icon [icon]="icons.flip"></fa-icon></button>
+              </div>
               <mat-card-title>
                 <p>
                   <fa-icon [icon]="icons.logos" *ngIf="getCardType(card.cardtype) === 'logos'"></fa-icon>

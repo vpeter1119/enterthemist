@@ -21,6 +21,7 @@ export class CharacterViewComponent implements OnInit, OnDestroy {
   data;
   mobile: boolean;
   windowWidth;
+  flippedIndex = [false,false,false,false];
 
   requestedCharacterSub: Subscription;
   character: Character;
@@ -65,6 +66,14 @@ export class CharacterViewComponent implements OnInit, OnDestroy {
       this.cards = character[0].cards;
       this.isLoading = false;
     })
+  }
+
+  onFlip(nr) {
+    this.flippedIndex[nr] = !this.flippedIndex[nr]
+  }
+
+  burnTag(cardNr, type: string, i) {
+    console.warn(cardNr ,type, i);
   }
 
   getValues(obj) {
