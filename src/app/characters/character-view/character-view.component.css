@@ -130,6 +130,13 @@ mat-card-subtitle {
   top: 0;
 }
 
+.card-icon {
+  display: block;
+  position: absolute;
+  left: 10px;;
+  top: 10px;
+}
+
 .tag-letter {
   position: absolute;
   left: 0;
