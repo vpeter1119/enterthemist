@@ -57,12 +57,11 @@ export class CharactersComponent implements OnInit, OnDestroy {
   }
 
   onDelete(charid) {
-    console.warn('Clicked to delete character with id: ' + charid);
     this.charactersService.deleteCharacter(charid);
     this.isLoading;
     setTimeout(() => {
       this.ngOnInit();
-    }, 300);
+    }, 500);
   }
 
   onAddCharacter() {

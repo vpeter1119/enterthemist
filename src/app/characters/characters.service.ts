@@ -7,7 +7,7 @@ import { Character } from './character.model';
 @Injectable({providedIn: "root"})
 export class CharactersService {
 
-  apiUrl = "https://ztold.sse.codesandbox.io/api";
+  apiUrl = "https://ztold.sse.codesandbox.io/api/characters/";
 
   allCharactersSub = new Subject<Character[]>();
   allCharacters: Character[];
@@ -19,7 +19,7 @@ export class CharactersService {
   ) { }
 
   getAll() {
-    const url = (this.apiUrl + "/characters");
+    const url = (this.apiUrl);
     console.warn("Sending GET request to: " + url);
     this.http.get<Character[]>(url)
     .subscribe(characters => {
@@ -34,7 +34,7 @@ export class CharactersService {
   }
 
   getOne(id) {
-    const url = (this.apiUrl + "/character/" + id);
+    const url = (this.apiUrl + id);
     console.warn("Sending GET request to: " + url);
     this.http.get<Character>(url)
     .subscribe(character => {
@@ -49,14 +49,14 @@ export class CharactersService {
   }
 
   createCharacter(character) {
-    this.http.post<{message: string}>(this.apiUrl + '/characters', character)
+    this.http.post<{message: string}>(this.apiUrl, character)
     .subscribe((response) => {
       console.warn('Message from server: ' + response.message);
     })
   }
 
   updateCharacter(id, data) {
-    const url = (this.apiUrl + "/character/" + id);
+    const url = (this.apiUrl + id);
     console.warn("Sending POST request to: " + url);
     this.http.patch<{message: string}>(url, {data: data})
     .subscribe((response) => {
@@ -65,7 +65,7 @@ export class CharactersService {
   }
 
   deleteCharacter(id) {
-    const url = (this.apiUrl + "/character/" + id);
+    const url = (this.apiUrl + id);
     console.warn("Sending request to: " + url);
     this.http.delete<{message: string}>(url)
     .subscribe((response) => {
@@ -74,7 +74,7 @@ export class CharactersService {
   }
 
   patchCharacter(id) {
-    const url = (this.apiUrl + "/character/" + id);
+    const url = (this.apiUrl + id);
     console.warn("Sending request to: " + url);
     this.http.patch<{message: string}>(url, {data: "Hello."})
     .subscribe((response) => {
