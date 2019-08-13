@@ -38,7 +38,7 @@
         <a class="nav-link active" routerLink="signup" (click)="isCollapsed = !isCollapsed">Signup</a>
       </li>
       <li class="nav-item" *ngIf="userIsAuthenticated">
-        <a class="nav-link active" (click)="onLogout(); isCollapsed = !isCollapsed">Logout</a>
+        <a mat-button class="nav-link active" (click)="onLogout(); isCollapsed = !isCollapsed">Logout</a>
       </li>
     </ul>
   </div>
