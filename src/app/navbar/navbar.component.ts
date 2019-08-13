@@ -15,7 +15,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
   icons;
   isCollapsed = true;
   userIsAuthenticated = false;
+  userIsAdmin = false;
   private authListenerSubs: Subscription;
+  private adminListenerSubs: Subscription;
 
   constructor(
     private iconsService: IconsService,
@@ -26,10 +28,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.userIsAuthenticated = this.authService.getIsAuth();
+    this.userIsAdmin = this.authService.getIsAdmin();
     this.authListenerSubs = this.authService
       .getAuthStatusListener()
       .subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
+      });
+    this.adminListenerSubs = this.authService
+      .getAdminStatusListener()
+      .subscribe(isAdmin => {
+        console.warn("isAdmin status: " + isAdmin);
+        this.userIsAdmin = isAdmin;
       });
   }
 
@@ -39,6 +48,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.authListenerSubs.unsubscribe();
+    this.adminListenerSubs.unsubscribe();
   }
 
 }

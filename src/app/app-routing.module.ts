@@ -6,10 +6,12 @@ import { CharacterViewComponent } from './characters/character-view/character-vi
 import { CharacterEditComponent } from './characters/character-edit/character-edit.component';
 import { CharacterAddComponent } from './characters/character-add/character-add.component';
 import { ThemebooksComponent } from './admin/themebooks/themebooks.component';
+import { AdminComponent } from './admin/admin/admin.component';
 import { ThemebookAddComponent } from './admin/themebooks/themebook-add/themebook-add.component';
 import { LoginComponent } from "./auth/login/login.component";
 import { SignupComponent } from "./auth/signup/signup.component";
 import { AuthGuard } from "./auth/auth.guard";
+import { AdminGuard } from "./admin/admin.guard";
 
 const appRoutes: Routes = [
   { 
@@ -52,6 +54,11 @@ const appRoutes: Routes = [
   { 
     path: "signup", 
     component: SignupComponent 
+  },
+  { 
+    path: "admin", 
+    component: AdminComponent,
+    canActivate: [AdminGuard]
   },
   { 
     path: '', 

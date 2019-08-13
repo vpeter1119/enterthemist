@@ -44,6 +44,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from "./auth/auth-interceptor";
+import { AdminComponent } from './admin/admin/admin.component';
 
 @NgModule({  
   imports:      [ 
@@ -77,7 +78,7 @@ import { AuthInterceptor } from "./auth/auth-interceptor";
     CharactersComponent, 
     NavbarComponent, 
     CharacterViewComponent, 
-    CharacterAddComponent, ThemebooksComponent, ThemebookAddComponent, CharacterEditComponent, FooterComponent, LoginComponent, SignupComponent, 
+    CharacterAddComponent, ThemebooksComponent, ThemebookAddComponent, CharacterEditComponent, FooterComponent, LoginComponent, SignupComponent, AdminComponent, 
     ],
   bootstrap:    [ AppComponent ],
   providers: [

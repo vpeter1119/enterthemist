@@ -9,10 +9,12 @@ import { AuthData } from "./auth-data.model";
 export class AuthService {
   apiUrl = "https://ztold.sse.codesandbox.io/api/users";
   private isAuthenticated = false;
+  private isAdmin = false;
   private token: string;
   private tokenTimer: any;
   private userId: string;
   private authStatusListener = new Subject<boolean>();
+  private adminStatusListener = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -24,12 +26,20 @@ export class AuthService {
     return this.isAuthenticated;
   }
 
+  getIsAdmin() {
+    return this.isAdmin;
+  }
+
   getUserId() {
     return this.userId;
   }
 
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
+  }
+
+  getAdminStatusListener() {
+    return this.adminStatusListener.asObservable();
   }
 
   createUser(email: string, username: string, password: string) {
@@ -43,8 +53,12 @@ export class AuthService {
 
   login(username: string, password: string) {
     const authData: AuthData = { username: username, password: password };
+    console.warn({
+      message: "Sending POST request to" + this.apiUrl + '/login',
+      authData: authData
+    });
     this.http
-      .post<{ token: string; expiresIn: number, userId: string }>(
+      .post<{ token: string; expiresIn: number, userId: string, isAdmin: boolean }>(
         this.apiUrl + '/login',
         authData
       )
@@ -55,13 +69,15 @@ export class AuthService {
           const expiresInDuration = response.expiresIn;
           this.setAuthTimer(expiresInDuration);
           this.isAuthenticated = true;
+          this.isAdmin = response.isAdmin;
           this.userId = response.userId;
           this.authStatusListener.next(true);
+          this.adminStatusListener.next(this.isAdmin);
           const now = new Date();
           const expirationDate = new Date(now.getTime() + expiresInDuration * 100000);
           console.log(expirationDate);
           this.saveAuthData(token, expirationDate, this.userId);
-          this.router.navigate(["/"]);
+          this.router.navigate(["characters"]);
         }
       });
   }
@@ -86,6 +102,8 @@ export class AuthService {
     this.token = null;
     this.isAuthenticated = false;
     this.authStatusListener.next(false);
+    this.isAdmin = false;
+    this.adminStatusListener.next(false);
     this.userId = null;
     clearTimeout(this.tokenTimer);
     this.clearAuthData();

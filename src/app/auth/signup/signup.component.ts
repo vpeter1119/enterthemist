@@ -17,6 +17,11 @@ export class SignupComponent {
       return;
     }
     this.isLoading = true;
-    this.authService.createUser(form.value.email, form.value.username, form.value.password);
+    var username = form.value.username;
+    var password = form.value.password;
+    this.authService.createUser(form.value.email, username, form.value.password);
+    setTimeout(()=> {
+      this.authService.login(username, password);
+    }, 1000);
   }
 }
