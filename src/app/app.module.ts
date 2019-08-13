@@ -17,7 +17,7 @@ import {
   MatListModule,
    } from '@angular/material';
 import { FontAwesomeModule  } from '@fortawesome/angular-fontawesome';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlipModule } from 'ngx-flip';
 import { 
   CollapseModule,
@@ -41,6 +41,9 @@ import { ThemebookAddComponent } from './admin/themebooks/themebook-add/themeboo
 import { TextConvertService } from './assets/text-convert.service';
 import { CharacterEditComponent } from './characters/character-edit/character-edit.component';
 import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { AuthInterceptor } from "./auth/auth-interceptor";
 
 @NgModule({  
   imports:      [ 
@@ -74,9 +77,16 @@ import { FooterComponent } from './footer/footer.component';
     CharactersComponent, 
     NavbarComponent, 
     CharacterViewComponent, 
-    CharacterAddComponent, ThemebooksComponent, ThemebookAddComponent, CharacterEditComponent, FooterComponent, 
+    CharacterAddComponent, ThemebooksComponent, ThemebookAddComponent, CharacterEditComponent, FooterComponent, LoginComponent, SignupComponent, 
     ],
   bootstrap:    [ AppComponent ],
-  providers: [CharactersService, IconsService, ReactiveService, AdminService, TextConvertService]
+  providers: [
+    CharactersService, 
+    IconsService, 
+    ReactiveService, 
+    AdminService, 
+    TextConvertService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    ]
 })
 export class AppModule { }

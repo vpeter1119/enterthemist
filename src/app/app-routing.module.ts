@@ -7,6 +7,9 @@ import { CharacterEditComponent } from './characters/character-edit/character-ed
 import { CharacterAddComponent } from './characters/character-add/character-add.component';
 import { ThemebooksComponent } from './admin/themebooks/themebooks.component';
 import { ThemebookAddComponent } from './admin/themebooks/themebook-add/themebook-add.component';
+import { LoginComponent } from "./auth/login/login.component";
+import { SignupComponent } from "./auth/signup/signup.component";
+import { AuthGuard } from "./auth/auth.guard";
 
 const appRoutes: Routes = [
   { 
@@ -37,6 +40,14 @@ const appRoutes: Routes = [
     component: ThemebookAddComponent
   },
   { 
+    path: "login", 
+    component: LoginComponent 
+  },
+  { 
+    path: "signup", 
+    component: SignupComponent 
+  },
+  { 
     path: '', 
     redirectTo: '/characters', 
     pathMatch: 'full' 
@@ -53,6 +64,9 @@ const appRoutes: Routes = [
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    AuthGuard
   ]
 })
 

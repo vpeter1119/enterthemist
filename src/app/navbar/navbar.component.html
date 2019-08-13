@@ -22,14 +22,23 @@
   [isAnimated]="true"
   id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="userIsAuthenticated">
         <a class="nav-link active" routerLink="characters" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.character"></fa-icon>Characters</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="userIsAuthenticated">
         <a class="nav-link active" routerLink="themebooks" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.themebook"></fa-icon>Themebooks</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="userIsAuthenticated">
         <a class="nav-link disabled" routerLink="" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.list"></fa-icon>Moves</a>
+      </li>
+      <li class="nav-item" *ngIf="!userIsAuthenticated">
+        <a class="nav-link active" routerLink="login" (click)="isCollapsed = !isCollapsed">Login</a>
+      </li>
+      <li class="nav-item" *ngIf="!userIsAuthenticated">
+        <a class="nav-link active" routerLink="signup" (click)="isCollapsed = !isCollapsed">Signup</a>
+      </li>
+      <li class="nav-item" *ngIf="userIsAuthenticated">
+        <a class="nav-link active" (click)="onLogout(); isCollapsed = !isCollapsed">Logout</a>
       </li>
     </ul>
   </div>
