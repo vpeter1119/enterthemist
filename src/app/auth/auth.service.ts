@@ -13,7 +13,6 @@ export class AuthService {
   private token: string;
   private tokenTimer: any;
   private userId: string;
-  private userName: string;
   private authStatusListener = new Subject<boolean>();
   private adminStatusListener = new Subject<boolean>();
 
@@ -33,10 +32,6 @@ export class AuthService {
 
   getUserId() {
     return this.userId;
-  }
-
-  getUserName() {
-    return this.userName;
   }
 
   getAuthStatusListener() {
@@ -63,7 +58,7 @@ export class AuthService {
       authData: authData
     });
     this.http
-      .post<{ token: string; expiresIn: number, userId: string, userName: string, isAdmin: boolean }>(
+      .post<{ token: string; expiresIn: number, userId: string, isAdmin: boolean }>(
         this.apiUrl + '/login',
         authData
       )
@@ -76,7 +71,6 @@ export class AuthService {
           this.isAuthenticated = true;
           this.isAdmin = response.isAdmin;
           this.userId = response.userId;
-          this.userName = response.userName;
           this.authStatusListener.next(true);
           this.adminStatusListener.next(this.isAdmin);
           const now = new Date();
