@@ -32,13 +32,13 @@
         <a class="nav-link disabled" routerLink="" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.list"></fa-icon>Moves</a>
       </li>
       <li class="nav-item" *ngIf="!userIsAuthenticated">
-        <a class="nav-link active" routerLink="login" (click)="isCollapsed = !isCollapsed">Login</a>
+        <a class="nav-link active" routerLink="login" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.login"></fa-icon>Login</a>
       </li>
       <li class="nav-item" *ngIf="!userIsAuthenticated">
-        <a class="nav-link active" routerLink="signup" (click)="isCollapsed = !isCollapsed">Signup</a>
+        <a class="nav-link active" routerLink="signup" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.signup"></fa-icon>Sign Up</a>
       </li>
       <li class="nav-item" *ngIf="userIsAuthenticated">
-        <a class="nav-link active" (click)="onLogout(); isCollapsed = !isCollapsed">Logout</a>
+        <a class="nav-link active" routerLink="" (click)="onLogout(); isCollapsed = !isCollapsed"><fa-icon [icon]="icons.logout"></fa-icon>Logout</a>
       </li>
     </ul>
   </div>
