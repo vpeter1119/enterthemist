@@ -14,30 +14,36 @@ import { AuthGuard } from "./auth/auth.guard";
 const appRoutes: Routes = [
   { 
     path: 'characters', 
-    component: CharactersComponent 
+    component: CharactersComponent,
+    canActivate: [AuthGuard]
   },
   { 
     path: 'characters/create',
     pathMatch: 'full',
-    component: CharacterAddComponent
+    component: CharacterAddComponent,
+    canActivate: [AuthGuard]
   },
   { 
     path: 'characters/:id',
     pathMatch: 'full',
-    component: CharacterViewComponent
+    component: CharacterViewComponent,
+    canActivate: [AuthGuard]
   },
   { 
     path: 'characters/:id/edit',
     pathMatch: 'full',
-    component: CharacterEditComponent
+    component: CharacterEditComponent,
+    canActivate: [AuthGuard]
   },
   { 
     path: 'themebooks', 
-    component: ThemebooksComponent
+    component: ThemebooksComponent,
+    canActivate: [AuthGuard]
   },
   { 
     path: 'themebooks/add', 
-    component: ThemebookAddComponent
+    component: ThemebookAddComponent,
+    canActivate: [AuthGuard]
   },
   { 
     path: "login", 
