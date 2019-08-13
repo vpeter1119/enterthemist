@@ -24,6 +24,11 @@
   color: #000;
 }
 
+.general {
+  background: lightgrey;
+  color: #000;
+}
+
 mat-spinner {
   margin: 10px auto;
 }

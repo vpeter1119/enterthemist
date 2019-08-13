@@ -38,7 +38,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.allCharactersSub = this.charactersService.getAllListener()
     .subscribe(allCharacters => {
-      if (allCharacters === []) {
+      if (allCharacters.length < 1) {
         this.noCharacters = true;
       } else {
         this.noCharacters = false;

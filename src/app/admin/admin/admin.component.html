@@ -1,7 +1,88 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-6 col-xs-12">
-      admin 
+  <div id="toprow">
+  </div>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <div *ngIf="noCharacters">There are no characters to display.</div>
+  <div class="row" *ngIf="!isLoading && !noCharacters"><h3 class="section-title">Active characters:</h3></div>
+  <div class="row" *ngIf="!isLoading && !noCharacters">
+    <div class="col-md-6 col-xs-12" *ngFor="let character of activeCharacters">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <span class="character-name">
+              {{ (character.name.length>26)? (character.name | slice:0:26)+'...':(character.name) }}
+            </span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card class="general">
+          Owner: {{ character.ownerName }}<br>
+        </mat-card>
+        <mat-card class="mythos">
+          <fa-icon [icon]="icons.mythos"></fa-icon> {{ character.mythos }}<br>
+        </mat-card>
+        <mat-card class="logos">
+          <fa-icon [icon]="icons.logos"></fa-icon> {{ character.logos }}
+        </mat-card>
+        <mat-action-row>
+          <button mat-button title="View"
+          (click)="onView(character._id)"> 
+            <fa-icon [icon]="icons.view"></fa-icon>
+          </button>
+          <button mat-button title="Edit" 
+          (click)="onEdit(character._id)">
+            <fa-icon [icon]="icons.edit"></fa-icon>
+          </button>
+          <button mat-button title="Delete" 
+          color="warn" 
+          (click)="openModal(template, character._id, character.name)">
+            <fa-icon [icon]="icons.delete"></fa-icon>
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </div>
+  </div>
+  <div class="row" *ngIf="!isLoading && !noCharacters"><h3 class="section-title">Deleted characters:</h3></div>
+  <div class="row" *ngIf="!isLoading && !noCharacters">
+    <div class="col-md-6 col-xs-12" *ngFor="let character of deletedCharacters">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <span class="character-name">
+              {{ (character.name.length>26)? (character.name | slice:0:26)+'...':(character.name) }}
+            </span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-card class="general">
+          Owner: {{ character.ownerName }}<br>
+        </mat-card>
+        <mat-card class="mythos">
+          <fa-icon [icon]="icons.mythos"></fa-icon> {{ character.mythos }}<br>
+        </mat-card>
+        <mat-card class="logos">
+          <fa-icon [icon]="icons.logos"></fa-icon> {{ character.logos }}
+        </mat-card>
+        <mat-action-row>
+          <button mat-button title="View"
+          (click)="onView(character._id)"> 
+            <fa-icon [icon]="icons.view"></fa-icon>
+          </button>
+          <button mat-button title="Edit" 
+          (click)="onEdit(character._id)">
+            <fa-icon [icon]="icons.edit"></fa-icon>
+          </button>
+          <button mat-button title="Restore" 
+          (click)="onRestore(character._id)">
+            <fa-icon [icon]="icons.restore"></fa-icon>
+          </button>
+        </mat-action-row>
+      </mat-expansion-panel>
     </div>
   </div>
 </div>
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Are you sure you want to delete {{toDeleteName}}?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+  </div>
+</ng-template>

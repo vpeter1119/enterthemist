@@ -1,5 +1,7 @@
 export class Character {
   _id: string;
+  deleted: boolean;
+  ownerName: string;
   name: string;
   mythos: string;
   logos: string;

@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
 import { Themebook } from './themebooks/themebook.model';
+import { Character } from '../../characters/character.model';
+import { AuthData } from '../../auth/auth-data.model';
 
 export class Response {
   m: Themebook[];
@@ -16,7 +18,9 @@ export class AdminService {
 
   mythosTbs: Themebook[];
   logosTbs: Themebook[];
+  allCharacters: Character [];
   allTbsSub = new Subject<Themebook[]>();
+  allCharsSub = new Subject<Character[]>();
   response: Response;
 
   constructor(
@@ -49,6 +53,19 @@ export class AdminService {
   getAllTbs() {
     this.fetchAllThemebooks();
     return this.allTbsSub.asObservable();
+  }
+
+  fetchAllCharacters() {
+    this.http.get<Character[]>(this.apiUrl + '/admin/characters')
+    .subscribe((data) => {
+      this.allCharacters = data;
+      this.allCharsSub.next([...this.allCharacters]);
+    })
+  }
+
+  getAllChars() {
+    this.fetchAllCharacters();
+    return this.allCharsSub.asObservable();
   }
 
 }
