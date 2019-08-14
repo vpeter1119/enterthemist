@@ -32,7 +32,7 @@
       <fa-icon [icon]="icons.view"></fa-icon>
     </button>
     <button mat-button title="Edit" 
-    (click)="onEdit(character._id)">
+    (click)="onEdit(character._id)" disabled="{{!isAdmin}}">
       <fa-icon [icon]="icons.edit"></fa-icon>
     </button>
     <button mat-button title="Delete" 

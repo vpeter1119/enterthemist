@@ -6,6 +6,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Character } from './character.model';
 import { CharactersService } from './characters.service';
 import { IconsService } from '../assets/icons.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-characters',
@@ -15,6 +16,7 @@ import { IconsService } from '../assets/icons.service';
 export class CharactersComponent implements OnInit, OnDestroy {
 
   isLoading = false;
+  isAdmin =false;
   noCharacters: boolean;
   icons;
   allCharactersSub: Subscription;
@@ -30,8 +32,10 @@ export class CharactersComponent implements OnInit, OnDestroy {
     private charactersService: CharactersService,
     private iconsService: IconsService,
     private modalService: BsModalService,
+    private _auth: AuthService,
   ) {
     this.icons = this.iconsService.getIcons();
+    this.isAdmin = this._auth.getIsAdmin();
    }
 
   ngOnInit() {

@@ -73,9 +73,9 @@
     <div class="col-md-2 col-xs-0"></div>
   </div>
   <div class="row" *ngIf="!isLoading && !mobile">
-      <div class="col-lg-3 col-md-6 col-xs-10 card-slot" *ngFor="let card of cards">
+      <div class="col-lg-3 col-md-6 col-xs-10 card-slot" *ngFor="let card of cards; let cardIndex = index">
        <div class="card-container desktop">
-        <div class="flippable-card desktop" [ngClass]="{'flipped':flipped}" (click)="flipped = !flipped">
+        <div>
           <mat-card class="card-general">
             <mat-card-header>
               <mat-card-title>
@@ -87,56 +87,48 @@
               </mat-card-title>
             </mat-card-header>
             <mat-card-content>
-              <form (ngSubmit)="onUpdateCard(cardForm)" #cardForm="ngForm">
+              <form [formGroup]="'cardForm'+cardIndex">
                 <mat-form-field>
                   <label><span class="tbcard-section-title">TITLE</span></label>
-                  <input 
-                  matInput 
-                  type="text"
-                  autocomplete="off"
-                  id="title"
-                  ngModel="{{ getValues(card.title) }}"
-                  name="title"
-                  #title="ngModel">
+                  <input matInput type="text" formControlName="title" value="{{ getValues(card.title) }}" required>
                 </mat-form-field>
                 <mat-form-field>
                   <label>
                     <span *ngIf="getCardType(card.cardtype) === 'mythos'" class="tbcard-section-title">MYSTERY</span>
                     <span *ngIf="getCardType(card.cardtype) === 'logos'" class="tbcard-section-title">IDENTITY</span>
                   </label>
-                  <input 
-                  matInput 
-                  type="text"
-                  autocomplete="off"
-                  id="qors"
-                  ngModel="{{ getValues(card.qors) }}"
-                  name="qors"
-                  #qors="ngModel">
+                  <input matInput type="text" formControlName="qors" value="{{ getValues(card.qors) }}" required>
                 </mat-form-field>
-                <div>
+                <div formGroupName="ptags">
                   <span class="tbcard-section-title">POWER TAGS</span>
-                  <div *ngFor="let ptag of card.ptags">
+                  <div *ngFor="let ptag of card.ptags; let tagIndex = index">
                     <mat-form-field class="input-tag-letter">
-                      <input matInput type="text" value="{{ ptag.letter }}">
+                      <input matInput type="text" formControlName="letter" value="{{ ptag.letter }}" required>
                     </mat-form-field>
                     <mat-form-field class="input-tag-tag">
-                      <input matInput type="text" value="{{ ptag.tag }}">
+                      <input matInput type="text" formControlName="tag" value="{{ ptag.tag }}" required>
                     </mat-form-field>
                   </div>
+                  <button mat-icon-button color="primary" (click)="onAddTag(cardIndex, 'ptags')">
+                    <fa-icon [icon]="icons.plus"></fa-icon>
+                    </button> Add power tag
                 </div>
-                <div>
+                <div formGroupName="ptags">
                   <span class="tbcard-section-title">WEAKNESS TAGS</span>
                   <div *ngFor="let wtag of card.wtags">
                     <mat-form-field class="input-tag-letter">
-                      <input matInput type="text" value="{{ wtag.letter }}">
+                      <input matInput type="text" formControlName="letter" value="{{ wtag.letter }}">
                     </mat-form-field>
                     <mat-form-field class="input-tag-tag">
-                      <input matInput type="text" value="{{ wtag.tag }}">
+                      <input matInput type="text" formControlName="tag" value="{{ wtag.tag }}">
                     </mat-form-field>
                   </div>
+                  <button mat-icon-button color="primary" (click)="onAddTag(cardIndex, 'wtags')">
+                    <fa-icon [icon]="icons.plus"></fa-icon>
+                    </button> Add weakness tag
                 </div>
                 <div class="update-button-div">
-                  <button mat-raised-button class="btn-mythos" type="submit" disabled>Update</button>
+                  <button mat-raised-button class="btn-mythos" type="submit">Update</button>
                 </div>
               </form>
             </mat-card-content>
@@ -146,3 +138,7 @@
     </div>
   </div>
 </div>
+First Card: {{cardForm0.value | json}}<br>
+Second Card: {{cardForm1.value | json}}<br>
+Third Card: {{cardForm2.value | json}}<br>
+Fourth Card: {{cardForm4.value | json}}<br>

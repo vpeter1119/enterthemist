@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -33,10 +34,16 @@ export class CharacterEditComponent implements OnInit, OnDestroy {
     private charactersService: CharactersService,
     private iconsService: IconsService,
     private reactive: ReactiveService,
-    private _text: TextConvertService
+    private _text: TextConvertService,
+    private fb: FormBuilder,
   ) { 
     this.icons = this.iconsService.getIcons();
   }
+
+  cardForm0 = this.fb.group({});
+  cardForm1 = this.fb.group({});
+  cardForm2 = this.fb.group({});
+  cardForm3 = this.fb.group({});
 
   ngOnInit() {
     this.windowWidth = window.screen.width;
@@ -53,9 +60,53 @@ export class CharacterEditComponent implements OnInit, OnDestroy {
       this.character = character[0];
       this.data = character[0];
       this.cards = character[0].cards;
+      this.buildForm();
       this.isLoading = false;
       this.generalIsLoading = false;
     })
+  }
+
+  buildForm() {
+    this.cardForm0 = this.fb.group({
+      title: [this.character.cards[0].title],
+      qors: [this.character.cards[0].qors],
+      ptags: this.fb.array([
+        this.fb.group({
+          letter: [],
+          tag: []
+        })
+      ])
+    });
+    this.cardForm1 = this.fb.group({
+      title: [this.character.cards[1].title],
+      qors: [this.character.cards[1].qors],
+      ptags: this.fb.array([
+        this.fb.group({
+          letter: [],
+          tag: []
+        })
+      ])
+    });
+    this.cardForm2 = this.fb.group({
+      title: [this.character.cards[1].title],
+      qors: [this.character.cards[1].qors],
+      ptags: this.fb.array([
+        this.fb.group({
+          letter: [],
+          tag: []
+        })
+      ])
+    });
+    this.cardForm3 = this.fb.group({
+      title: [this.character.cards[1].title],
+      qors: [this.character.cards[1].qors],
+      ptags: this.fb.array([
+        this.fb.group({
+          letter: [],
+          tag: []
+        })
+      ])
+    });
   }
 
   onUpdateGeneral(form) {
@@ -70,8 +121,15 @@ export class CharacterEditComponent implements OnInit, OnDestroy {
     }, 200);
   }
 
-  onUpdateCard(form) {
+  onUpdateCard(form, index) {    
     console.warn(form.value);
+  }
+
+  onAddTag(cardNr, tagType) {
+    this.character.cards[cardNr][tagType].push({
+      letter: '',
+      tag: ''
+    });
   }
 
   updateCard(cardTheme, data) {
