@@ -7,6 +7,11 @@ import { Themebook } from '../themebook.model';
 import { AdminService } from '../../admin.service';
 import { TextConvertService } from '../../../assets/text-convert.service'
 
+export class TbResponse {
+  m: Themebook[];
+  l: Themebook[]
+}
+
 @Component({
   selector: 'app-themebook-edit',
   templateUrl: './themebook-edit.component.html',
@@ -14,7 +19,7 @@ import { TextConvertService } from '../../../assets/text-convert.service'
 })
 export class ThemebookEditComponent implements OnInit, OnDestroy {
 
-  newTb: Themebook = {};
+  newTb = {};
   isLoading: boolean;
   allTbs: Themebook[];
   allTbsSub: Subscription;
@@ -91,7 +96,7 @@ export class ThemebookEditComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isLoading = true;
     this.allTbsSub = this.admin.getAllTbs()
-    .subscribe((response) => {
+    .subscribe((response: TbResponse) => {
       this.allTbs = response.m.concat(response.l);
       this.setSelected(this.selected);
       this.isLoading = false;
@@ -163,7 +168,7 @@ export class ThemebookEditComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     console.warn(this.newThemeBookForm.value);
-    var newThemeBook: Themebook = {
+    var newThemeBook = {
       name: this.newThemeBookForm.value.name.toLowerCase(),
       description: this.newThemeBookForm.value.description,
       tbtype: this.newThemeBookForm.value.tbtype,
