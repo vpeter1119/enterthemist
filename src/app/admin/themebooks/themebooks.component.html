@@ -4,12 +4,11 @@
       <mat-spinner *ngIf="isLoading"></mat-spinner>
       <button 
       mat-raised-button 
-      disabled
-      *ngIf="!isLoading"
+      *ngIf="!isLoading && _auth.getIsAdmin()"
       (click)="this.router.navigate(['themebooks/add']);">Add Themebook</button>
       <button 
       mat-raised-button 
-      *ngIf="!isLoading"
+      *ngIf="!isLoading && _auth.getIsAdmin()"
       (click)="this.router.navigate(['themebooks/edit']);">Edit Themebook</button>
     </div>
   </div>

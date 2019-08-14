@@ -26,11 +26,19 @@ button {
   margin-top: 2rem;
 }
 
+.tb-subtitle {
+  color: #000;
+}
+
+.tag-examples {
+  font-style: italic;
+}
+
 .chargen-section-title {
   display: block;
   margin-bottom: 1rem;
   font-family: 'Abril Fatface', cursive;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {

@@ -71,12 +71,21 @@
                 <mat-card-title>
                   {{ capitalize(cardForm.value.theme)  }}
                 </mat-card-title>
+                <mat-card-subtitle class="tb-subtitle">
+                  {{ getTbData(cardForm.value.theme).description }}
+                </mat-card-subtitle>
               </mat-card-header>
               <mat-card-content>
                 <div class="chargen-section">
-                  <div class="chargen-section-title">Answer question [A] and two other Power Tag Questions:</div>
+                  <div class="chargen-section-title">1. Answer question [A] and two other Power Tag Questions:</div>
                   <div class="chargen-section-content" *ngFor="let letter of ptagletters">
-                    <label>[{{letter}}] {{ getTbData(cardForm.value.theme).ptagq[letter] }}</label>
+                    <label style="font-weight: bold">[{{letter}}] {{ getTbData(cardForm.value.theme).ptagq[letter] }}</label>
+                    <table>
+                      <td>Examples: </td>
+                      <td>
+                        <p class="tag-examples">{{ getTbData(cardForm.value.theme).ptagq[letter.toLowerCase()+'Xmp'] }}</p>
+                      </td>
+                    </table>
                     <mat-form-field appearance="outline">
                       <mat-label>Answer</mat-label>
                       <input 
@@ -91,9 +100,15 @@
                   </div>
                 </div>
                 <div class="chargen-section">
-                  <div class="chargen-section-title">Answer one Weakness Tag Question:</div>
+                  <div class="chargen-section-title">2. Answer one Weakness Tag Question:</div>
                   <div class="chargen-section-content" *ngFor="let letter of wtagletters">
-                    <label>[{{letter}}] {{ getTbData(cardForm.value.theme).wtagq[letter] }}</label>
+                    <label style="font-weight: bold">[{{letter}}] {{ getTbData(cardForm.value.theme).wtagq[letter] }}</label>
+                    <table>
+                      <td>Examples: </td>
+                      <td>
+                        <p class="tag-examples">{{ getTbData(cardForm.value.theme).ptagq[letter.toLowerCase()+'Xmp'] }}</p>
+                      </td>
+                    </table>
                     <mat-form-field appearance="outline">
                       <mat-label>Answer</mat-label>
                       <input 

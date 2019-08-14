@@ -39,7 +39,7 @@
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>Description</mat-label>
-                <textarea matInput formControlName="description"></textarea>
+                <textarea matInput formControlName="description" [value]="selectedTb.description"></textarea>
               </mat-form-field>
           </mat-card-content>
         </mat-card>
@@ -267,4 +267,3 @@
     </div>
   </div>
 </div>
-{{ newThemeBookForm.value | json }}

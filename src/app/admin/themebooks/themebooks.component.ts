@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { Themebook } from './themebook.model';
 import { AdminService } from '../admin.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-themebooks',
@@ -21,7 +22,8 @@ export class ThemebooksComponent implements OnInit, OnDestroy {
 
   constructor(
     private admin: AdminService,
-    private router: Router
+    private _auth: AuthService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
