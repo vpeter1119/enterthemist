@@ -9,6 +9,16 @@ import { IconsService } from '../../assets/icons.service';
 import { Character } from '../character.model';
 import { Themebook } from '../../admin/themebooks/themebook.model';
 
+export class TbResponse {
+  m: Themebook[];
+  l: Themebook[]
+}
+
+export class Tag {
+  key: String;
+  value: String
+}
+
 @Component({
   selector: 'app-character-add',
   templateUrl: './character-add.component.html',
@@ -21,13 +31,13 @@ export class CharacterAddComponent implements OnInit, OnDestroy {
   isLoading: boolean;
   mythosTbs: Themebook[];
   logosTbs: Themebook[];
-  allTbs: Themebook[]
+  allTbs: Themebook[];
   allTbsSub: Subscription;
   ptagletters = ['A','B','C','D','E','F','G','H','I','J'];
   wtagletters = ['A','B','C','D'];
-  newCharacter: Character = {};
+  newCharacter;
   newCard;
-  selectedTbType = 'none';
+  selectedTbType: String;
 
   constructor(
     private admin: AdminService,
@@ -57,8 +67,9 @@ export class CharacterAddComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.allTbs = [];
     this.newCharacter.cards = [];
+    this.selectedTbType = 'none';
     this.allTbsSub = this.admin.getAllTbs()
-    .subscribe((response) => {
+    .subscribe((response: TbResponse) => {
       this.mythosTbs = response.m;
       this.logosTbs = response.l;
       this.mythosTbs.forEach((mtb) => {
@@ -133,7 +144,7 @@ export class CharacterAddComponent implements OnInit, OnDestroy {
 
   processTags(ptagArray, wtagArray) {
     var filterP = new Promise((resolve, reject) => {
-      var ptagFilteredArray = ptagArray.filter(element => {
+      var ptagFilteredArray: Tag[] = ptagArray.filter(element => {
         return element.value !== '';
       });
       setTimeout(() => {
@@ -145,7 +156,7 @@ export class CharacterAddComponent implements OnInit, OnDestroy {
       }, 100);
     });
     var filterW = new Promise((resolve, reject) => {
-      var wtagFilteredArray = wtagArray.filter(element => {
+      var wtagFilteredArray: Tag[] = wtagArray.filter(element => {
         return element.value !== '';
       });
       setTimeout(() => {
@@ -156,9 +167,9 @@ export class CharacterAddComponent implements OnInit, OnDestroy {
         }
       }, 100);
     });
-    Promise.all([filterP, filterW]).then((values) => {
-      var ptags = values[0];
-      var wtags = values[1];
+    Promise.all([filterP, filterW]).then((values: [Tag[],Tag[]]) => {
+      var ptags: Tag[] = values[0];
+      var wtags: Tag[] = values[1];
       ptags.forEach(ptag => {
       this.newCard.ptags.push({
         letter: ptag.key,

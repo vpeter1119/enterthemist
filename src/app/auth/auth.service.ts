@@ -52,7 +52,7 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    const authData: AuthData = { username: username, password: password };
+    const authData = { username: username, password: password };
     console.warn({
       message: "Sending POST request to" + this.apiUrl + '/login',
       authData: authData

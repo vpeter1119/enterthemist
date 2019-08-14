@@ -1,43 +1,43 @@
 export class Themebook {
-  tbtype: String;
-  name: String;
-  descriptin: String;
+  tbtype: string;
+  name: string;
+  descriptin: string;
   ptagq: {
-    A: String,
-    aXmp: String,
-    B: String,
-    bXmp: String,
-    C: String,
-    cXmp: String,
-    D: String,
-    dXmp: String,
-    E: String,
-    eXmp: String,
-    F: String,
-    fXmp: String,
-    G: String,
-    gXmp: String,
-    H: String,
-    hXmp: String,
-    I: String,
-    iXmp: String,
-    J: String,
-    jXmp: String,
+    A: string,
+    aXmp: string,
+    B: string,
+    bXmp: string,
+    C: string,
+    cXmp: string,
+    D: string,
+    dXmp: string,
+    E: string,
+    eXmp: string,
+    F: string,
+    fXmp: string,
+    G: string,
+    gXmp: string,
+    H: string,
+    hXmp: string,
+    I: string,
+    iXmp: string,
+    J: string,
+    jXmp: string,
   };
   wtagq: {
-    A: String,
-    aXmp: String,
-    B: String,
-    bXmp: String,
-    C: String,
-    cXmp: String,
-    D: String,
-    dXmp: String,
+    A: string,
+    aXmp: string,
+    B: string,
+    bXmp: string,
+    C: string,
+    cXmp: string,
+    D: string,
+    dXmp: string,
   };
   improvements: [
     {
-      name: String,
-      description: String
+      name: string,
+      description: string
     }
   ]
 }

@@ -11,7 +11,7 @@ import { AdminService } from '../../admin.service';
 })
 export class ThemebookAddComponent implements OnInit {
 
-  newTb: Themebook = {};
+  newTb;
 
   newThemeBookForm = this.fb.group({
     tbtype: [''],
@@ -64,11 +64,12 @@ export class ThemebookAddComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.newTb = {};
   }
 
   onSubmit() {
     console.warn(this.newThemeBookForm.value);
-    var newThemeBook: Themebook = {
+    var newThemeBook = {
       name: this.newThemeBookForm.value.name.toLowerCase(),
       tbtype: this.newThemeBookForm.value.tbtype,
       ptagq: this.newThemeBookForm.value.ptagq,

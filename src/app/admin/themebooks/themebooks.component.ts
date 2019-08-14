@@ -6,6 +6,11 @@ import { Themebook } from './themebook.model';
 import { AdminService } from '../admin.service';
 import { AuthService } from '../../auth/auth.service';
 
+export class TbResponse {
+  m: Themebook[];
+  l: Themebook[]
+}
+
 @Component({
   selector: 'app-themebooks',
   templateUrl: './themebooks.component.html',
@@ -29,7 +34,7 @@ export class ThemebooksComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isLoading = true;
     this.allTbsSub = this.admin.getAllTbs()
-    .subscribe((response) => {
+    .subscribe((response: TbResponse) => {
       this.mythosTbs = response.m;
       this.logosTbs = response.l;
       this.isLoading = false;

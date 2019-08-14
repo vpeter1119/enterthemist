@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 
 import { Themebook } from './themebooks/themebook.model';
-import { Character } from '../../characters/character.model';
-import { AuthData } from '../../auth/auth-data.model';
+import { Character } from '../characters/character.model';
+import { AuthData } from '../auth/auth-data.model';
 
 export class Response {
   m: Themebook[];
@@ -14,12 +14,12 @@ export class Response {
 @Injectable({providedIn: 'root'})
 export class AdminService {
 
-  apiUrl = "https://etm-server.herokuapp.com//api"
+  apiUrl = "https://etm-server.herokuapp.com/api"
 
   mythosTbs: Themebook[];
   logosTbs: Themebook[];
   allCharacters: Character [];
-  allTbsSub = new Subject<Themebook[]>();
+  allTbsSub = new Subject<Response>();
   allCharsSub = new Subject<Character[]>();
   response: Response;
 
@@ -57,7 +57,7 @@ export class AdminService {
     })
   }
 
-  getAllTbs() {
+  getAllTbs(): Observable<Response> {
     this.fetchAllThemebooks();
     return this.allTbsSub.asObservable();
   }
