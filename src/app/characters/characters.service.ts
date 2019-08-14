@@ -7,7 +7,7 @@ import { Character } from './character.model';
 @Injectable({providedIn: "root"})
 export class CharactersService {
 
-  apiUrl = "https://ztold.sse.codesandbox.io/api/characters/";
+  apiUrl = "https://etm-server.herokuapp.com/api/characters/";
 
   allCharactersSub = new Subject<Character[]>();
   allCharacters: Character[];

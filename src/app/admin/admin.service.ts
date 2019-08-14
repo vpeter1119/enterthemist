@@ -14,7 +14,7 @@ export class Response {
 @Injectable({providedIn: 'root'})
 export class AdminService {
 
-  apiUrl = "https://ztold.sse.codesandbox.io/api"
+  apiUrl = "https://etm-server.herokuapp.com//api"
 
   mythosTbs: Themebook[];
   logosTbs: Themebook[];

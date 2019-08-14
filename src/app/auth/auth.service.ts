@@ -7,7 +7,7 @@ import { AuthData } from "./auth-data.model";
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
-  apiUrl = "https://ztold.sse.codesandbox.io/api/users";
+  apiUrl = "https://etm-server.herokuapp.com/api/users";
   private isAuthenticated = false;
   private isAdmin = false;
   private token: string;
