@@ -70,42 +70,8 @@ export class CharacterEditComponent implements OnInit, OnDestroy {
     this.cardForm0 = this.fb.group({
       title: [this.character.cards[0].title],
       qors: [this.character.cards[0].qors],
-      ptags: this.fb.array([
-        this.fb.group({
-          letter: [],
-          tag: []
-        })
-      ])
-    });
-    this.cardForm1 = this.fb.group({
-      title: [this.character.cards[1].title],
-      qors: [this.character.cards[1].qors],
-      ptags: this.fb.array([
-        this.fb.group({
-          letter: [],
-          tag: []
-        })
-      ])
-    });
-    this.cardForm2 = this.fb.group({
-      title: [this.character.cards[1].title],
-      qors: [this.character.cards[1].qors],
-      ptags: this.fb.array([
-        this.fb.group({
-          letter: [],
-          tag: []
-        })
-      ])
-    });
-    this.cardForm3 = this.fb.group({
-      title: [this.character.cards[1].title],
-      qors: [this.character.cards[1].qors],
-      ptags: this.fb.array([
-        this.fb.group({
-          letter: [],
-          tag: []
-        })
-      ])
+      ptags: this.fb.array([]),
+      wtags: this.fb.array([]),
     });
   }
 
