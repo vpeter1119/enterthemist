@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-xs-12">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <div class="col-md-6 col-xs-12" *ngIf="!isLoading">
       <mat-card class="logos">
         <mat-card-header>
           <mat-card-title>
@@ -266,3 +267,4 @@
     </div>
   </div>
 </div>
+{{ newThemeBookForm.value | json }}

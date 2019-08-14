@@ -94,10 +94,71 @@ export class ThemebookEditComponent implements OnInit, OnDestroy {
     .subscribe((response) => {
       this.allTbs = response.m.concat(response.l);
       this.setSelected(this.selected);
-      console.warn(this.allTbs);
       this.isLoading = false;
       //this.newThemeBookForm.controls['tbtype'].disable();
     })
+  }
+
+  setFormDefaults(tb) {
+    this.newThemeBookForm = this.fb.group({
+      tbtype: [tb.tbtype],
+      name: [tb.name],
+      description: [''],
+      ptagq: this.fb.group({
+        A: [tb.ptagq.A],
+        aXmp: [''],
+        B: [tb.ptagq.B],
+        bXmp: [''],
+        C: [tb.ptagq.C],
+        cXmp: [''],
+        D: [tb.ptagq.D],
+        dXmp: [''],
+        E: [tb.ptagq.E],
+        eXmp: [''],
+        F: [tb.ptagq.F],
+        fXmp: [''],
+        G: [tb.ptagq.G],
+        gXmp: [''],
+        H: [tb.ptagq.H],
+        hXmp: [''],
+        I: [tb.ptagq.I],
+        iXmp: [''],
+        J: [tb.ptagq.J],
+        jXmp: [''],
+      }),
+      wtagq: this.fb.group({
+        A: [tb.wtagq.A],
+        aXmp: [''],
+        B: [tb.wtagq.B],
+        bXmp: [''],
+        C: [tb.wtagq.C],
+        cXmp: [''],
+        D: [tb.wtagq.D],
+        dXmp: [''],
+      }),
+      improvements: this.fb.group({
+        imp1: this.fb.group({
+          name: [tb.improvements[0].name],
+          description: [tb.improvements[0].description]
+        }),
+        imp2: this.fb.group({
+          name: [tb.improvements[1].name],
+          description: [tb.improvements[1].description]
+        }),
+        imp3: this.fb.group({
+          name: [tb.improvements[2].name],
+          description: [tb.improvements[2].description]
+        }),
+        imp4: this.fb.group({
+          name: [tb.improvements[3].name],
+          description: [tb.improvements[3].description]
+        }),
+        imp5: this.fb.group({
+          name: [tb.improvements[4].name],
+          description: [tb.improvements[4].description]
+        }),
+      })
+    });
   }
 
   onSubmit() {
@@ -117,26 +178,22 @@ export class ThemebookEditComponent implements OnInit, OnDestroy {
       ]
     }
     console.warn(newThemeBook);
-    //this.admin.replaceThemebook(newThemeBook);
+    this.admin.replaceThemebook(newThemeBook);
     this.router.navigate(['themebooks']);
   }
 
   setSelected(value) {
-    console.warn('Seleced value: ' + value);
     this.selectedTb = this.getTbData(value);
-    console.warn('this.selectedTb');
-    console.warn(this.selectedTb);
+    this.setFormDefaults(this.selectedTb);
   }
 
   getTbData(tbname) {
-    console.warn(tbname);
     return this.allTbs.find(element => {
       return element.name === tbname;
     })
   }
 
   getImpData(impname) {
-    console.warn(impname);
     return this.selectedTb.improvements.find(element => {
       return element.name === impname;
     })

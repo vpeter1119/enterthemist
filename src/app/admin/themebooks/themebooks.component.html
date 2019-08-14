@@ -23,6 +23,10 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="tbsection">
+            <span class="tbsection-title">Description</span>
+            {{ tb.description }}
+          </div>
+          <div class="tbsection">
             <span class="tbsection-title">Power tag questions</span>
             <table>
               <thead>
@@ -86,6 +90,10 @@
               {{ tb.name.toUpperCase() }} ({{ tb.tbtype.toUpperCase() }})
             </mat-panel-title>
           </mat-expansion-panel-header>
+          <div class="tbsection">
+            <span class="tbsection-title">Description</span>
+            {{ tb.description }}
+          </div>
           <div class="tbsection">
             <span class="tbsection-title">Power tag questions</span>
             <table>
