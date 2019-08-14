@@ -34,6 +34,13 @@ export class AdminService {
     })
   }
 
+  replaceThemebook(tbdata) {
+    this.http.put(this.apiUrl + '/themebooks', tbdata)
+    .subscribe((response) => {
+      console.log('Message from server: ' + response);
+    })
+  }
+
   fetchAllThemebooks() {
     this.http.get<{
       mythosTbs: Themebook[],

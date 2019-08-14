@@ -8,6 +8,7 @@ import { CharacterAddComponent } from './characters/character-add/character-add.
 import { ThemebooksComponent } from './admin/themebooks/themebooks.component';
 import { AdminComponent } from './admin/admin/admin.component';
 import { ThemebookAddComponent } from './admin/themebooks/themebook-add/themebook-add.component';
+import { ThemebookEditComponent } from './admin/themebooks/themebook-edit/themebook-edit.component';
 import { LoginComponent } from "./auth/login/login.component";
 import { SignupComponent } from "./auth/signup/signup.component";
 import { AuthGuard } from "./auth/auth.guard";
@@ -45,6 +46,11 @@ const appRoutes: Routes = [
   { 
     path: 'themebooks/add', 
     component: ThemebookAddComponent,
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: 'themebooks/edit', 
+    component: ThemebookEditComponent,
     canActivate: [AuthGuard]
   },
   { 

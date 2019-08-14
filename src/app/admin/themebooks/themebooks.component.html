@@ -7,6 +7,10 @@
       disabled
       *ngIf="!isLoading"
       (click)="this.router.navigate(['themebooks/add']);">Add Themebook</button>
+      <button 
+      mat-raised-button 
+      *ngIf="!isLoading"
+      (click)="this.router.navigate(['themebooks/edit']);">Edit Themebook</button>
     </div>
   </div>
   <div class="row" *ngIf="!isLoading">
