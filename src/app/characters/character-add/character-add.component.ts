@@ -66,6 +66,7 @@ export class CharacterAddComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isLoading = true;
     this.allTbs = [];
+    this.newCharacter = {};
     this.newCharacter.cards = [];
     this.selectedTbType = 'none';
     this.allTbsSub = this.admin.getAllTbs()

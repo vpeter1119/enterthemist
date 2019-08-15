@@ -73,13 +73,16 @@ export class CharactersService {
     });
   }
 
-  patchCharacter(id) {
+  restoreCharacter(id) {
     const url = (this.apiUrl + id);
     console.warn("Sending request to: " + url);
-    this.http.patch<{message: string}>(url, {data: "Hello."})
+    const data = {
+      deleted: false
+    }
+    this.http.patch<{message: string}>(url, {data: data})
     .subscribe((response) => {
       console.warn('Message from server: ' + response.message);
-    });
+    })
   }
 
 }

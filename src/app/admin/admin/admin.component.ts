@@ -78,8 +78,11 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   onRestore(charid) {
-    //This should set the deleted value of the character back to false
-    console.warn('Restore: ' + charid);
+    this.charactersService.restoreCharacter(charid);
+    this.isLoading;
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 500);
   }
 
   onAddCharacter() {
