@@ -93,7 +93,7 @@ export class AuthService {
       this.token = authInformation.token;
       this.isAuthenticated = true;
       this.userId = authInformation.userId;
-      this.setAuthTimer(expiresIn / 1000);
+      this.setAuthTimer(expiresIn / 10000);
       this.authStatusListener.next(true);
     }
   }
