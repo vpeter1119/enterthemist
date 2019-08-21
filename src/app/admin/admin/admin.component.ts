@@ -85,6 +85,14 @@ export class AdminComponent implements OnInit, OnDestroy {
     }, 500);
   }
 
+  finalDelete(charid) {
+    this.admin.finalDelete(charid);
+    this.isLoading;
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 500);
+  }
+
   onAddCharacter() {
     this.router.navigate(['characters/create']);
   }

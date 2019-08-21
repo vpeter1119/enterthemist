@@ -14,7 +14,8 @@ export class Response {
 @Injectable({providedIn: 'root'})
 export class AdminService {
 
-  apiUrl = "https://etm-server.herokuapp.com/api"
+  //apiUrl = "https://etm-server.herokuapp.com/api"
+  apiUrl = "https://ztold.sse.codesandbox.io/api";
 
   mythosTbs: Themebook[];
   logosTbs: Themebook[];
@@ -73,6 +74,13 @@ export class AdminService {
   getAllChars() {
     this.fetchAllCharacters();
     return this.allCharsSub.asObservable();
+  }
+
+  finalDelete(id) {
+    this.http.delete<Character[]>(this.apiUrl + '/admin/characters/' + id)
+    .subscribe((response) => {
+      console.log('Message from server: ' + response);
+    })
   }
 
 }

@@ -74,6 +74,11 @@
           (click)="onRestore(character._id)">
             <fa-icon [icon]="icons.restore"></fa-icon>
           </button>
+          <button mat-button title="Final Delete" 
+          color="warn" 
+          (click)="finalDelete(character._id)">
+            <fa-icon [icon]="icons.delete"></fa-icon>
+          </button>
         </mat-action-row>
       </mat-expansion-panel>
     </div>

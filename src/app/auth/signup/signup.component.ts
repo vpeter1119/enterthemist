@@ -22,6 +22,6 @@ export class SignupComponent {
     this.authService.createUser(form.value.email, username, form.value.password);
     setTimeout(()=> {
       this.authService.login(username, password);
-    }, 1000);
+    }, 2000);
   }
 }
