@@ -83,6 +83,12 @@
       </mat-expansion-panel>
     </div>
   </div>
+  <div class="row" *ngIf="!isLoading && !noCharacters"><h3 class="section-title">Users:</h3></div>
+  <ul>
+    <li *ngFor="let user of users">
+      {{ user.username }}
+    </li>
+  </ul>
 </div>
 <ng-template #template>
   <div class="modal-body text-center">

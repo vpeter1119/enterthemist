@@ -3,10 +3,17 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { Character } from '../character.model';
+import { Themebook } from '../../admin/themebooks/themebook.model';
 import { CharactersService } from '../characters.service';
+import { AdminService } from '../../admin/admin.service';
 import { IconsService } from '../../assets/icons.service';
 import { TextConvertService } from '../../assets/text-convert.service';
 import { ReactiveService } from '../../reactive.service';
+
+export class TbResponse {
+  m: Themebook[];
+  l: Themebook[]
+}
 
 @Component({
   selector: 'app-character-view',
@@ -26,6 +33,10 @@ export class CharacterViewComponent implements OnInit, OnDestroy {
 
   requestedCharacterSub: Subscription;
   character: Character;
+  themebooksSub: Subscription;
+  mythosTbs: Themebook[];
+  logosTbs: Themebook[];
+  themebooks: Themebook[];
   cards = [];
 
   swiperConfig = {
@@ -49,22 +60,35 @@ export class CharacterViewComponent implements OnInit, OnDestroy {
     private charactersService: CharactersService,
     private iconsService: IconsService,
     private reactive: ReactiveService,
-    private _text: TextConvertService
+    public _text: TextConvertService,
+    public _admin: AdminService,
   ) {
     this.icons = this.iconsService.getIcons();
    }
 
   ngOnInit() {
+    this.isLoading = true;
     this.windowWidth = window.screen.width;
     this.mobile = true;
     this.mobile = this.reactive.isMobile();
-    this.isLoading = true;
+    this.themebooks = [];
     const id = this.route.snapshot.paramMap.get('id');
+    this.themebooksSub = this._admin.getAllTbs()
+    .subscribe((response: TbResponse) => {
+      this.mythosTbs = response.m;
+      this.logosTbs = response.l;
+      this.mythosTbs.forEach((mtb) => {
+        this.themebooks.push(mtb);
+      });
+      this.logosTbs.forEach((ltb) => {
+        this.themebooks.push(ltb);
+      });
+    });
     this.requestedCharacterSub = this.charactersService.getOneListener(id)
     .subscribe(character => {      
       this.character = character[0];
       this.data = character[0];
-      this.cards = character[0].cards;
+      this.cards = character[0].cards;      
       this.isLoading = false;
     })
   }
@@ -86,12 +110,19 @@ export class CharacterViewComponent implements OnInit, OnDestroy {
     return Object.values(obj).join("");
   }
 
+  getTbData(name) {
+    return this.themebooks.find((tb) => {
+      return tb.name === name;
+    })
+  }
+
   onBackToCharacters() {
     this.router.navigate(['characters']);
   }
 
   ngOnDestroy() {
     this.requestedCharacterSub.unsubscribe();
+    this.themebooksSub.unsubscribe();
   }
 
 }

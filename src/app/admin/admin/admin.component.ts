@@ -22,6 +22,8 @@ export class AdminComponent implements OnInit, OnDestroy {
   characters: Character[];
   activeCharacters: Character[] = [];
   deletedCharacters: Character[] = [];
+  users;
+  allUsersSub: Subscription;
 
   modalRef: BsModalRef;
   isConfirmed: boolean;
@@ -40,6 +42,10 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isLoading = true;
+    this.allUsersSub = this.admin.getAllUsers()
+    .subscribe((usersList) => {
+      this.users = usersList;
+    })
     this.allCharactersSub = this.admin.getAllChars()
     .subscribe(allCharacters => {
       if (allCharacters === []) {

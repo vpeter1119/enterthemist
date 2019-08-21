@@ -56,6 +56,7 @@
                 <span class="qors-text hand-written">"{{getValues(card.qors)}}"</span>
               </div>
               <div>
+                <!-- POWER TAGS (DESKTOP) -->
                 <span class="tbcard-section-title">POWER TAGS</span>
                 <mat-selection-list dense [ngClass]="getValues(card.cardtype)">
                   <div 
@@ -63,7 +64,9 @@
                   class="tag-container"
                   (click)="burnTag(nr ,'ptags', i)">
                     <mat-list-option [ngClass]="getValues(card.cardtype)">
-                      <span class="hand-written tag-letter">{{tag.letter}}</span> 
+                      <span 
+                      matTooltip="{{ getTbData(getValues(card.theme)).ptagq[tag.letter] }}"
+                      class="hand-written tag-letter">{{tag.letter}}</span> 
                       <span class="tag-tag">{{tag.tag}}</span>
                       <span class="tag-burn"><fa-icon [icon]="icons.burn" class="tag-burn-icon"></fa-icon></span>
                     </mat-list-option>
@@ -71,6 +74,7 @@
                 </mat-selection-list>
               </div>
               <div>
+                <!-- WEAKNESS TAGS (DESKTOP) -->
                 <span class="tbcard-section-title">WEAKNESS TAGS</span>
                 <mat-selection-list dense [ngClass]="getValues(card.cardtype)">
                   <div 
@@ -78,7 +82,9 @@
                   class="tag-container"
                   (click)="burnTag(nr ,'wtags', i)">
                     <mat-list-option [ngClass]="getValues(card.cardtype)">
-                      <span class="hand-written tag-letter">{{tag.letter}}</span> 
+                      <span 
+                      matTooltip="{{ getTbData(getValues(card.theme)).wtagq[tag.letter] }}"
+                      class="hand-written tag-letter">{{tag.letter}}</span> 
                       <span class="tag-tag">{{tag.tag}}</span>
                       <span class="tag-burn"><fa-icon [icon]="icons.burn" class="tag-burn-icon"></fa-icon></span>
                     </mat-list-option>

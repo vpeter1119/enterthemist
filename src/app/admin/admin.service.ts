@@ -22,6 +22,8 @@ export class AdminService {
   allCharacters: Character [];
   allTbsSub = new Subject<Response>();
   allCharsSub = new Subject<Character[]>();
+  allUsersSub = new Subject<AuthData[]>();
+  allUsers: AuthData[];
   response: Response;
 
   constructor(
@@ -81,6 +83,19 @@ export class AdminService {
     .subscribe((response) => {
       console.log('Message from server: ' + response);
     })
+  }
+
+  fetchAllUsers() {
+    this.http.get<AuthData[]>(this.apiUrl + '/admin/users')
+    .subscribe((data) => {
+      this.allUsers = data;
+      this.allUsersSub.next([...this.allUsers]);
+    })
+  }
+
+  getAllUsers() {
+    this.fetchAllUsers();
+    return this.allUsersSub.asObservable();
   }
 
 }
