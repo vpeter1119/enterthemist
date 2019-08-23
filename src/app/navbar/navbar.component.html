@@ -22,24 +22,31 @@
   [isAnimated]="true"
   id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
+      <!-- ADMIN -->
       <li class="nav-item" *ngIf="userIsAdmin">
         <a class="nav-link active" routerLink="admin" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.admin"></fa-icon>Admin</a>
       </li>
+      <!-- CHARACTERS -->
       <li class="nav-item" *ngIf="userIsAuthenticated">
         <a class="nav-link active" routerLink="characters" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.character"></fa-icon>Characters</a>
       </li>
+      <!-- THEMEBOOKS -->
       <li class="nav-item" *ngIf="userIsAuthenticated">
         <a class="nav-link active" routerLink="themebooks" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.themebook"></fa-icon>Themebooks</a>
       </li>
+      <!-- MOVES -->
       <li class="nav-item" *ngIf="userIsAuthenticated">
         <a class="nav-link disabled" routerLink="" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.list"></fa-icon>Moves</a>
       </li>
+      <!-- LOGIN -->
       <li class="nav-item" *ngIf="!userIsAuthenticated">
         <a class="nav-link active" routerLink="login" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.login"></fa-icon>Login</a>
       </li>
+      <!-- SIGN UP -->
       <li class="nav-item" *ngIf="!userIsAuthenticated">
-        <a class="nav-link active" routerLink="signup" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.signup"></fa-icon>Sign Up</a>
+        <a class="nav-link diabled" routerLink="" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.signup"></fa-icon>Sign Up</a>
       </li>
+      <!-- LOGOOUT -->
       <li class="nav-item" *ngIf="userIsAuthenticated">
         <a class="nav-link active" routerLink="" (click)="onLogout(); isCollapsed = !isCollapsed"><fa-icon [icon]="icons.logout"></fa-icon>Logout</a>
       </li>

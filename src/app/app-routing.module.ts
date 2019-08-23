@@ -59,7 +59,7 @@ const appRoutes: Routes = [
   },
   { 
     path: "signup", 
-    component: SignupComponent 
+    component: LoginComponent 
   },
   { 
     path: "admin", 
