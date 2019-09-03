@@ -37,7 +37,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.adminListenerSubs = this.authService
       .getAdminStatusListener()
       .subscribe(isAdmin => {
-        console.warn("isAdmin status: " + isAdmin);
         this.userIsAdmin = isAdmin;
       });
   }
