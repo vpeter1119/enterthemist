@@ -16,6 +16,7 @@ import {
   MatTableModule,
   MatListModule,
   MatTooltipModule,
+  MatDialogModule,
    } from '@angular/material';
 import { FontAwesomeModule  } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -68,6 +69,7 @@ import { ThemebookEditComponent } from './admin/themebooks/themebook-edit/themeb
     MatTableModule,
     MatListModule,
     MatTooltipModule,
+    MatDialogModule,
     FontAwesomeModule,
     HttpClientModule,
     FlipModule,

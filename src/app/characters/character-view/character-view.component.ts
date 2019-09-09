@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { Character } from '../character.model';
 import { Themebook } from '../../admin/themebooks/themebook.model';
@@ -62,6 +63,7 @@ export class CharacterViewComponent implements OnInit, OnDestroy {
     private reactive: ReactiveService,
     public _text: TextConvertService,
     public _admin: AdminService,
+    public dialog: MatDialog,
   ) {
     this.icons = this.iconsService.getIcons();
    }

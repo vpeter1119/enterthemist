@@ -44,7 +44,7 @@
       </li>
       <!-- SIGN UP -->
       <li class="nav-item" *ngIf="!userIsAuthenticated">
-        <a class="nav-link diabled" routerLink="" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.signup"></fa-icon>Sign Up</a>
+        <a class="nav-link disabled" routerLink="" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.signup"></fa-icon>Sign Up</a>
       </li>
       <!-- LOGOOUT -->
       <li class="nav-item" *ngIf="userIsAuthenticated">
