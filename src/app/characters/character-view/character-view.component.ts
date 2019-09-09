@@ -99,6 +99,10 @@ export class CharacterViewComponent implements OnInit, OnDestroy {
     this.flippedIndex[nr] = !this.flippedIndex[nr]
   }
 
+  onEditCard(nr) {
+    window.alert('You are trying to edit card nr. ' + (nr+1) + '.');
+  }
+
   burnTag(cardNr, type: string, i) {
     console.warn(this.character.cards[cardNr][type][i].tag);
   }
