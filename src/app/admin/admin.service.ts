@@ -25,10 +25,33 @@ export class AdminService {
   allUsersSub = new Subject<AuthData[]>();
   allUsers: AuthData[];
   response: Response;
+  serverStatus: boolean;
+  statusSub = new Subject();
 
   constructor(
     private http: HttpClient
   ) { }
+
+  fetchServerStatus() {
+    var url = (this.apiUrl + '/admin/status');
+    console.warn('Sending GET request to: ' + url);
+    this.http.get(url)
+    .subscribe(
+      (status: boolean) => {
+      this.serverStatus = status;
+      this.statusSub.next(this.serverStatus);
+      },
+      (error) => {
+      this.serverStatus = false;
+      this.statusSub.next(this.serverStatus);
+      }
+    )
+  }
+
+  getServerStatus() {
+    this.fetchServerStatus();
+    return this.statusSub.asObservable();
+  }
 
   addNewThemebook(tbdata) {
     this.http.post(this.apiUrl + '/themebooks', tbdata)

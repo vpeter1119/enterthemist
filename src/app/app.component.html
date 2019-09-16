@@ -1,2 +1,8 @@
 <app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<div class="container">
+  <router-outlet *ngIf="serverIsUp"></router-outlet>
+  <div *ngIf="!serverIsUp">
+    <h1>The server is currently down.</h1>
+    <p>We will fix this as soon as we can, please check back later!</p>
+  </div>
+</div>
