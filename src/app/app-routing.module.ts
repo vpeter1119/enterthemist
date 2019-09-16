@@ -5,6 +5,7 @@ import { CharactersComponent } from './characters/characters.component'
 import { CharacterViewComponent } from './characters/character-view/character-view.component';
 import { CharacterEditComponent } from './characters/character-edit/character-edit.component';
 import { CharacterAddComponent } from './characters/character-add/character-add.component';
+import { UsersViewComponent } from './users/users-view/users-view.component';
 import { ThemebooksComponent } from './admin/themebooks/themebooks.component';
 import { AdminComponent } from './admin/admin/admin.component';
 import { ThemebookAddComponent } from './admin/themebooks/themebook-add/themebook-add.component';
@@ -36,6 +37,12 @@ const appRoutes: Routes = [
     path: 'characters/:id/edit',
     pathMatch: 'full',
     component: CharacterEditComponent,
+    canActivate: [AuthGuard]
+  },
+  { 
+    path: 'users/view/:id',
+    pathMatch: 'full',
+    component: UsersViewComponent,
     canActivate: [AuthGuard]
   },
   { 

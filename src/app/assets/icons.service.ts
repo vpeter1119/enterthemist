@@ -17,6 +17,7 @@ import {
   faTools,
   faTrashRestoreAlt,
   faPlus,
+  faUser,
    } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({providedIn: "root"})
@@ -41,6 +42,7 @@ export class IconsService {
     admin: faTools,
     restore: faTrashRestoreAlt,
     plus: faPlus,
+    user: faUser,
   }  
 
   constructor() { }

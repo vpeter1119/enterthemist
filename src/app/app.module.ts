@@ -48,6 +48,8 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from "./auth/auth-interceptor";
 import { AdminComponent } from './admin/admin/admin.component';
 import { ThemebookEditComponent } from './admin/themebooks/themebook-edit/themebook-edit.component';
+import { UsersComponent } from './users/users.component';
+import { UsersViewComponent } from './users/users-view/users-view.component';
 
 @NgModule({  
   imports:      [ 
@@ -83,7 +85,7 @@ import { ThemebookEditComponent } from './admin/themebooks/themebook-edit/themeb
     CharactersComponent, 
     NavbarComponent, 
     CharacterViewComponent, 
-    CharacterAddComponent, ThemebooksComponent, ThemebookAddComponent, CharacterEditComponent, FooterComponent, LoginComponent, SignupComponent, AdminComponent, ThemebookEditComponent, 
+    CharacterAddComponent, ThemebooksComponent, ThemebookAddComponent, CharacterEditComponent, FooterComponent, LoginComponent, SignupComponent, AdminComponent, ThemebookEditComponent, UsersComponent, UsersViewComponent, 
     ],
   bootstrap:    [ AppComponent ],
   providers: [
