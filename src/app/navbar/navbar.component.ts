@@ -16,8 +16,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   isCollapsed = true;
   userIsAuthenticated = false;
   userIsAdmin = false;
+  currentUser;
   private authListenerSubs: Subscription;
   private adminListenerSubs: Subscription;
+  private currentUserSubs: Subscription;
 
   constructor(
     private iconsService: IconsService,
@@ -39,6 +41,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
       .subscribe(isAdmin => {
         this.userIsAdmin = isAdmin;
       });
+    this.currentUserSubs = this.authService.getCurrentUser()
+    .subscribe((userData) => {
+      this.currentUser = userData;
+    })
   }
 
   onLogout() {

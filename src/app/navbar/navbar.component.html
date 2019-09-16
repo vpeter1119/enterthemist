@@ -21,6 +21,11 @@
   [collapse]="isCollapsed"
   [isAnimated]="true"
   id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" *ngIf="userIsAuthenticated">
+        <a class="nav-link active" routerLink="/users/view/{{currentUser._id}}" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.user"></fa-icon> {{currentUser.username}}</a>
+      </li>
+    </ul>
     <ul class="navbar-nav ml-auto">
       <!-- ADMIN -->
       <li class="nav-item" *ngIf="userIsAdmin">

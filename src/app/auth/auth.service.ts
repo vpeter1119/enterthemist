@@ -17,6 +17,8 @@ export class AuthService {
   private userId: string;
   private authStatusListener = new Subject<boolean>();
   private adminStatusListener = new Subject<boolean>();
+  currentUser;
+  currentUserListener = new Subject();
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -44,6 +46,10 @@ export class AuthService {
     return this.adminStatusListener.asObservable();
   }
 
+  getCurrentUser() {
+    return this.currentUserListener.asObservable();
+  }
+
   createUser(email: string, username: string, password: string) {
     const authData: AuthData = { email: email, username: username, password: password };
     this.http
@@ -59,7 +65,7 @@ export class AuthService {
       message: "Sending POST request to " + this.apiUrl + '/login'      
     });
     this.http
-      .post<{ token: string; expiresIn: number, userId: string, isAdmin: boolean }>(
+      .post<{ token: string; expiresIn: number, userData, userId: string, isAdmin: boolean }>(
         this.apiUrl + '/login',
         authData
       )
@@ -71,9 +77,11 @@ export class AuthService {
           this.setAuthTimer(expiresInDuration);
           this.isAuthenticated = true;
           this.isAdmin = response.isAdmin;
+          this.currentUser = response.userData;
           this.userId = response.userId;
           this.authStatusListener.next(true);
           this.adminStatusListener.next(this.isAdmin);
+          this.currentUserListener.next(this.currentUser);
           const now = new Date();
           const expirationDate = new Date(now.getTime() + expiresInDuration * 100000);
           console.log(expirationDate);

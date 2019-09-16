@@ -35,11 +35,18 @@ export class AdminService {
   fetchServerStatus() {
     var url = (this.apiUrl + '/admin/status');
     console.warn('Sending GET request to: ' + url);
-    this.http.get(url)
+    this.http.get(url, {observe: 'response'})
     .subscribe(
-      (status: boolean) => {
-      this.serverStatus = status;
-      this.statusSub.next(this.serverStatus);
+      (response) => {
+      console.warn('Server response code: ' + response.status);
+      console.warn('Response body: ' + response.body);
+      if (response.status === 200) {
+        this.serverStatus = true;
+        this.statusSub.next(this.serverStatus);
+      } else {
+        this.serverStatus = false;
+        this.statusSub.next(this.serverStatus);
+      }
       },
       (error) => {
       this.serverStatus = false;
