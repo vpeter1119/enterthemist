@@ -18,6 +18,7 @@ import {
   faTrashRestoreAlt,
   faPlus,
   faUser,
+  faNewspaper,
    } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({providedIn: "root"})
@@ -43,6 +44,7 @@ export class IconsService {
     restore: faTrashRestoreAlt,
     plus: faPlus,
     user: faUser,
+    news: faNewspaper,
   }  
 
   constructor() { }

@@ -51,6 +51,8 @@ import { ThemebookEditComponent } from './admin/themebooks/themebook-edit/themeb
 import { UsersComponent } from './users/users.component';
 import { UsersViewComponent } from './users/users-view/users-view.component';
 import { GoBackComponent } from './go-back/go-back.component';
+import { HomeComponent } from './home/home.component';
+import { NewsComponent } from './news/news.component';
 
 @NgModule({  
   imports:      [ 
@@ -86,7 +88,7 @@ import { GoBackComponent } from './go-back/go-back.component';
     CharactersComponent, 
     NavbarComponent, 
     CharacterViewComponent, 
-    CharacterAddComponent, ThemebooksComponent, ThemebookAddComponent, CharacterEditComponent, FooterComponent, LoginComponent, SignupComponent, AdminComponent, ThemebookEditComponent, UsersComponent, UsersViewComponent, GoBackComponent, 
+    CharacterAddComponent, ThemebooksComponent, ThemebookAddComponent, CharacterEditComponent, FooterComponent, LoginComponent, SignupComponent, AdminComponent, ThemebookEditComponent, UsersComponent, UsersViewComponent, GoBackComponent, HomeComponent, NewsComponent, 
     ],
   bootstrap:    [ AppComponent ],
   providers: [

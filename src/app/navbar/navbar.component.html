@@ -29,15 +29,19 @@
     <ul class="navbar-nav ml-auto">
       <!-- ADMIN -->
       <li class="nav-item" *ngIf="userIsAdmin">
-        <a class="nav-link active" routerLink="admin" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.admin"></fa-icon>Admin</a>
+        <a class="nav-link active" routerLink="/admin" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.admin"></fa-icon>Admin</a>
+      </li>
+      <!-- NEWS -->
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/news" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.news"></fa-icon>News</a>
       </li>
       <!-- CHARACTERS -->
       <li class="nav-item" *ngIf="userIsAuthenticated">
-        <a class="nav-link active" routerLink="characters" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.character"></fa-icon>Characters</a>
+        <a class="nav-link active" routerLink="/characters" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.character"></fa-icon>Characters</a>
       </li>
       <!-- THEMEBOOKS -->
       <li class="nav-item" *ngIf="userIsAuthenticated">
-        <a class="nav-link active" routerLink="themebooks" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.themebook"></fa-icon>Themebooks</a>
+        <a class="nav-link active" routerLink="/themebooks" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.themebook"></fa-icon>Themebooks</a>
       </li>
       <!-- MOVES -->
       <li class="nav-item" *ngIf="userIsAuthenticated">
@@ -45,7 +49,7 @@
       </li>
       <!-- LOGIN -->
       <li class="nav-item" *ngIf="!userIsAuthenticated">
-        <a class="nav-link active" routerLink="login" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.login"></fa-icon>Login</a>
+        <a class="nav-link active" routerLink="/login" (click)="isCollapsed = !isCollapsed"><fa-icon [icon]="icons.login"></fa-icon>Login</a>
       </li>
       <!-- SIGN UP -->
       <li class="nav-item" *ngIf="!userIsAuthenticated">

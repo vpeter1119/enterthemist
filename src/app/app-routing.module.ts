@@ -12,6 +12,8 @@ import { ThemebookAddComponent } from './admin/themebooks/themebook-add/themeboo
 import { ThemebookEditComponent } from './admin/themebooks/themebook-edit/themebook-edit.component';
 import { LoginComponent } from "./auth/login/login.component";
 import { SignupComponent } from "./auth/signup/signup.component";
+import { HomeComponent } from './home/home.component';
+import { NewsComponent } from './news/news.component';
 import { AuthGuard } from "./auth/auth.guard";
 import { AdminGuard } from "./admin/admin.guard";
 
@@ -74,8 +76,16 @@ const appRoutes: Routes = [
     canActivate: [AdminGuard]
   },
   { 
+    path: "home", 
+    component: HomeComponent
+  },
+  { 
+    path: "news", 
+    component: NewsComponent
+  },
+  { 
     path: '', 
-    redirectTo: '/characters', 
+    redirectTo: '/home', 
     pathMatch: 'full' 
   },
   // { path: '**', component: PageNotFoundComponent }
