@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Themebook } from './themebook.model';
 import { AdminService } from '../admin.service';
 import { AuthService } from '../../auth/auth.service';
+import { GoBackComponent } from '../../go-back/go-back.component';
 
 export class TbResponse {
   m: Themebook[];

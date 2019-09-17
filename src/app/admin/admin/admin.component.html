@@ -1,6 +1,5 @@
 <div class="container">
-  <div id="toprow">
-  </div>
+  <app-go-back></app-go-back>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <div *ngIf="noCharacters">There are no characters to display.</div>
   <div class="row" *ngIf="!isLoading && !noCharacters"><h3 class="section-title">Active characters:</h3></div>

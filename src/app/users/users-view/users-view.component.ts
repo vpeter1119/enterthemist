@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+
+import { GoBackComponent } from '../../go-back/go-back.component';
 
 @Component({
   selector: 'app-users-view',
@@ -13,11 +16,16 @@ export class UsersViewComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private loc: Location,
   ) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     this.userId = id;
+  }
+
+  onGoBack() {
+    this.loc.back();
   }
 
 }

@@ -1,12 +1,6 @@
 <div class="container">
+  <app-go-back></app-go-back>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <button 
-  *ngIf="!isLoading"
-  mat-raised-button
-  class="btn-mythos"
-  (click)="onBackToCharacters()">
-    Back
-  </button>
   <div class="row" *ngIf="!isLoading">
     <div class="col-md-3 col-xs-0"></div>
     <div class="col-md-6 col-xs-12">

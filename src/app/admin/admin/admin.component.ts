@@ -7,6 +7,7 @@ import { Character } from '../../characters/character.model';
 import { AdminService } from '../admin.service';
 import { CharactersService } from '../../characters/characters.service';
 import { IconsService } from '../../assets/icons.service';
+import { GoBackComponent } from '../../go-back/go-back.component';
 
 @Component({
   selector: 'app-admin',

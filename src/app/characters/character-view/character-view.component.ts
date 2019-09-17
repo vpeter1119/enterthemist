@@ -10,6 +10,7 @@ import { AdminService } from '../../admin/admin.service';
 import { IconsService } from '../../assets/icons.service';
 import { TextConvertService } from '../../assets/text-convert.service';
 import { ReactiveService } from '../../reactive.service';
+import { GoBackComponent } from '../../go-back/go-back.component';
 
 export class TbResponse {
   m: Themebook[];

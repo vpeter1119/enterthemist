@@ -8,6 +8,7 @@ import { AdminService } from '../../admin/admin.service';
 import { IconsService } from '../../assets/icons.service';
 import { Character } from '../character.model';
 import { Themebook } from '../../admin/themebooks/themebook.model';
+import { GoBackComponent } from '../../go-back/go-back.component';
 
 export class TbResponse {
   m: Themebook[];

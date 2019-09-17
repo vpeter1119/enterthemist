@@ -50,6 +50,7 @@ import { AdminComponent } from './admin/admin/admin.component';
 import { ThemebookEditComponent } from './admin/themebooks/themebook-edit/themebook-edit.component';
 import { UsersComponent } from './users/users.component';
 import { UsersViewComponent } from './users/users-view/users-view.component';
+import { GoBackComponent } from './go-back/go-back.component';
 
 @NgModule({  
   imports:      [ 
@@ -85,7 +86,7 @@ import { UsersViewComponent } from './users/users-view/users-view.component';
     CharactersComponent, 
     NavbarComponent, 
     CharacterViewComponent, 
-    CharacterAddComponent, ThemebooksComponent, ThemebookAddComponent, CharacterEditComponent, FooterComponent, LoginComponent, SignupComponent, AdminComponent, ThemebookEditComponent, UsersComponent, UsersViewComponent, 
+    CharacterAddComponent, ThemebooksComponent, ThemebookAddComponent, CharacterEditComponent, FooterComponent, LoginComponent, SignupComponent, AdminComponent, ThemebookEditComponent, UsersComponent, UsersViewComponent, GoBackComponent, 
     ],
   bootstrap:    [ AppComponent ],
   providers: [
