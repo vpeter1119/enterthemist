@@ -22,7 +22,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   characters: Character[];
   activeCharacters: Character[] = [];
   deletedCharacters: Character[] = [];
-  users;
+  users = [];
   allUsersSub: Subscription;
 
   modalRef: BsModalRef;
@@ -69,6 +69,10 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   onView(charid) {
     this.router.navigate(['characters/' + charid]);
+  }
+
+  onUserView(userId) {
+    this.router.navigate(['/users/view/' + userId]);
   }
 
   onEdit(charid) {
