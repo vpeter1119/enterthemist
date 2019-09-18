@@ -39,7 +39,7 @@ export class NewsService {
     var url = (this.apiUrl + '/articles/' + id);
     this.http.get<Article>(url)
     .subscribe(fetchedArticle => {
-      this.reqArticle = fetchedArticle[0];
+      this.reqArticle = fetchedArticle
       this.reqArticleSub.next(this.reqArticle);
     })
   }

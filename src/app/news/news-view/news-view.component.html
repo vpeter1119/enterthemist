@@ -6,14 +6,16 @@
       {{ reqArticle.title }}
     </mat-card-title>
     <mat-card-subtitle>
-      {{ conv.stringToDate(article.createdAt) }}
-      <span *ngIf="article.updatedAt != article.createdAt">
-        Last edit: {{ conv.stringToDate(article.updatedAt) }}
+      {{ conv.stringToDate(reqArticle.createdAt) }}
+      <span *ngIf="reqArticle.updatedAt != reqArticle.createdAt">
+        Last edit: {{ conv.stringToDate(reqArticle.updatedAt) }}
       </span>
+    </mat-card-subtitle>
+    <mat-card-subtitle>
+      Written by: <a routerLink="/users/view/{{author._id}}">{{ author.username }}</a>
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content class="article-content">
     {{ reqArticle.content }}
   </mat-card-content>
 </mat-card>
-{{ reqArticle | json }}
