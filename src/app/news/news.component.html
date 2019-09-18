@@ -1,2 +1,6 @@
-<h1 class="module-title">News</h1>
-<p>News will be displayed here.</p>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div *ngIf="!isLoading">
+  <h1 class="module-title">News</h1>
+  <button mat-raised-button *ngIf="userIsAdmin" color="primary" (click)="onAddArticle()">New Article</button>
+  <p>News will be displayed here.</p>
+</div>

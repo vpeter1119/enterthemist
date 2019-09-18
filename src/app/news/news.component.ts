@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import  { Router } from '@angular/router';
+
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-news',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsComponent implements OnInit {
 
-  constructor() { }
+  userIsAdmin: boolean;
+  isLoading: boolean = false;;
+
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
+    this.userIsAdmin = this.auth.getIsAdmin();
+  }
+
+  onAddArticle() {
+    this.router.navigate(['/news/add']);
   }
 
 }

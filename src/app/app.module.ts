@@ -53,6 +53,7 @@ import { UsersViewComponent } from './users/users-view/users-view.component';
 import { GoBackComponent } from './go-back/go-back.component';
 import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
+import { NewsAddComponent } from './news/news-add/news-add.component';
 
 @NgModule({  
   imports:      [ 
@@ -88,7 +89,7 @@ import { NewsComponent } from './news/news.component';
     CharactersComponent, 
     NavbarComponent, 
     CharacterViewComponent, 
-    CharacterAddComponent, ThemebooksComponent, ThemebookAddComponent, CharacterEditComponent, FooterComponent, LoginComponent, SignupComponent, AdminComponent, ThemebookEditComponent, UsersComponent, UsersViewComponent, GoBackComponent, HomeComponent, NewsComponent, 
+    CharacterAddComponent, ThemebooksComponent, ThemebookAddComponent, CharacterEditComponent, FooterComponent, LoginComponent, SignupComponent, AdminComponent, ThemebookEditComponent, UsersComponent, UsersViewComponent, GoBackComponent, HomeComponent, NewsComponent, NewsAddComponent, 
     ],
   bootstrap:    [ AppComponent ],
   providers: [
