@@ -34,6 +34,7 @@ export class NewsViewComponent implements OnInit, OnDestroy {
     this.articleSub = this.news.getOneArticle(id)
     .subscribe((response: {articleData: Article, authorData}) => {
       this.reqArticle = response.articleData;
+      this.reqArticle.content = this.conv.splitP(response.articleData.content);
       this.author = response.authorData;
       this.isLoading = false;
     });

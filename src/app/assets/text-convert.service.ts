@@ -17,4 +17,8 @@ export class TextConvertService {
     return new Date(s);
   }
 
+  splitP(s) {
+    return s.split("\n");
+  }
+
 }

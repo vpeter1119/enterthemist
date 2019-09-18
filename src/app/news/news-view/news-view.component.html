@@ -16,6 +16,6 @@
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content class="article-content">
-    {{ reqArticle.content }}
+    <p *ngFor="let paragraph of reqArticle.content">{{ paragraph }}</p>
   </mat-card-content>
 </mat-card>
