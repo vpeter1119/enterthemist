@@ -1,0 +1,19 @@
+<form [formGroup]="articleForm">
+  <mat-card class="input-card">
+    <mat-card-header>
+      <mat-card-title>
+        <h1 class="module-title">Add a new article</h1>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="field title">
+        <input type="text" matInput formControlName="title" placeholder="Title">
+      </mat-form-field><br>
+      <mat-form-field appearance="outline" class="field content">
+        <textarea matInput formControlName="content"></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="button" (click)="onArticleSubmit()">Send</button>
+    </mat-card-content>
+  </mat-card>
+</form>
+<p>{{ articleForm.value | json }}</p>

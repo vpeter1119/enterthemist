@@ -54,6 +54,7 @@ import { GoBackComponent } from './go-back/go-back.component';
 import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
 import { NewsAddComponent } from './news/news-add/news-add.component';
+import { NewsService } from './news/news.service';
 
 @NgModule({  
   imports:      [ 
@@ -93,12 +94,13 @@ import { NewsAddComponent } from './news/news-add/news-add.component';
     ],
   bootstrap:    [ AppComponent ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     CharactersService, 
     IconsService, 
     ReactiveService, 
     AdminService, 
     TextConvertService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    NewsService,
     ]
 })
 export class AppModule { }

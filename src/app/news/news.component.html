@@ -3,4 +3,7 @@
   <h1 class="module-title">News</h1>
   <button mat-raised-button *ngIf="userIsAdmin" color="primary" (click)="onAddArticle()">New Article</button>
   <p>News will be displayed here.</p>
+  <p *ngFor="let article of articles">
+    {{ article.title }} ({{ stringToDate(article.createdAt) }})
+  </p>
 </div>

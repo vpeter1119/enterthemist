@@ -86,7 +86,8 @@ const appRoutes: Routes = [
   },
   { 
     path: "news/add", 
-    component: NewsAddComponent
+    component: NewsAddComponent,
+    canActivate: [AdminGuard]
   },
   { 
     path: '', 
