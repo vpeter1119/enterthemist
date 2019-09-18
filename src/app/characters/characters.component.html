@@ -3,7 +3,7 @@
     <button 
     *ngIf="!isLoading"
     mat-raised-button
-    class="btn-mythos"
+    color="primary"
     (click)="onAddCharacter()">
     Create Character
     </button>
@@ -12,7 +12,7 @@
   <div *ngIf="noCharacters">There are no characters to display. Time to create one!</div>
   <div class="row" *ngIf="!isLoading && !noCharacters">
     <div class="col-md-6 col-xs-12" *ngFor="let character of characters">
-      <mat-expansion-panel>
+      <mat-expansion-panel class="element-general">
   <mat-expansion-panel-header>
     <mat-panel-title>
       <span class="character-name">

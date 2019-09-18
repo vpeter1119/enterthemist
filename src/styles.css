@@ -1,5 +1,6 @@
 /* Add application styles & imports to this file! */
-@import "~@angular/material/prebuilt-themes/purple-green.css";
+/* @import "~@angular/material/prebuilt-themes/purple-green.css"; */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~swiper/dist/css/swiper.css';
 /* @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'); */
@@ -29,11 +30,16 @@
   color: #000;
 }
 
+.element-general {
+  background-color: #d2c8c8;
+}
+
 mat-spinner {
   margin: 10px auto;
 }
 
 body { 
   padding-top: 70px; 
+  background-color: #f7f7f7;
 }
 

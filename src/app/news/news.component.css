@@ -1,3 +1,24 @@
 .module-title {
   font-family: 'Abril Fatface', cursive;
 }
+
+.article-title {
+  font-family: 'Abril Fatface', cursive;
+  font-size: 1.5rem;
+}
+
+.article-card {
+  margin: 10px 0;
+}
+
+.article-content {
+  color: #202040;
+}
+
+.nav-link {
+  color: #202040;
+}
+
+.nav-link:hover {
+  color: #000;
+}

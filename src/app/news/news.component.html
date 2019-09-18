@@ -1,9 +1,22 @@
+<h1 class="module-title">News</h1>
+<button mat-raised-button *ngIf="userIsAdmin" color="primary" (click)="onAddArticle()">New Article</button>
+<p *ngIf="!articles || articles===null || articles==[]">No news to display.</p>
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <div *ngIf="!isLoading">
-  <h1 class="module-title">News</h1>
-  <button mat-raised-button *ngIf="userIsAdmin" color="primary" (click)="onAddArticle()">New Article</button>
-  <p>News will be displayed here.</p>
-  <p *ngFor="let article of articles">
-    {{ article.title }} ({{ stringToDate(article.createdAt) }})
-  </p>
+  <mat-card *ngFor="let article of articles" class="alogos">
+    <mat-card-header>
+      <mat-card-title class="article-title">
+        <a class="nav-link active" routerLink="/news/view/{{article._id}}">{{ article.title }}</a>
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{ stringToDate(article.createdAt) }}
+        <span *ngIf="article.updatedAt != article.createdAt">
+          Last edit: {{ stringToDate(article.updatedAt) }}
+        </span>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="article-content">
+      {{ article.content.substring(0,250)+'...' }} <a routerLink="/news/view/{{article._id}}"> Read more.</a>
+      </mat-card-content>
+  </mat-card>
 </div>

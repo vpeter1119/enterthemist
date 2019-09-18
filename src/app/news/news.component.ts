@@ -14,7 +14,7 @@ import { Article } from './article.model';
 export class NewsComponent implements OnInit, OnDestroy {
 
   userIsAdmin: boolean;
-  isLoading: boolean = false;
+  isLoading: boolean = true;
 
   articles: Article[];
   articlesSub: Subscription;
@@ -26,11 +26,23 @@ export class NewsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.isLoading = true;
     this.userIsAdmin = this.auth.getIsAdmin();
     this.articlesSub = this.news.getAllArticles()
     .subscribe((articles: Article[]) => {
-      this.articles = articles;
+      this.articles = this.sortByDate(articles);
     })
+    setTimeout(()=>{
+      this.isLoading = false;
+    }, 500);
+  }
+
+  sortByDate(array) {
+    return array.sort((a,b) => {
+      a = new Date(a.createdAt);
+      b = new Date(b.createdAt);
+      return a>b ? -1 : a<b ? 1 : 0;
+    });
   }
 
   onAddArticle() {
