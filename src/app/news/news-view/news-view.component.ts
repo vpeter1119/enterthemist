@@ -16,7 +16,7 @@ import { GoBackComponent } from '../../go-back/go-back.component';
 export class NewsViewComponent implements OnInit, OnDestroy {
 
   isLoading: boolean;
-  article: Article;
+  reqArticle: Article;
   articleSub: Subscription;
 
   constructor(
@@ -32,7 +32,7 @@ export class NewsViewComponent implements OnInit, OnDestroy {
     const id = this.route.snapshot.paramMap.get('id');
     this.articleSub = this.news.getOneArticle(id)
     .subscribe((articleData: Article) => {
-      this.article = articleData;
+      this.reqArticle = articleData;
       this.isLoading = false;
     });
   }
