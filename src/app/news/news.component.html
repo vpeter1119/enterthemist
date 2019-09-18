@@ -3,15 +3,15 @@
 <p *ngIf="!articles || articles===null || articles==[]">No news to display.</p>
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <div *ngIf="!isLoading">
-  <mat-card *ngFor="let article of articles" class="alogos">
+  <mat-card *ngFor="let article of articles" class="article-card logos">
     <mat-card-header>
       <mat-card-title class="article-title">
         <a class="nav-link active" routerLink="/news/view/{{article._id}}">{{ article.title }}</a>
       </mat-card-title>
       <mat-card-subtitle>
-        {{ stringToDate(article.createdAt) }}
+        {{ conv.stringToDate(article.createdAt) }}
         <span *ngIf="article.updatedAt != article.createdAt">
-          Last edit: {{ stringToDate(article.updatedAt) }}
+          Last edit: {{ conv.stringToDate(article.updatedAt) }}
         </span>
       </mat-card-subtitle>
     </mat-card-header>

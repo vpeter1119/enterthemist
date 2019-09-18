@@ -1,0 +1,20 @@
+<app-go-back></app-go-back>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-card class="article-card logos" *ngIf="!isLoading">
+    <mat-card-header>
+      <mat-card-title class="article-title">
+        {{ article.title }}
+      </mat-card-title>
+      <mat-card-subtitle>
+        <!-- {{ conv.stringToDate(article.createdAt) }} -->
+        {{article.createdAt}}
+        <!-- <span *ngIf="article.updatedAt != article.createdAt">
+          Last edit: {{ conv.stringToDate(article.updatedAt) }}
+        </span> -->
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="article-content">
+      {{ article.content }}
+      </mat-card-content>
+  </mat-card>
+  {{article | json}}

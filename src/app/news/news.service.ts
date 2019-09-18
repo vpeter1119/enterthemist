@@ -9,7 +9,9 @@ export class NewsService {
 
   apiUrl='https://etm-server.herokuapp.com/api';
   allArticles: Article[];
+  reqArticle: Article;
   articlesSub = new Subject<Article[]>();
+  reqArticleSub = new Subject<Article>();
 
   constructor(
     private http: HttpClient,
@@ -33,9 +35,23 @@ export class NewsService {
     })
   }
 
+  fetchOneArticle(id) {
+    var url = (this.apiUrl + '/articles/' + id);
+    this.http.get<Article>(url)
+    .subscribe(fetchedArticle => {
+      this.reqArticle = fetchedArticle;
+      this.reqArticleSub.next(this.reqArticle);
+    })
+  }
+
   getAllArticles() {
     this.fetchAllArticles();
     return this.articlesSub.asObservable();
+  }
+
+  getOneArticle(id) {
+    this.fetchOneArticle(id);
+    return this.reqArticleSub.asObservable();
   }
 
 }

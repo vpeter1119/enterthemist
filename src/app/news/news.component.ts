@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { AuthService } from '../auth/auth.service';
 import { NewsService } from './news.service';
+import { TextConvertService } from '../assets/text-convert.service'
 import { Article } from './article.model';
 
 @Component({
@@ -22,6 +23,7 @@ export class NewsComponent implements OnInit, OnDestroy {
   constructor(
     private auth: AuthService,
     private news: NewsService,
+    public conv: TextConvertService,
     private router: Router,
   ) { }
 
@@ -47,10 +49,6 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   onAddArticle() {
     this.router.navigate(['/news/add']);
-  }
-
-  stringToDate(s: string) {
-    return new Date(s);
   }
 
   ngOnDestroy() {

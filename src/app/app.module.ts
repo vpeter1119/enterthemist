@@ -55,6 +55,7 @@ import { HomeComponent } from './home/home.component';
 import { NewsComponent } from './news/news.component';
 import { NewsAddComponent } from './news/news-add/news-add.component';
 import { NewsService } from './news/news.service';
+import { NewsViewComponent } from './news/news-view/news-view.component';
 
 @NgModule({  
   imports:      [ 
@@ -90,7 +91,7 @@ import { NewsService } from './news/news.service';
     CharactersComponent, 
     NavbarComponent, 
     CharacterViewComponent, 
-    CharacterAddComponent, ThemebooksComponent, ThemebookAddComponent, CharacterEditComponent, FooterComponent, LoginComponent, SignupComponent, AdminComponent, ThemebookEditComponent, UsersComponent, UsersViewComponent, GoBackComponent, HomeComponent, NewsComponent, NewsAddComponent, 
+    CharacterAddComponent, ThemebooksComponent, ThemebookAddComponent, CharacterEditComponent, FooterComponent, LoginComponent, SignupComponent, AdminComponent, ThemebookEditComponent, UsersComponent, UsersViewComponent, GoBackComponent, HomeComponent, NewsComponent, NewsAddComponent, NewsViewComponent, 
     ],
   bootstrap:    [ AppComponent ],
   providers: [

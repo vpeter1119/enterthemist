@@ -13,22 +13,8 @@ export class TextConvertService {
     }
   }
 
-  convertDate(dateString) {
-    var year = parseInt(dateString.substring(0,4));    
-    var month = parseInt(dateString.substring(5,7));
-    var day = parseInt(dateString.substring(8,10));
-    var hour = parseInt(dateString.substring(11,13));
-    var min = parseInt(dateString.substring(14,16));
-    var sec = parseInt(dateString.substring(17,19));
-    var convertedDate = {
-        year: year,
-        month: month,
-        day: day,
-        hour: hour,
-        min: min,
-        sec: sec
-    }
-    return convertedDate;
+  stringToDate(s: string) {
+    return new Date(s);
   }
 
 }
