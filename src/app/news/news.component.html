@@ -1,5 +1,5 @@
 <h1 class="module-title">News</h1>
-<button mat-raised-button *ngIf="userIsAdmin" color="primary" (click)="onAddArticle()">New Article</button>
+<button mat-raised-button *ngIf="userIsAdmin" class="btn-mythos" (click)="onAddArticle()">New Article</button>
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 <div *ngIf="!isLoading">
   <mat-card *ngFor="let article of articles" class="article-card logos">
