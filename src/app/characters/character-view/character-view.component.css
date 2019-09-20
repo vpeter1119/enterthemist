@@ -39,6 +39,10 @@ mat-card-title {
   margin-top: 15px;
 }
 
+.tbcard-section {
+  margin: 10px 0;
+}
+
 .tbcard-section-title {
   display: block;
   font-family: 'Changa One', cursive;
@@ -143,9 +147,9 @@ mat-card-subtitle {
 }
 
 .tag-letter {
-  position: absolute;
-  left: 0;
-  margin-right: 1rem;
+  /* position: absolute; */
+  /* left: 10px; */
+  margin-right: 5px;
 }
 
 .tag-burn {
@@ -169,4 +173,13 @@ mat-card-subtitle {
 
 .mat-list-option.logos {
   color:#000;
+}
+
+.btn-tag {
+  width: 180px;
+  white-space: normal;
+  padding: 0;
+  text-align: left;
+  height: 36px;
+  line-height: 20px;
 }

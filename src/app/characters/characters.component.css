@@ -6,7 +6,6 @@ mat-expansion-panel {
 
 .character-name {
   font-family: 'Abril Fatface', cursive;
-  //font-family: 'Saira Stencil One', cursive;
   font-size: 1.25rem;
 }
 
@@ -18,4 +17,9 @@ mat-card {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.modal-btn {
+  margin-left: 5px;
+  margin-right: 5px;
 }

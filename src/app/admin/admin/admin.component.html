@@ -118,7 +118,7 @@
 <ng-template #template>
   <div class="modal-body text-center">
     <p>Are you sure you want to delete {{toDeleteName}}?</p>
-    <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
-    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+    <button type="button" mat-raised-button class="modal-btn" color="warn" (click)="confirm()" >Yes</button>
+    <button type="button" mat-raised-button class="modal-btn btn-mythos" (click)="decline()" >No</button>
   </div>
 </ng-template>

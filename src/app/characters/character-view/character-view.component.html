@@ -4,7 +4,7 @@
   <div class="row" *ngIf="!isLoading">
     <div class="col-md-3 col-xs-0"></div>
     <div class="col-md-6 col-xs-12">
-      <mat-card class="card-general">
+      <mat-card class="element-general">
         <mat-card-header>
           <mat-card-title>
             General Information
@@ -12,8 +12,8 @@
         </mat-card-header>
         <mat-card-content>
           Name: <span contenteditable>{{ character.name }}</span><br>
-          <fa-icon [icon]="icons.mythos"></fa-icon> <span contenteditable>{{ character.mythos }}</span><br>
-          <fa-icon [icon]="icons.logos"></fa-icon> <span contenteditable>{{ character.logos }}</span>
+          <fa-icon [icon]="icons.mythos"></fa-icon> <span contenteditable> {{ character.mythos }}</span><br>
+          <fa-icon [icon]="icons.logos"></fa-icon> <span contenteditable> {{ character.logos }}</span>
         </mat-card-content>
       </mat-card>
     </div>
@@ -53,41 +53,44 @@
                 <span *ngIf="getCardType(card.cardtype) === 'logos'">Identity: </span>
                 <span class="qors-text hand-written">"{{getValues(card.qors)}}"</span>
               </div>
-              <div>
+              <div class="tbcard-section">
                 <!-- POWER TAGS (DESKTOP) -->
                 <span class="tbcard-section-title">POWER TAGS</span>
-                <mat-selection-list dense [ngClass]="getValues(card.cardtype)">
                   <div 
                   *ngFor="let tag of card.ptags; let i = index" 
                   class="tag-container"
                   (click)="burnTag(nr ,'ptags', i)">
-                    <mat-list-option [ngClass]="getValues(card.cardtype)">
+                    <!-- <mat-list-option [ngClass]="getValues(card.cardtype)">
                       <span 
                       matTooltip="{{ getTbData(getValues(card.theme)).ptagq[tag.letter] }}"
                       class="hand-written tag-letter">{{tag.letter}}</span> 
                       <span class="tag-tag">{{tag.tag}}</span>
                       <span class="tag-burn"><fa-icon [icon]="icons.burn" class="tag-burn-icon"></fa-icon></span>
-                    </mat-list-option>
+                    </mat-list-option> -->
+                    <span 
+                    matTooltip="{{ getTbData(getValues(card.theme)).ptagq[tag.letter] }}"
+                    class="hand-written tag-letter">
+                      {{tag.letter}}
+                    </span>
+                    <button mat-button [ngClass]="getValues(card.cardtype)" class="btn-tag">{{tag.tag}}</button>
+                    <span class="tag-burn"><fa-icon [icon]="icons.burn" class="tag-burn-icon"></fa-icon></span>
                   </div>
-                </mat-selection-list>
               </div>
-              <div>
+              <div class="tbcard-section">
                 <!-- WEAKNESS TAGS (DESKTOP) -->
                 <span class="tbcard-section-title">WEAKNESS TAGS</span>
-                <mat-selection-list dense [ngClass]="getValues(card.cardtype)">
-                  <div 
+                <div 
                   *ngFor="let tag of card.wtags; let i = index" 
                   class="tag-container"
-                  (click)="burnTag(nr ,'wtags', i)">
-                    <mat-list-option [ngClass]="getValues(card.cardtype)">
-                      <span 
-                      matTooltip="{{ getTbData(getValues(card.theme)).wtagq[tag.letter] }}"
-                      class="hand-written tag-letter">{{tag.letter}}</span> 
-                      <span class="tag-tag">{{tag.tag}}</span>
-                      <span class="tag-burn"><fa-icon [icon]="icons.burn" class="tag-burn-icon"></fa-icon></span>
-                    </mat-list-option>
+                  (click)="burnTag(nr ,'ptags', i)">
+                    <span 
+                    matTooltip="{{ getTbData(getValues(card.theme)).ptagq[tag.letter] }}"
+                    class="hand-written tag-letter">
+                      {{tag.letter}}
+                    </span>
+                    <button mat-button [ngClass]="getValues(card.cardtype)" class="btn-tag">{{tag.tag}}</button>
+                    <span class="tag-burn"><fa-icon [icon]="icons.burn" class="tag-burn-icon"></fa-icon></span>
                   </div>
-                </mat-selection-list>
               </div>
             </mat-card-content>
           </mat-card>

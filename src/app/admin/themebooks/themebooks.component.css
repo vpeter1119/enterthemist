@@ -49,3 +49,8 @@ table {
   font-family: 'Abril Fatface', cursive;
   font-size: 1rem;
 }
+
+.btn-top {
+  margin-left: 5px;
+  margin-right: 5px;
+}

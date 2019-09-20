@@ -23,3 +23,8 @@ mat-card {
   margin-top: 15px;
   font-family: 'Abril Fatface', cursive;
 }
+
+.modal-btn {
+  margin-left: 5px;
+  margin-right: 5px;
+}
