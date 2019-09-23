@@ -39,6 +39,10 @@ mat-spinner {
   margin: 10px auto;
 }
 
+.mat-progress-spinner circle, .mat-spinner circle {
+stroke: #723881;
+}
+
 body { 
   padding-top: 70px; 
   background-color: #f7f7f7;
