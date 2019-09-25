@@ -1,4 +1,12 @@
 <app-go-back></app-go-back>
-<p>
-Requested user id: {{userId}}
-</p>
+<mat-card class="logos">
+  <mat-card-header>
+    <mat-card-title>Profile</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Username: <!-- {{user.username}} --></p>
+    <p>User ID: <!-- {{user._id}} --></p>
+    <p>Characters: <!-- {{user.nrOfCharacters}} --></p>
+    <p>Registered: <!-- {{conv.stringToDate(user.updatedAt)}} --></p>
+  </mat-card-content>
+</mat-card>

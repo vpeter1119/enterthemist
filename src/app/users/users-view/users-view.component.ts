@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { GoBackComponent } from '../../go-back/go-back.component';
+import { TextConvertService } from '../../assets/text-convert.service'
 
 @Component({
   selector: 'app-users-view',
@@ -17,6 +18,7 @@ export class UsersViewComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private loc: Location,
+    public conv: TextConvertService,
   ) { }
 
   ngOnInit() {
