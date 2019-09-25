@@ -59,7 +59,7 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   onDeleteArticle(id) {
     this.news.deleteOneArticle(id);
-    this.articles = this.articles.filter(el => el._id !== id);
+    this.articles = this.articles.filter(el => el._id != id);
   }
 
   ngOnDestroy() {

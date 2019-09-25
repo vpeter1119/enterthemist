@@ -15,7 +15,6 @@ export class Response {
 export class AdminService {
 
   apiUrl = "https://etm-server.herokuapp.com/api"
-  //apiUrl = "https://ztold.sse.codesandbox.io/api";
 
   mythosTbs: Themebook[];
   logosTbs: Themebook[];

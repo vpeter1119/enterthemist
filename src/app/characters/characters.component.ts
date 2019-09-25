@@ -62,10 +62,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
 
   onDelete(charid) {
     this.charactersService.deleteCharacter(charid);
-    this.isLoading;
-    setTimeout(() => {
-      this.ngOnInit();
-    }, 500);
+    this.characters = this.characters.filter(el => el._id != charid);
   }
 
   onAddCharacter() {
