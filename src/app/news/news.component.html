@@ -16,6 +16,16 @@
     </mat-card-header>
     <mat-card-content class="article-content">
       {{ article.content.substring(0,250)+'...' }} <a routerLink="/news/view/{{article._id}}"> Read more.</a>
-      </mat-card-content>
+    </mat-card-content>
+    <mat-card-actions *ngIf="userIsAdmin">
+      <button 
+      mat-button 
+      class="article-delete-button"
+      title="Delete" 
+      color="warn" 
+      (click)="onDeleteArticle(article._id)">
+        <fa-icon [icon]="icons.delete"></fa-icon>
+      </button>
+    </mat-card-actions>
   </mat-card>
 </div>

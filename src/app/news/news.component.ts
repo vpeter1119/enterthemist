@@ -4,7 +4,8 @@ import { Subscription } from 'rxjs';
 
 import { AuthService } from '../auth/auth.service';
 import { NewsService } from './news.service';
-import { TextConvertService } from '../assets/text-convert.service'
+import { TextConvertService } from '../assets/text-convert.service';
+import { IconsService } from '../assets/icons.service';
 import { Article } from './article.model';
 
 @Component({
@@ -16,6 +17,7 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   userIsAdmin: boolean;
   isLoading: boolean = true;
+  icons;
 
   articles: Article[];
   articlesSub: Subscription;
@@ -23,9 +25,13 @@ export class NewsComponent implements OnInit, OnDestroy {
   constructor(
     private auth: AuthService,
     private news: NewsService,
+    private iconsService: IconsService,
     public conv: TextConvertService,
+
     private router: Router,
-  ) { }
+  ) {
+    this.icons = this.iconsService.getIcons();
+   }
 
   ngOnInit() {
     this.isLoading = true;
@@ -49,6 +55,11 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   onAddArticle() {
     this.router.navigate(['/news/add']);
+  }
+
+  onDeleteArticle(id) {
+    this.news.deleteOneArticle(id);
+    this.articles = this.articles.filter(el => el._id !== id);
   }
 
   ngOnDestroy() {

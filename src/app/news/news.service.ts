@@ -54,4 +54,12 @@ export class NewsService {
     return this.reqArticleSub.asObservable();
   }
 
+  deleteOneArticle(id) {
+    var url = (this.apiUrl + '/articles/' + id);
+    this.http.delete(url)
+    .subscribe((response: {message: string}) => {
+      console.warn("Response from server: " + response.message);
+    })
+  }
+
 }
