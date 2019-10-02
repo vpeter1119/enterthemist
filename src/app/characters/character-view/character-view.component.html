@@ -29,8 +29,9 @@
           <mat-card [ngClass]="getValues(card.cardtype)" class="theme-card front desktop">
             <mat-card-actions>
               <div class="card-action-buttons">
-                <button mat-button class="card-action-button" (click)="onEditCard(nr)"><fa-icon [icon]="icons.edit"></fa-icon></button>
-                <button mat-button class="card-action-button" (click)="onFlip(nr)"><fa-icon [icon]="icons.flip"></fa-icon></button>
+                <button mat-mini-fab="card-action-button" (click)="onEditCard(nr)" class="themecard-action-btn"><fa-icon [icon]="icons.edit"></fa-icon></button>
+                <button mat-mini-fab="card-action-button" (click)="onFlip(nr)"class="themecard-action-btn"><fa-icon [icon]="icons.flip"></fa-icon></button>
+                <button mat-mini-fab="card-action-button" (click)="onDeleteCard(nr)"class="themecard-action-btn"><fa-icon [icon]="icons.x"></fa-icon></button>
               </div>
             </mat-card-actions>
             <mat-card-header [ngClass]="getValues(card.cardtype)">

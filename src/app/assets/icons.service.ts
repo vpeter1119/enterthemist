@@ -19,6 +19,7 @@ import {
   faPlus,
   faUser,
   faNewspaper,
+  faTimes,
    } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({providedIn: "root"})
@@ -45,6 +46,7 @@ export class IconsService {
     plus: faPlus,
     user: faUser,
     news: faNewspaper,
+    x: faTimes,
   }  
 
   constructor() { }

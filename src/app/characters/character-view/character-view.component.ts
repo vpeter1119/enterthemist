@@ -104,6 +104,10 @@ export class CharacterViewComponent implements OnInit, OnDestroy {
     window.alert('You are trying to edit card nr. ' + (nr+1) + '.');
   }
 
+  onDeleteCard(nr) {
+    this.character.cards.splice(nr, 1);
+  }
+
   burnTag(cardNr, type: string, i) {
     console.warn(this.character.cards[cardNr][type][i].tag);
   }

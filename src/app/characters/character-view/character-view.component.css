@@ -183,3 +183,9 @@ mat-card-subtitle {
   height: 36px;
   line-height: 20px;
 }
+
+.themecard-action-btn {
+  margin: 0 5px;
+  background-color: inherit;
+  color: inherit;
+}
