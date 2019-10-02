@@ -49,6 +49,28 @@ export class CharactersService {
     return this.oneCharacterSub.asObservable();
   }
 
+  getEmptyCard() {
+    var emptyCard = {
+      cardtype: 'EMTPY',
+      theme: "",
+      title: "",
+      qors: "",
+      ptags: [
+        {
+          letter: "",
+          tag: "",
+        }
+      ],
+      wtags: [
+        {
+          letter: "",
+          tag: "",
+        }
+      ],
+    }
+    return emptyCard;
+  }
+
   createCharacter(character) {
     this.http.post<{message: string}>(this.apiUrl, character)
     .subscribe((response) => {

@@ -189,3 +189,15 @@ mat-card-subtitle {
   background-color: inherit;
   color: inherit;
 }
+
+.card-content-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-card-btn {
+  margin: auto;
+  background: #723881;
+  color: #FFF;
+}

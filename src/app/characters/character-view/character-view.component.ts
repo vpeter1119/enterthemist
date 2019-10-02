@@ -91,7 +91,7 @@ export class CharacterViewComponent implements OnInit, OnDestroy {
     .subscribe(character => {      
       this.character = character[0];
       this.data = character[0];
-      this.cards = character[0].cards;      
+      this.cards = character[0].cards;
       this.isLoading = false;
     })
   }
@@ -100,12 +100,18 @@ export class CharacterViewComponent implements OnInit, OnDestroy {
     this.flippedIndex[nr] = !this.flippedIndex[nr]
   }
 
+  onAddCard() {
+    window.alert("Trying to add a new card, eh? Be patient...");
+  }
+
   onEditCard(nr) {
     window.alert('You are trying to edit card nr. ' + (nr+1) + '.');
   }
 
   onDeleteCard(nr) {
     this.character.cards.splice(nr, 1);
+    this.character.cards.push(this.charactersService.getEmptyCard());
+    //Should also send PATCH/DELETE request to server.
   }
 
   burnTag(cardNr, type: string, i) {

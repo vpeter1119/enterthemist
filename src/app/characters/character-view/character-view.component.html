@@ -26,9 +26,10 @@
         <div 
         class="flippable-card desktop" 
         [ngClass]="{'flipped':flippedIndex[nr]}">
-          <mat-card [ngClass]="getValues(card.cardtype)" class="theme-card front desktop">
+          <mat-card *ngIf="card.cardtype != 'EMPTY'" [ngClass]="getValues(card.cardtype)" class="theme-card front desktop">
             <mat-card-actions>
               <div class="card-action-buttons">
+                <!-- CARD ACTION BUTTONS (FRONT) -->
                 <button mat-mini-fab="card-action-button" (click)="onEditCard(nr)" class="themecard-action-btn"><fa-icon [icon]="icons.edit"></fa-icon></button>
                 <button mat-mini-fab="card-action-button" (click)="onFlip(nr)"class="themecard-action-btn"><fa-icon [icon]="icons.flip"></fa-icon></button>
                 <button mat-mini-fab="card-action-button" (click)="onDeleteCard(nr)"class="themecard-action-btn"><fa-icon [icon]="icons.x"></fa-icon></button>
@@ -69,7 +70,7 @@
                       <span class="tag-burn"><fa-icon [icon]="icons.burn" class="tag-burn-icon"></fa-icon></span>
                     </mat-list-option> -->
                     <span 
-                    matTooltip="{{ getTbData(getValues(card.theme)).ptagq[tag.letter] }}"
+                    matTooltip="{{ getTbData(card.theme).ptagq[tag.letter] }}"
                     class="hand-written tag-letter">
                       {{tag.letter}}
                     </span>
@@ -94,12 +95,14 @@
                   </div>
               </div>
             </mat-card-content>
-          </mat-card>
-          <mat-card [ngClass]="getValues(card.cardtype)" class="theme-card back desktop">
+          </mat-card>          
+          <mat-card *ngIf="card.cardtype != 'EMPTY'" [ngClass]="getValues(card.cardtype)" class="theme-card back desktop">
             <mat-card-actions>
               <div class="card-action-buttons">
-                <button mat-button class="card-action-button" (click)="onEditCard(nr)"><fa-icon [icon]="icons.edit"></fa-icon></button>
-                <button mat-button class="card-action-button" (click)="onFlip(nr)"><fa-icon [icon]="icons.flip"></fa-icon></button>
+                <!-- CARD ACTION BUTTONS (FLIPSIDE) -->
+                <button mat-mini-fab="card-action-button" (click)="onEditCard(nr)" class="themecard-action-btn"><fa-icon [icon]="icons.edit"></fa-icon></button>
+                <button mat-mini-fab="card-action-button" (click)="onFlip(nr)"class="themecard-action-btn"><fa-icon [icon]="icons.flip"></fa-icon></button>
+                <button mat-mini-fab="card-action-button" (click)="onDeleteCard(nr)"class="themecard-action-btn"><fa-icon [icon]="icons.x"></fa-icon></button>
               </div>
             </mat-card-actions>
             <mat-card-header [ngClass]="getValues(card.cardtype)">
@@ -121,9 +124,16 @@
               Improvements come here...
             </mat-card-content>
           </mat-card>
+          <mat-card class="element-general" *ngIf="card.cardtype == 'EMPTY'">
+            <mat-card-content class="card-content-empty">
+              <button mat-fab (click)="onAddCard()" class="btn-mythos add-card-btn">
+                <fa-icon [icon]="icons.plus"></fa-icon>
+              </button>
+            </mat-card-content>
+          </mat-card>
         </div>
       </div>
-    </div>
+    </div>    
   </div>
   <div class="row" *ngIf="!isLoading && mobile">
     <div class="col-12">
@@ -203,3 +213,4 @@
     </div>
   </div>
 </div>
+{{character.cards | json}}
