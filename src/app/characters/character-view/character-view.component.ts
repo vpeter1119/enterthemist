@@ -1,36 +1,39 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
+import { Subscription } from "rxjs";
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA
+} from "@angular/material/dialog";
 
-import { Character } from '../character.model';
-import { Themebook } from '../../admin/themebooks/themebook.model';
-import { CharactersService } from '../characters.service';
-import { AdminService } from '../../admin/admin.service';
-import { IconsService } from '../../assets/icons.service';
-import { TextConvertService } from '../../assets/text-convert.service';
-import { ReactiveService } from '../../reactive.service';
-import { GoBackComponent } from '../../go-back/go-back.component';
+import { Character } from "../character.model";
+import { Themebook } from "../../admin/themebooks/themebook.model";
+import { CharactersService } from "../characters.service";
+import { AdminService } from "../../admin/admin.service";
+import { IconsService } from "../../assets/icons.service";
+import { TextConvertService } from "../../assets/text-convert.service";
+import { ReactiveService } from "../../reactive.service";
+import { GoBackComponent } from "../../go-back/go-back.component";
 
 export class TbResponse {
   m: Themebook[];
-  l: Themebook[]
+  l: Themebook[];
 }
 
 @Component({
-  selector: 'app-character-view',
-  templateUrl: './character-view.component.html',
-  styleUrls: ['./character-view.component.css']
+  selector: "app-character-view",
+  templateUrl: "./character-view.component.html",
+  styleUrls: ["./character-view.component.css"]
 })
 export class CharacterViewComponent implements OnInit, OnDestroy {
-
   isLoading = false;
   icons;
   objectKeys = Object.keys;
   data;
   mobile: boolean;
   windowWidth;
-  flippedIndex = [false,false,false,false];
+  flippedIndex = [false, false, false, false];
   burned: false;
 
   requestedCharacterSub: Subscription;
@@ -42,16 +45,16 @@ export class CharacterViewComponent implements OnInit, OnDestroy {
   cards = [];
 
   swiperConfig = {
-    pagination: { 
-      el: '.swiper-pagination', 
+    pagination: {
+      el: ".swiper-pagination",
       clickable: true,
-      renderBullet: (index) => {
-        return '<span class="swiper-pagination-bullet" style="height: 20px; width: 20px; margin: 1rem 10px;"></span>'
+      renderBullet: index => {
+        return '<span class="swiper-pagination-bullet" style="height: 20px; width: 20px; margin: 1rem 10px;"></span>';
       }
     },
     navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
     },
     spaceBetween: 30
   };
@@ -64,10 +67,10 @@ export class CharacterViewComponent implements OnInit, OnDestroy {
     private reactive: ReactiveService,
     public _text: TextConvertService,
     public _admin: AdminService,
-    public dialog: MatDialog,
+    public dialog: MatDialog
   ) {
     this.icons = this.iconsService.getIcons();
-   }
+  }
 
   ngOnInit() {
     this.isLoading = true;
@@ -75,29 +78,31 @@ export class CharacterViewComponent implements OnInit, OnDestroy {
     this.mobile = true;
     this.mobile = this.reactive.isMobile();
     this.themebooks = [];
-    const id = this.route.snapshot.paramMap.get('id');
-    this.themebooksSub = this._admin.getAllTbs()
-    .subscribe((response: TbResponse) => {
-      this.mythosTbs = response.m;
-      this.logosTbs = response.l;
-      this.mythosTbs.forEach((mtb) => {
-        this.themebooks.push(mtb);
+    const id = this.route.snapshot.paramMap.get("id");
+    this.themebooksSub = this._admin
+      .getAllTbs()
+      .subscribe((response: TbResponse) => {
+        this.mythosTbs = response.m;
+        this.logosTbs = response.l;
+        this.mythosTbs.forEach(mtb => {
+          this.themebooks.push(mtb);
+        });
+        this.logosTbs.forEach(ltb => {
+          this.themebooks.push(ltb);
+        });
       });
-      this.logosTbs.forEach((ltb) => {
-        this.themebooks.push(ltb);
+    this.requestedCharacterSub = this.charactersService
+      .getOneListener(id)
+      .subscribe(character => {
+        this.character = character[0];
+        this.data = character[0];
+        this.cards = character[0].cards;
+        this.isLoading = false;
       });
-    });
-    this.requestedCharacterSub = this.charactersService.getOneListener(id)
-    .subscribe(character => {      
-      this.character = character[0];
-      this.data = character[0];
-      this.cards = character[0].cards;
-      this.isLoading = false;
-    })
   }
 
   onFlip(nr) {
-    this.flippedIndex[nr] = !this.flippedIndex[nr]
+    this.flippedIndex[nr] = !this.flippedIndex[nr];
   }
 
   onAddCard() {
@@ -105,7 +110,7 @@ export class CharacterViewComponent implements OnInit, OnDestroy {
   }
 
   onEditCard(nr) {
-    window.alert('You are trying to edit card nr. ' + (nr+1) + '.');
+    window.alert("You are trying to edit card nr. " + (nr + 1) + ".");
   }
 
   onDeleteCard(nr) {
@@ -128,18 +133,17 @@ export class CharacterViewComponent implements OnInit, OnDestroy {
   }
 
   getTbData(name) {
-    return this.themebooks.find((tb) => {
+    return this.themebooks.find(tb => {
       return tb.name === name;
-    })
+    });
   }
 
   onBackToCharacters() {
-    this.router.navigate(['characters']);
+    this.router.navigate(["characters"]);
   }
 
   ngOnDestroy() {
     this.requestedCharacterSub.unsubscribe();
     this.themebooksSub.unsubscribe();
   }
-
 }

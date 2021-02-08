@@ -1,216 +1,211 @@
 <div class="container">
-  <app-go-back></app-go-back>
-  <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <div class="row" *ngIf="!isLoading">
-    <div class="col-md-3 col-xs-0"></div>
-    <div class="col-md-6 col-xs-12">
-      <mat-card class="element-general">
-        <mat-card-header>
-          <mat-card-title>
-            General Information
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          Name: <span contenteditable>{{ character.name }}</span><br>
-          <fa-icon [icon]="icons.mythos"></fa-icon> <span contenteditable> {{ character.mythos }}</span><br>
-          <fa-icon [icon]="icons.logos"></fa-icon> <span contenteditable> {{ character.logos }}</span>
-        </mat-card-content>
-      </mat-card>
-    </div>
-    <div class="col-md-3 col-xs-0"></div>
-  </div>
-  <!-- THEME CARD FRONT -->
-    <div class="row" *ngIf="!isLoading && !mobile">
-      <div class="col-lg-3 col-md-6 card-slot" *ngFor="let card of cards; let nr = index">
-       <div class="card-container desktop">
-        <div 
-        class="flippable-card desktop" 
-        [ngClass]="{'flipped':flippedIndex[nr]}">
-          <mat-card *ngIf="card.cardtype != 'EMPTY'" [ngClass]="getValues(card.cardtype)" class="theme-card front desktop">
-            <mat-card-actions>
-              <div class="card-action-buttons">
-                <!-- CARD ACTION BUTTONS (FRONT) -->
-                <button mat-mini-fab="card-action-button" (click)="onEditCard(nr)" class="themecard-action-btn"><fa-icon [icon]="icons.edit"></fa-icon></button>
-                <button mat-mini-fab="card-action-button" (click)="onFlip(nr)"class="themecard-action-btn"><fa-icon [icon]="icons.flip"></fa-icon></button>
-                <button mat-mini-fab="card-action-button" (click)="onDeleteCard(nr)"class="themecard-action-btn"><fa-icon [icon]="icons.x"></fa-icon></button>
-              </div>
-            </mat-card-actions>
-            <mat-card-header [ngClass]="getValues(card.cardtype)">
-              <div class="card-icon">
-                <fa-icon [icon]="icons.logos" *ngIf="getCardType(card.cardtype) === 'logos'"></fa-icon>
-                <fa-icon [icon]="icons.mythos" *ngIf="getCardType(card.cardtype) === 'mythos'"></fa-icon>
-              </div>
-              <mat-card-title>
-                <p class="tbcard-title">
-                  <span> {{getValues(card.title)}}</span>
-                </p>
-              </mat-card-title>
-              <mat-card-subtitle>
-                {{_text.capitalize(getValues(card.theme))}}
-              </mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-              <div class="qors">
-                <span *ngIf="getCardType(card.cardtype) === 'mythos'">Mystery: </span>
-                <span *ngIf="getCardType(card.cardtype) === 'logos'">Identity: </span>
-                <span class="qors-text hand-written">"{{getValues(card.qors)}}"</span>
-              </div>
-              <div class="tbcard-section">
-                <!-- POWER TAGS (DESKTOP) -->
-                <span class="tbcard-section-title">POWER TAGS</span>
-                  <div 
-                  *ngFor="let tag of card.ptags; let i = index" 
-                  class="tag-container"
-                  (click)="burnTag(nr ,'ptags', i)">
-                    <!-- <mat-list-option [ngClass]="getValues(card.cardtype)">
+	<app-go-back></app-go-back>
+	<mat-spinner *ngIf="isLoading"></mat-spinner>
+	<div class="row" *ngIf="!isLoading">
+		<div class="col-md-3 col-xs-0"></div>
+		<div class="col-md-6 col-xs-12">
+			<mat-card class="element-general">
+				<mat-card-header>
+					<mat-card-title>
+						General Information
+					</mat-card-title>
+				</mat-card-header>
+				<mat-card-content>
+					Name: <span contenteditable>{{ character.name }}</span><br>
+					<fa-icon [icon]="icons.mythos"></fa-icon> <span contenteditable> {{ character.mythos }}</span><br>
+					<fa-icon [icon]="icons.logos"></fa-icon> <span contenteditable> {{ character.logos }}</span>
+				</mat-card-content>
+			</mat-card>
+		</div>
+		<div class="col-md-3 col-xs-0"></div>
+	</div>
+	<!-- THEME CARD FRONT -->
+	<div class="row" *ngIf="!isLoading && !mobile">
+		<div class="col-lg-3 col-md-6 card-slot" *ngFor="let card of cards; let nr = index">
+			<div class="card-container desktop">
+				<div class="flippable-card desktop" [ngClass]="{'flipped':flippedIndex[nr]}">
+					<mat-card *ngIf="card.cardtype != 'EMPTY'" [ngClass]="getValues(card.cardtype)"
+						class="theme-card front desktop">
+						<mat-card-actions>
+							<div class="card-action-buttons">
+								<!-- CARD ACTION BUTTONS (FRONT) -->
+								<button mat-mini-fab="card-action-button" (click)="onEditCard(nr)" class="themecard-action-btn"><fa-icon [icon]="icons.edit"></fa-icon></button>
+								<button mat-mini-fab="card-action-button" (click)="onFlip(nr)"class="themecard-action-btn"><fa-icon [icon]="icons.flip"></fa-icon></button>
+								<button mat-mini-fab="card-action-button" (click)="onDeleteCard(nr)"class="themecard-action-btn"><fa-icon [icon]="icons.x"></fa-icon></button>
+							</div>
+						</mat-card-actions>
+						<mat-card-header [ngClass]="getValues(card.cardtype)">
+							<div class="card-icon">
+								<fa-icon [icon]="icons.logos" *ngIf="getCardType(card.cardtype) === 'logos'"></fa-icon>
+								<fa-icon [icon]="icons.mythos" *ngIf="getCardType(card.cardtype) === 'mythos'">
+								</fa-icon>
+							</div>
+							<mat-card-title>
+								<p class="tbcard-title">
+									<span> {{getValues(card.title)}}</span>
+								</p>
+							</mat-card-title>
+							<mat-card-subtitle>
+								{{_text.capitalize(getValues(card.theme))}}
+							</mat-card-subtitle>
+						</mat-card-header>
+						<mat-card-content>
+							<div class="qors">
+								<span *ngIf="getCardType(card.cardtype) === 'mythos'">Mystery: </span>
+								<span *ngIf="getCardType(card.cardtype) === 'logos'">Identity: </span>
+								<span class="qors-text hand-written">"{{getValues(card.qors)}}"</span>
+							</div>
+							<div class="tbcard-section">
+								<!-- POWER TAGS (DESKTOP) -->
+								<span class="tbcard-section-title">POWER TAGS</span>
+								<div *ngFor="let tag of card.ptags; let i = index" class="tag-container"
+									(click)="burnTag(nr ,'ptags', i)">
+									<!-- <mat-list-option [ngClass]="getValues(card.cardtype)">
                       <span 
                       matTooltip="{{ getTbData(getValues(card.theme)).ptagq[tag.letter] }}"
                       class="hand-written tag-letter">{{tag.letter}}</span> 
                       <span class="tag-tag">{{tag.tag}}</span>
                       <span class="tag-burn"><fa-icon [icon]="icons.burn" class="tag-burn-icon"></fa-icon></span>
                     </mat-list-option> -->
-                    <span 
+									<span
                     matTooltip="{{ getTbData(card.theme).ptagq[tag.letter] }}"
                     class="hand-written tag-letter">
                       {{tag.letter}}
                     </span>
-                    <button mat-button [ngClass]="getValues(card.cardtype)" class="btn-tag">{{tag.tag}}</button>
-                    <span class="tag-burn"><fa-icon [icon]="icons.burn" class="tag-burn-icon"></fa-icon></span>
-                  </div>
-              </div>
-              <div class="tbcard-section">
-                <!-- WEAKNESS TAGS (DESKTOP) -->
-                <span class="tbcard-section-title">WEAKNESS TAGS</span>
-                <div 
-                  *ngFor="let tag of card.wtags; let i = index" 
-                  class="tag-container"
-                  (click)="burnTag(nr ,'ptags', i)">
-                    <span 
+									<button mat-button [ngClass]="getValues(card.cardtype)" class="btn-tag">{{tag.tag}}</button>
+									<span class="tag-burn"><fa-icon [icon]="icons.burn" class="tag-burn-icon"></fa-icon></span>
+								</div>
+							</div>
+							<div class="tbcard-section">
+								<!-- WEAKNESS TAGS (DESKTOP) -->
+								<span class="tbcard-section-title">WEAKNESS TAGS</span>
+								<div *ngFor="let tag of card.wtags; let i = index" class="tag-container"
+									(click)="burnTag(nr ,'ptags', i)">
+									<span
                     matTooltip="{{ getTbData(getValues(card.theme)).wtagq[tag.letter] }}"
                     class="hand-written tag-letter">
                       {{tag.letter}}
                     </span>
-                    <button mat-button [ngClass]="getValues(card.cardtype)" class="btn-tag">{{tag.tag}}</button>
-                    <span class="tag-burn"><fa-icon [icon]="icons.burn" class="tag-burn-icon"></fa-icon></span>
-                  </div>
-              </div>
-            </mat-card-content>
-          </mat-card>          
-          <mat-card *ngIf="card.cardtype != 'EMPTY'" [ngClass]="getValues(card.cardtype)" class="theme-card back desktop">
-            <mat-card-actions>
-              <div class="card-action-buttons">
-                <!-- CARD ACTION BUTTONS (FLIPSIDE) -->
-                <button mat-mini-fab="card-action-button" (click)="onEditCard(nr)" class="themecard-action-btn"><fa-icon [icon]="icons.edit"></fa-icon></button>
-                <button mat-mini-fab="card-action-button" (click)="onFlip(nr)"class="themecard-action-btn"><fa-icon [icon]="icons.flip"></fa-icon></button>
-                <button mat-mini-fab="card-action-button" (click)="onDeleteCard(nr)"class="themecard-action-btn"><fa-icon [icon]="icons.x"></fa-icon></button>
-              </div>
-            </mat-card-actions>
-            <mat-card-header [ngClass]="getValues(card.cardtype)">
-              <div class="card-icon">
-                <fa-icon [icon]="icons.logos" *ngIf="getCardType(card.cardtype) === 'logos'"></fa-icon>
-                <fa-icon [icon]="icons.mythos" *ngIf="getCardType(card.cardtype) === 'mythos'"></fa-icon>
-              </div>
-              <mat-card-title>
-                <p>
-                  <span> {{getValues(card.title)}}</span>
-                </p>
-             </mat-card-title>
-              <mat-card-subtitle>
-               {{_text.capitalize(getValues(card.theme))}}
-              </mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-              <span class="tbcard-section-title">IMPROVEMENTS</span>
-              Improvements come here...
-            </mat-card-content>
-          </mat-card>
-          <mat-card class="element-general" *ngIf="card.cardtype == 'EMPTY'">
-            <mat-card-content class="card-content-empty">
-              <button mat-fab (click)="onAddCard()" class="btn-mythos add-card-btn">
+									<button mat-button [ngClass]="getValues(card.cardtype)" class="btn-tag">{{tag.tag}}</button>
+									<span class="tag-burn"><fa-icon [icon]="icons.burn" class="tag-burn-icon"></fa-icon></span>
+								</div>
+							</div>
+						</mat-card-content>
+					</mat-card>
+					<mat-card *ngIf="card.cardtype != 'EMPTY'" [ngClass]="getValues(card.cardtype)"
+						class="theme-card back desktop">
+						<mat-card-actions>
+							<div class="card-action-buttons">
+								<!-- CARD ACTION BUTTONS (FLIPSIDE) -->
+								<button mat-mini-fab="card-action-button" (click)="onEditCard(nr)" class="themecard-action-btn"><fa-icon [icon]="icons.edit"></fa-icon></button>
+								<button mat-mini-fab="card-action-button" (click)="onFlip(nr)"class="themecard-action-btn"><fa-icon [icon]="icons.flip"></fa-icon></button>
+								<button mat-mini-fab="card-action-button" (click)="onDeleteCard(nr)"class="themecard-action-btn"><fa-icon [icon]="icons.x"></fa-icon></button>
+							</div>
+						</mat-card-actions>
+						<mat-card-header [ngClass]="getValues(card.cardtype)">
+							<div class="card-icon">
+								<fa-icon [icon]="icons.logos" *ngIf="getCardType(card.cardtype) === 'logos'"></fa-icon>
+								<fa-icon [icon]="icons.mythos" *ngIf="getCardType(card.cardtype) === 'mythos'">
+								</fa-icon>
+							</div>
+							<mat-card-title>
+								<p>
+									<span> {{getValues(card.title)}}</span>
+								</p>
+							</mat-card-title>
+							<mat-card-subtitle>
+								{{_text.capitalize(getValues(card.theme))}}
+							</mat-card-subtitle>
+						</mat-card-header>
+						<mat-card-content>
+							<span class="tbcard-section-title">IMPROVEMENTS</span>
+							Improvements come here...
+						</mat-card-content>
+					</mat-card>
+					<mat-card class="element-general" *ngIf="card.cardtype == 'EMPTY'">
+						<mat-card-content class="card-content-empty">
+							<button mat-fab (click)="onAddCard()" class="btn-mythos add-card-btn">
                 <fa-icon [icon]="icons.plus"></fa-icon>
               </button>
-            </mat-card-content>
-          </mat-card>
-        </div>
-      </div>
-    </div>    
-  </div>
-  <div class="row" *ngIf="!isLoading && mobile">
-    <div class="col-12">
-      <swiper [config]="swiperConfig">
-        <div>
-          <div class="swiper-pagination" style="position: relative"></div>
-        </div>
-        <div class="swiper-wrapper">
-          <div class="swiper-slide" *ngFor="let card of cards">
-            <div class="card-container mobile">
-              <div 
-              class='flippable-card mobile' 
-              [ngClass]="{'flipped':flipped}" 
-              (click)="flipped = !flipped">
-               <mat-card 
-               [ngClass]="getValues(card.cardtype)" 
-               class="theme-card front mobile"
-               style="position: relative">
-                  <mat-card-header>
-                    <mat-card-title>
-                      <p>
-                        <fa-icon [icon]="icons.logos" *ngIf="getCardType(card.cardtype) === 'logos'"></fa-icon>
-                        <fa-icon [icon]="icons.mythos" *ngIf="getCardType(card.cardtype) === 'mythos'"></fa-icon>
-                        <span> {{getValues(card.title)}}</span>
-                      </p>
-                    </mat-card-title>
-                    <mat-card-subtitle>
-                      {{_text.capitalize(getValues(card.theme))}}
-                    </mat-card-subtitle>
-                  </mat-card-header>
-                  <mat-card-content>
-                    <div class="qors">
-                      <span *ngIf="getCardType(card.cardtype) === 'mythos'">Mystery: </span>
-                      <span *ngIf="getCardType(card.cardtype) === 'logos'">Identity: </span>
-                      <span class="qors-text hand-written">"{{getValues(card.qors)}}"</span>
-                    </div>
-                    <div>
-                      <span class="tbcard-section-title">POWER TAGS</span>
-                      <ul>
-                        <li *ngFor="let ptag of card.ptags">[{{ptag.letter}}] {{ptag.tag}}</li>
-                       </ul>
-                    </div>
-                    <div>
-                      <span class="tbcard-section-title">WEAKNESS TAGS</span>
-                      <ul>
-                        <li *ngFor="let wtag of card.wtags">[{{wtag.letter}}] {{wtag.tag}}</li>
-                      </ul>
-                    </div>
-                  </mat-card-content>
-                </mat-card>
-                <mat-card 
-                [ngClass]="getValues(card.cardtype)" 
-                class="theme-card back mobile"
-                style="position: absolute; bottom: 0px;">
-                  <mat-card-header>
-                    <mat-card-title>
-                      <p>
-                        <fa-icon [icon]="icons.logos" *ngIf="getCardType(card.cardtype) === 'logos'"></fa-icon>
-                        <fa-icon [icon]="icons.mythos" *ngIf="getCardType(card.cardtype) === 'mythos'"></fa-icon>
-                        <span> {{getValues(card.title)}}</span>
-                      </p>
-                  </mat-card-title>
-                    <mat-card-subtitle>
-                      {{_text.capitalize(getValues(card.theme))}}
-                    </mat-card-subtitle>
-                  </mat-card-header>
-                  <mat-card-content>
-                    <span class="tbcard-section-title">IMPROVEMENTS</span>
-                    Improvements come here...
-                  </mat-card-content>
-               </mat-card>
-             </div>
-            </div>
-          </div>
-        </div>
-      </swiper>
-    </div>
-  </div>
+						</mat-card-content>
+					</mat-card>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row" *ngIf="!isLoading && mobile">
+		<div class="col-12">
+			<swiper [config]="swiperConfig">
+				<div>
+					<div class="swiper-pagination" style="position: relative"></div>
+				</div>
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" *ngFor="let card of cards">
+						<div class="card-container mobile">
+							<div class='flippable-card mobile' [ngClass]="{'flipped':flipped}"
+								(click)="flipped = !flipped">
+								<mat-card [ngClass]="getValues(card.cardtype)" class="theme-card front mobile"
+									style="position: relative">
+									<mat-card-header>
+										<mat-card-title>
+											<p>
+												<fa-icon [icon]="icons.logos"
+													*ngIf="getCardType(card.cardtype) === 'logos'"></fa-icon>
+												<fa-icon [icon]="icons.mythos"
+													*ngIf="getCardType(card.cardtype) === 'mythos'"></fa-icon>
+												<span> {{getValues(card.title)}}</span>
+											</p>
+										</mat-card-title>
+										<mat-card-subtitle>
+											{{_text.capitalize(getValues(card.theme))}}
+										</mat-card-subtitle>
+									</mat-card-header>
+									<mat-card-content>
+										<div class="qors">
+											<span *ngIf="getCardType(card.cardtype) === 'mythos'">Mystery: </span>
+											<span *ngIf="getCardType(card.cardtype) === 'logos'">Identity: </span>
+											<span class="qors-text hand-written">"{{getValues(card.qors)}}"</span>
+										</div>
+										<div>
+											<span class="tbcard-section-title">POWER TAGS</span>
+											<ul>
+												<li *ngFor="let ptag of card.ptags">[{{ptag.letter}}] {{ptag.tag}}</li>
+											</ul>
+										</div>
+										<div>
+											<span class="tbcard-section-title">WEAKNESS TAGS</span>
+											<ul>
+												<li *ngFor="let wtag of card.wtags">[{{wtag.letter}}] {{wtag.tag}}</li>
+											</ul>
+										</div>
+									</mat-card-content>
+								</mat-card>
+								<mat-card [ngClass]="getValues(card.cardtype)" class="theme-card back mobile"
+									style="position: absolute; bottom: 0px;">
+									<mat-card-header>
+										<mat-card-title>
+											<p>
+												<fa-icon [icon]="icons.logos"
+													*ngIf="getCardType(card.cardtype) === 'logos'"></fa-icon>
+												<fa-icon [icon]="icons.mythos"
+													*ngIf="getCardType(card.cardtype) === 'mythos'"></fa-icon>
+												<span> {{getValues(card.title)}}</span>
+											</p>
+										</mat-card-title>
+										<mat-card-subtitle>
+											{{_text.capitalize(getValues(card.theme))}}
+										</mat-card-subtitle>
+									</mat-card-header>
+									<mat-card-content>
+										<span class="tbcard-section-title">IMPROVEMENTS</span>
+										Improvements come here...
+									</mat-card-content>
+								</mat-card>
+							</div>
+						</div>
+					</div>
+				</div>
+			</swiper>
+		</div>
+	</div>
 </div>
-{{character.cards | json}}
